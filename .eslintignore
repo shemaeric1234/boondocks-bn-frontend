@@ -1,0 +1,12 @@
+# Build
+build/
+dist/
+lib/
+webpack/
+
+# Tests
+src/**/*.spec.js
+src/**/*.test.js
+
+# Dependency
+node_modules/
