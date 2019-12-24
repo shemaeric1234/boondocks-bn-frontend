@@ -1,12 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux'
 import Login from './views/Login';
 import NotFound from './views/NotFoundPage';
 import HomePage from './views/HomePage';
+import store from './store';
 
 export default function App() {
 	return (
-		<Router>
+		<Provider store={store}>
+			<Router>
 			<div>
 				<Switch>
 					<Route path='/' exact component={HomePage} />
@@ -15,5 +18,6 @@ export default function App() {
 				</Switch>
 			</div>
 		</Router>
+		</Provider>
 	);
 }
