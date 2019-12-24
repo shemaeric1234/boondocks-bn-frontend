@@ -265,7 +265,6 @@ sketch
 # Markdown Navigator plugin
 
 # End of https://www.gitignore.io/api/node,react,webstorm,phpstorm,visualstudiocode
-
 /node_modules/
 /.idea/
 storybook-static/
