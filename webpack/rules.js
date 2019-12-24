@@ -14,16 +14,21 @@ module.exports = [
   {
       test: /\.(woff|woff2)$/,
       exclude: /node_modules/,
-      loader: 'url-loader'
+      loader: 'file-loader'
   },
   {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
       exclude: /node_modules/,
-      loader: 'url-loader'
+      loader: 'file-loader'
   },
   {
       test: /\.(jpe?g|png|gif|svg)$/i,
-      use: ['url-loader', 'img-loader']
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 30000
+        }
+      }]
   },
   {
       test: /\.css$/,
@@ -38,6 +43,11 @@ module.exports = [
   },
   {
       test: /\.s(a|c)ss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
+      use: ['style-loader', 'css-loader', {
+        loader: 'sass-loader',
+        options: {
+          implementation: require('sass')
+        }
+      }]
   }
 ];

@@ -1,0 +1,7 @@
+@use '../utilities/variables';
+@use '../base/typography';
+
+body {
+  color: variables.$text-color;
+  font-family: typography.$font-stack;
+}
