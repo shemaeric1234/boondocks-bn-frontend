@@ -268,3 +268,4 @@ sketch
 /node_modules/
 /.idea/
 storybook-static/
+html-report/
