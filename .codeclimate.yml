@@ -17,12 +17,12 @@ checks:
     config:
       threshold: 60
 exclude_patterns:
-- "webpack/"
-- "stories/"
-- ".storybook/"
-- ".github/"
-- "tests/"
-- "src/__tests__"
-- "webpack/"
-- ".webpack.*.js"
-- "stories/"
+  - "webpack/"
+  - "stories/"
+  - ".storybook/"
+  - ".github/"
+  - "tests/"
+  - "src/__tests__"
+  - "webpack/"
+  - ".webpack.*.js"
+  - "stories/"

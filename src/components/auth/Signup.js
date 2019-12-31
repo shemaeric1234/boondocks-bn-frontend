@@ -6,8 +6,9 @@ import signupFields from '../../utils/signupFields';
 import signup from '../../store/actions/authActions';
 import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
-import validation from '../../utils/validations';
+import { validation } from '../../utils/validations';
 import Button from '../templates/Button';
+import { hasLoggedIn } from '../../store/actions/loginActions';
 
 export class Signup extends Component {
 	constructor(props) {
@@ -19,6 +20,11 @@ export class Signup extends Component {
 			password: '',
 			checkError: '',
 		};
+	}
+
+	componentDidMount() {
+		const { props } = this;
+		props.hasLoggedIn();
 	}
 
 	handleChange(event) {
@@ -43,7 +49,12 @@ export class Signup extends Component {
 
 	render() {
 		const { state } = this;
-		const { status, loading } = this.props;
+		const { status, loading, loggedIn } = this.props;
+
+		if (loggedIn === true) {
+			return <Redirect to='/profile' />;
+		}
+
 		if (!loading && status === 'success') {
 			return <Redirect to='/login' />;
 		}
@@ -100,21 +111,27 @@ Signup.propTypes = {
 	signup: propTypes.func.isRequired,
 	status: propTypes.string,
 	loading: propTypes.bool,
+	hasLoggedIn: propTypes.func,
+	loggedIn: propTypes.bool,
 };
 
 Signup.defaultProps = {
 	status: propTypes.string,
 	loading: null,
+	hasLoggedIn: null,
+	loggedIn: null,
 };
 
 export const mapStateToProps = state => ({
 	error: state.signupState.error,
 	status: state.signupState.status,
 	loading: state.loadingState.buttonLoading,
+	loggedIn: state.loginState.loggedIn,
 });
 
 const mapDispatchToProps = {
 	signup,
+	hasLoggedIn,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

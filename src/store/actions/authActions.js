@@ -13,11 +13,11 @@ const signup = userData => async dispatch => {
 		});
 		dispatch(actionFunc(REGISTER_SUCCESS, res.data));
 		dispatch(actionFunc(BUTTON_LOADING, false));
-		toast(res.data.status, 'Account successfully created');
+		toast('success', 'Account successfully created');
 	} catch (error) {
 		dispatch(actionFunc(REGISTER_FAIL, error.response.data));
 		dispatch(actionFunc(BUTTON_LOADING, false));
-		toast(error.response.data.status, error.response.data.message);
+		toast('error', error.response.data.message);
 	}
 };
 

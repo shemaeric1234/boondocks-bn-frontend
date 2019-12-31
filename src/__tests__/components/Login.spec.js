@@ -27,6 +27,7 @@ describe('<Login /> Test Suite', () => {
       },
       data: null,
       login: jest.fn(),
+      hasLoggedIn: jest.fn()
     }
 
     testStore = (state) => {

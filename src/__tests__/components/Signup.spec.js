@@ -14,11 +14,15 @@ describe('<Signup /> Test Suite', () => {
         data: null,
 	    error: null,
         status: '',
+        loggedIn: false,
       }
     }
 
+
+    
     props = {
       signup: jest.fn(),
+      hasLoggedIn: jest.fn(),
       error: null,
       status: '',
     }
@@ -95,8 +99,9 @@ describe('<Signup /> Test Suite', () => {
           status: '',
         },
         loadingState: { buttonLoading: null },
+        loginState:{loggedIn: false,}
     };
-    expect(mapStateToProps(initialState)).toEqual({loading: null, error: null,  status: ''});
+    expect(mapStateToProps(initialState)).toEqual({loading: null, error: null,  status: '', loggedIn: false,});
   });
 
 });

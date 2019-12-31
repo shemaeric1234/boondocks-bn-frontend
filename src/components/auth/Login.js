@@ -8,8 +8,8 @@ import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
 import LoadingButton from '../templates/Button';
 import FormLinks from '../templates/FormLinks';
-import login from '../../store/actions/loginActions';
-import validation from '../../utils/validations';
+import { login, hasLoggedIn } from '../../store/actions/loginActions';
+import { validation } from '../../utils/validations';
 
 export class Login extends Component {
 	constructor(props) {
@@ -19,6 +19,11 @@ export class Login extends Component {
 			password: '',
 			checkError: '',
 		};
+	}
+
+	componentDidMount() {
+		const { props } = this;
+		props.hasLoggedIn();
 	}
 
 	handleChange(e) {
@@ -105,12 +110,14 @@ export class Login extends Component {
 
 Login.propTypes = {
 	login: propTypes.func,
+	hasLoggedIn: propTypes.func,
 	loginData: propTypes.objectOf(propTypes.any),
 	loadingData: propTypes.objectOf(propTypes.any),
 };
 
 Login.defaultProps = {
 	login: null,
+	hasLoggedIn: null,
 	loginData: null,
 	loadingData: null,
 };
@@ -122,6 +129,7 @@ export const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
 	login,
+	hasLoggedIn,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

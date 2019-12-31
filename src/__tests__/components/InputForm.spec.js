@@ -15,7 +15,7 @@ describe('<InputForm />  tests', () => {
       placeholder: 'name',
       required: true,
       pattern: 'regex'
-		}
+		};
         const wrapper = shallow(<InputForm {...props} />);
         expect(wrapper.find("[data-test='input-form']")).toHaveLength(1);
 	});
