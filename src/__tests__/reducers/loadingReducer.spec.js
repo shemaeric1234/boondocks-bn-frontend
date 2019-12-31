@@ -1,9 +1,5 @@
 import loadingReducer from '../../store/reducers/loadingReducer';
-import { 
-	LOADING,
-	BUTTON_HAS_LOADED,
-	BUTTON_LOADING, 
-} from '../../store/actions/types';
+import { LOADING, BUTTON_LOADING } from '../../store/actions/types';
 
 describe('Reset Password Reducer Tests ', () => {
 	it('Should change loading to true', () => {
@@ -30,7 +26,7 @@ describe('Reset Password Reducer Tests ', () => {
 		})
 	});
 
-	it('Should change loading to true', () => {
+	it('Should change button loading to true', () => {
 		const btnLoadingTrue = {
 			type: BUTTON_LOADING,
 			payload: true
@@ -42,7 +38,7 @@ describe('Reset Password Reducer Tests ', () => {
 		})
 	});
 
-	it('Should change loading to false', () => {
+	it('Should change button loading to false', () => {
 		const btnLoadingFalse = {
 			type: BUTTON_LOADING,
 			payload: false

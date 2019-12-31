@@ -7,3 +7,5 @@ export const VALIDATION_ERRORS = 'VALIDATION_ERRORS';
 export const BUTTON_LOADING = 'BUTTON_LOADING';
 export const LOADING = 'LOADING';
 export const TOAST = 'TOAST';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

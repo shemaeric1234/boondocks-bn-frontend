@@ -12,4 +12,7 @@ export default {
 		pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$',
 		error: 'Please enter a valid email. eg. "email@example.com"',
 	},
+	isRequired: {
+		error: 'Please enter some data in this field',
+	},
 };
