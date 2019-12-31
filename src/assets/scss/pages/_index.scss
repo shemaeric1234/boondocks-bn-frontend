@@ -4,8 +4,9 @@
 @use '../components/button';
 @use '../components/forms';
 @use '../components/login';
+@use '../components/loader';
 
 body {
-  color: variables.$text-color;
+  background-color: #f8f9fa!important;
   font-family: typography.$font-stack;
 }

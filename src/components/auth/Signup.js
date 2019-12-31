@@ -6,7 +6,7 @@ import signupFields from '../../utils/signupFields';
 import signup from '../../store/actions/authActions';
 import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
-import validation from '../../utils/validations';
+import { validation } from '../../utils/validations';
 import Button from '../templates/Button';
 
 export class Signup extends Component {

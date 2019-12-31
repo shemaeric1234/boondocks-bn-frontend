@@ -5,7 +5,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { resetPassword } from '../../store/actions/resetPasswordAction';
 import LayoutForms from '../templates/LayoutForms';
 import InputForm from '../templates/InputForm';
-import validation from '../../utils/validations';
+import { validation } from '../../utils/validations';
 import Button from '../templates/Button';
 
 export class ResetPassword extends Component {
