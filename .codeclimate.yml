@@ -1,3 +1,21 @@
+version: "2"
+checks:
+  complex-logic:
+    enabled: true
+    config:
+      threshold: 10
+  file-lines:
+    enabled: true
+    config:
+      threshold: 250
+  method-complexity:
+    enabled: true
+    config:
+      threshold: 12
+  method-lines:
+    enabled: true
+    config:
+      threshold: 60
 exclude_patterns:
 - "webpack/"
 - "stories/"
