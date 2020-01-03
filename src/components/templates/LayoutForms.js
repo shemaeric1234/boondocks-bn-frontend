@@ -1,22 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FormInfo from './FormInfo';
 
-export default function LayoutForms({
-	children,
-	title,
-	info,
-	onSubmit,
-	classNames,
-	SocialLogin,
-}) {
+const LayoutForms = ({ children, title, info, onSubmit, classNames }) => {
 	return (
-		<section data-test='form-layout' className='row justify-content-center'>
+		<div
+			data-test='form-layout'
+			className='row mt-5 pt-5 justify-content-center'
+		>
 			<section className='col-sm-8 col-md-4 w-100' id='container'>
-				<h3 className=''>{title}</h3>
+				<h3>{title}</h3>
 				<div className='mt-5'>
-					<p>{info}</p>
+					<FormInfo infoText={info} />
 				</div>
-				{SocialLogin}
 				<form
 					className={`form-container ${classNames}`}
 					onSubmit={onSubmit}
@@ -25,9 +21,9 @@ export default function LayoutForms({
 					{children}
 				</form>
 			</section>
-		</section>
+		</div>
 	);
-}
+};
 
 LayoutForms.propTypes = {
 	children: PropTypes.oneOfType([
@@ -38,14 +34,11 @@ LayoutForms.propTypes = {
 	info: PropTypes.string,
 	onSubmit: PropTypes.func.isRequired,
 	classNames: PropTypes.string,
-	SocialLogin: PropTypes.oneOfType([
-		PropTypes.arrayOf(PropTypes.node),
-		PropTypes.node,
-	]),
 };
 
 LayoutForms.defaultProps = {
-	info: '',
 	classNames: '',
-	SocialLogin: null,
+	info: '',
 };
+
+export default LayoutForms;

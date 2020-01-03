@@ -4,7 +4,7 @@ import NotFoundPage from '../../views/NotFoundPage';
 import React from 'react';
 
 describe('NotFoundPage view', () => {
-	test('should render without error', () => {
+	it('should render without error', () => {
 		const { getByTestId } = render(<NotFoundPage/>);
 		expect(getByTestId('not-found-page')).toBeInTheDocument();
 	});

@@ -53,7 +53,7 @@ export class ForgotPassword extends Component {
 					value={email}
 					placeholder='email'
 					pattern={validation.validEmail.pattern}
-					classnames='form-control'
+					classNames='form-control'
 					error={validation.validEmail.error}
 					type='email'
 					name='email'
@@ -61,7 +61,7 @@ export class ForgotPassword extends Component {
 				/>
 				<Button
 					data-test='submitInput'
-					classnames='btn btn-success btn-block btn-rounded-border mt-5'
+					classNames='btn btn-success btn-block btn-rounded-border mt-5'
 					value='Reset Password'
 					buttonLoading={loading}
 				/>

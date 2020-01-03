@@ -6,7 +6,7 @@ describe('<InputForm />  tests', () => {
 	test('should render <InputForm /> without errors', () => {
 		const props = {
 			onChange: jest.fn(),
-      classnames: 'test-class',
+      classNames: 'test-class',
       name: 'text',
       value: 'input',
       error: 'error-test',

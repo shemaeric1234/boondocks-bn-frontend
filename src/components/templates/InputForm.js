@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const InputForm = ({
-	classnames,
+	classNames,
 	placeholder,
 	onChange,
+	onClick,
 	onBlur,
 	name,
 	value,
@@ -14,22 +15,27 @@ const InputForm = ({
 	label,
 	pattern,
 }) => (
-	<div className='form-group'>
+	<div data-test='input-form' className='form-group'>
 		{label && <label htmlFor={name}>{label}</label>}
 		<input
-			data-test='input-form'
+			data-testid='input-field'
 			name={name}
 			value={value}
 			onChange={onChange}
+			onClick={onClick}
 			onBlur={onBlur}
 			placeholder={placeholder}
-			className={`${classnames}`}
+			className={`${classNames}`}
 			type={type}
 			required={required}
 			id={name}
 			pattern={pattern}
 		/>
-		{error && <span className='invalid-feedback'>{error}</span>}
+		{error && error !== '' && (
+			<span data-testid='error-text' className='invalid-feedback'>
+				{error}
+			</span>
+		)}
 	</div>
 );
 
@@ -39,10 +45,11 @@ InputForm.propTypes = {
 	error: PropTypes.string,
 	type: PropTypes.string,
 	label: PropTypes.string,
-	classnames: PropTypes.string,
+	classNames: PropTypes.string,
 	placeholder: PropTypes.string,
 	onChange: PropTypes.func,
 	onBlur: PropTypes.func,
+	onClick: PropTypes.func,
 	required: PropTypes.bool,
 	pattern: PropTypes.string,
 };
@@ -51,9 +58,10 @@ InputForm.defaultProps = {
 	type: 'text',
 	error: null,
 	label: null,
-	classnames: null,
+	classNames: null,
 	placeholder: null,
 	onChange: null,
+	onClick: null,
 	onBlur: null,
 	required: false,
 	pattern: null,

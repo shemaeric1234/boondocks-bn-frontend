@@ -38,7 +38,7 @@ const Profile = ({
 		return <div>Please Wait....</div>;
 	}
 	const { userId } = JSON.parse(localStorage.getItem('bn_user_data'));
-	const isLoggedInUser = currentUser == userId;
+	const isLoggedInUser = currentUser === userId;
 	return (
 		<div className='card profile border-light rounded'>
 			<div className='card-body'>

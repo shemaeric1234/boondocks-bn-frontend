@@ -9,7 +9,7 @@ let store;
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('Signup Test Suite', () => {
+describe('Register Test Suite', () => {
   beforeEach(() => {
     moxios.install(apiCall);
   });
@@ -48,10 +48,10 @@ describe('Signup Test Suite', () => {
     }
   ];
     store = mockStore({});
-    const data = { 
-        firstName: 'Maste', 
-        lastName: 'Mahoro', 
-        email: 'pmastel@gmail.com', 
+    const data = {
+        firstName: 'Maste',
+        lastName: 'Mahoro',
+        email: 'pmastel@gmail.com',
         password: 'Test@1234'
     };
     await store.dispatch(signup(data))
@@ -90,10 +90,10 @@ describe('Signup Test Suite', () => {
       type: "BUTTON_LOADING",
     }];
     store = mockStore({});
-    const data = { 
-        firstName: 'Maste$$', 
-        lastName: 'Mahoro', 
-        email: 'pmaste@gmail.com', 
+    const data = {
+        firstName: 'Maste$$',
+        lastName: 'Mahoro',
+        email: 'pmaste@gmail.com',
         password: 'Test@1234'
     };
     await store.dispatch(signup(data))
