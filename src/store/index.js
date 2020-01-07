@@ -5,8 +5,9 @@ import reducers from './reducers';
 
 const initialState = {};
 
-// eslint-disable-next-line prettier/prettier
-const store = createStore(reducers, initialState, 
+const store = createStore(
+	reducers,
+	initialState,
 	composeWithDevTools(applyMiddleware(thunk)),
 );
 

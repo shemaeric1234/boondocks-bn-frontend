@@ -1,5 +1,8 @@
 @use '../utilities/variables';
 @use '../base/typography';
+@use '../components/footer';
+@use '../components/button';
+@use '../components/forms';
 
 body {
   color: variables.$text-color;

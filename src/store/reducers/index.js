@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
+import signupReducer from './authReducers';
+import loadingReducer from './loadingReducer';
 
-// This will be removed
-function sampleReducer(state = {}, action) {
-	return state;
-}
 const reducers = combineReducers({
-	// this will be removed
-	sampleState: sampleReducer,
+	signupState: signupReducer,
+	loadingState: loadingReducer,
 });
 
 export default reducers;
