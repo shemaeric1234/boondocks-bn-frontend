@@ -1,7 +1,6 @@
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const paths = require('./paths');
 const rules = require('./rules');
 
@@ -15,7 +14,9 @@ module.exports = {
         extensions: ['*', '.js', '.scss', '.css']
     },
     plugins: [
-        new Dotenv(), 
+        new Dotenv({
+            safe: true
+        }),
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
             template: paths.templatePath,

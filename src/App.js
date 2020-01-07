@@ -2,24 +2,31 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import Login from './views/LoginPage';
+import LoginPage from './views/LoginPage';
 import Signup from './views/Signup';
 import NotFound from './views/NotFoundPage';
 import HomePage from './views/HomePage';
-import store from './store';
-import Navbar from './components/Navbar';
 import Footer from './components/templates/Footer';
+import store from './store';
+import ForgotPasswordPage from './views/ForgotPasswordPage';
+import ResetPasswordPage from './views/ResetPasswordPage';
+import Loader from './components/templates/Loader';
 
 export default function App() {
 	return (
 		<Provider store={store}>
 			<Router>
 				<div data-testid='app'>
-					<Navbar />
+					<Loader />
 					<Switch>
 						<Route path='/' exact component={HomePage} />
-						<Route path='/login' exact component={Login} />
 						<Route path='/signup' exact component={Signup} />
+						<Route path='/login' exact component={LoginPage} />
+						<Route
+							path='/auth/forgot-password'
+							component={ForgotPasswordPage}
+						/>
+						<Route path='/auth/reset-password' component={ResetPasswordPage} />
 						<Route component={NotFound} />
 					</Switch>
 					<ToastContainer />

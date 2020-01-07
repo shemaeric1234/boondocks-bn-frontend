@@ -1,5 +1,9 @@
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const RESET_PASSWORD = 'RESET_PASSWORD';
+export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
+export const ERROR = 'ERROR';
+export const VALIDATION_ERRORS = 'VALIDATION_ERRORS';
 export const BUTTON_LOADING = 'BUTTON_LOADING';
 export const LOADING = 'LOADING';
 export const TOAST = 'TOAST';

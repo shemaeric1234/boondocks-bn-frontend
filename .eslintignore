@@ -1,7 +1,6 @@
 # Build
 build/
 dist/
-lib/
 webpack/
 
 # Tests
