@@ -1,5 +1,7 @@
 @import '../utilities/variables';
-
+.App {
+  min-height: calc(100vh - 80px);
+}
 footer {
   background-color: $color-white;
   height: 3rem !important;

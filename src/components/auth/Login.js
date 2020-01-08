@@ -9,7 +9,7 @@ import LayoutForms from '../templates/LayoutForms';
 import LoadingButton from '../templates/Button';
 import FormLinks from '../templates/FormLinks';
 import login from '../../store/actions/loginActions';
-import validation from '../../utils/validations';
+import { validation } from '../../utils/validations';
 
 export class Login extends Component {
 	constructor(props) {

@@ -5,6 +5,7 @@ const InputForm = ({
 	classnames,
 	placeholder,
 	onChange,
+	onBlur,
 	name,
 	value,
 	error,
@@ -20,6 +21,7 @@ const InputForm = ({
 			name={name}
 			value={value}
 			onChange={onChange}
+			onBlur={onBlur}
 			placeholder={placeholder}
 			className={`${classnames}`}
 			type={type}
@@ -40,6 +42,7 @@ InputForm.propTypes = {
 	classnames: PropTypes.string,
 	placeholder: PropTypes.string,
 	onChange: PropTypes.func,
+	onBlur: PropTypes.func,
 	required: PropTypes.bool,
 	pattern: PropTypes.string,
 };
@@ -51,6 +54,7 @@ InputForm.defaultProps = {
 	classnames: null,
 	placeholder: null,
 	onChange: null,
+	onBlur: null,
 	required: false,
 	pattern: null,
 };

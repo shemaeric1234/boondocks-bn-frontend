@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { forgotPassword } from '../../store/actions/resetPasswordAction';
 import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
-import validation from '../../utils/validations';
+import { validation } from '../../utils/validations';
 import Button from '../templates/Button';
 
 export class ForgotPassword extends Component {

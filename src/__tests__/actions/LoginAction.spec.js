@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
-import { 
+import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   BUTTON_LOADING
@@ -68,7 +68,7 @@ describe('Login Actions Test Suite', () => {
           "data": {
             "firstName": "Super",
             "lastName": "Administrator",
-            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cGVyQGFkbWluaXN0cmF0b3IuY29tIiwibmFtZSI6IlN1cGVyIiwidXNlcklkIjoxLCJ2ZXJpZmllZCI6dHJ1ZSwicm9sZSI6InN1cGVyX2FkbWluaXN0cmF0b3IiLCJsaW5lTWFuYWdlcklkIjpudWxsLCJpYXQiOjE1NzgzMDkxNzQsImV4cCI6MTU3ODM5NTU3NH0.Pgo92TcGMaild8Kw4bv29IUjtq_u59tQuNV891Hm5ig"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlcXVlc3Rlcm9AdXNlci5jb20iLCJuYW1lIjoiUmVxdWVzdGVyIiwidXNlcklkIjoyLCJ2ZXJpZmllZCI6dHJ1ZSwicm9sZSI6InJlcXVlc3RlciIsImxpbmVNYW5hZ2VySWQiOjcsImlhdCI6MTU3ODQ4MjExMiwiZXhwIjoxNTc4NTY4NTEyfQ.JORuKad_7k-2qCTZmhpNyxgYx4xRFjUOdQ7L7ABdMW8"
           }
         },
         status: 200

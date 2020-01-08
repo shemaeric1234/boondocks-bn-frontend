@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import profile from './profile.reducer';
 import signupReducer from './authReducers';
 import loadingReducer from './loadingReducer';
 import resetPassordReducer from './resetPasswordReducer';
@@ -10,6 +11,7 @@ const reducers = combineReducers({
 	forgotState: resetPassordReducer,
 	loadingState: loadingReducer,
 	loginState: loginReducer,
+	profileState: profile,
 });
 
 export default reducers;
