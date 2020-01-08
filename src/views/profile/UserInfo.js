@@ -34,7 +34,8 @@ class UserInfo extends Component {
 		const { props, state } = this;
 		const labelVal = props.label;
 		const name = [
-			labelVal.split(' ')[0].toLowerCase(), labelVal.split(' ')[1] || '',
+			labelVal.split(' ')[0].toLowerCase(),
+			labelVal.split(' ')[1] || '',
 		].join('');
 		const { saveData } = props;
 		if (!props.isEditing && props.value) {

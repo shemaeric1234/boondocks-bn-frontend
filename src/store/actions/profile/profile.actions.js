@@ -4,7 +4,7 @@ import {
 	getUsers,
 	updateUserProfile,
 } from '../../../lib/services/user.service';
-import { nullToStr } from '../../../lib/helpers';
+import nullToStr from '../../../lib/helpers';
 import {
 	isEmail,
 	isNotEmpty,

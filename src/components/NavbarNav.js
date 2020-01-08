@@ -10,11 +10,7 @@ const NavbarNav = ({ navItems, isAuthenticated, notifications }) => (
 		data-testid='navbar-nav'
 		className='navbar navbar-expand-md navbar-light'
 	>
-		<Link
-			className='navbar-brand'
-			href='https://themeforest.net/user/ig_design/portfolio'
-			to='/'
-		>
+		<Link className='navbar-brand' to='/'>
 			<img
 				src='https://bn-pictures.s3.eu-north-1.amazonaws.com/bn_logo.svg'
 				alt=''

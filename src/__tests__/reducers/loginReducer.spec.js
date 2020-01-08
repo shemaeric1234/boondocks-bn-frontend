@@ -1,5 +1,5 @@
 import loginReducer from '../../store/reducers/loginReducer';
-import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../../store/actions/types';
+import { LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_USER } from '../../store/actions/types';
 
 describe('Login Reducer Tests ', () => {
 	it('Should change loggedIn state to true', () => {
@@ -25,6 +25,18 @@ describe('Login Reducer Tests ', () => {
       loggedIn: false,
       data: null,
       error: loginFailed.payload,
+		})
+  });
+  
+  it('Should return loggedIn as false', () => {
+		const loginChangedToFalse = {
+			type: LOGOUT_USER,
+		}
+		const changedState = loginReducer(undefined, loginChangedToFalse);
+		expect(changedState).toEqual({
+      loggedIn: false,
+      data: null,
+      error: null,
 		})
 	});
 

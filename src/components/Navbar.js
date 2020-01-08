@@ -1,19 +1,26 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable
+jsx-a11y/anchor-is-valid,
+react/no-array-index-key
+*/
 import React, { useEffect, useState } from 'react';
-import Cookies from 'universal-cookie';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { navItemObjects, notificationsItems } from './NavbarData';
 import NavbarNav from './NavbarNav';
 import { $ } from '../jquery-loader';
 
-const cookies = new Cookies();
+/**
+ * Navbar
+ *
+ * @param isAuthenticated
+ * @returns {*}
+ * @constructor
+ */
+const Navbar = ({ isAuthenticated }) => {
+	const [navItems, setNavItems] = useState([]);
+	const [notifications, setNotifications] = useState();
 
-let isAuthenticated;
-const Navbar = () => {
-	const [navItems, setNavItems] = useState([navItemObjects[0]]);
-	const [notifications, setNotifications] = useState([]);
 	useEffect(() => {
-		isAuthenticated = !!cookies.get('bn_auth_token');
 		$(() => {
 			const header = $('.start-style');
 			$(window).on('scroll', () => {
@@ -22,6 +29,7 @@ const Navbar = () => {
 				header.toggleClass('scroll-on', scroll >= 10);
 			});
 		});
+
 		$('body').on('mouseenter mouseleave', '.nav-item', e => {
 			if ($(window).width() > 750) {
 				const d = $(e.target).closest('.nav-item');
@@ -32,16 +40,20 @@ const Navbar = () => {
 				);
 			}
 		});
+
 		setNavItems(
 			isAuthenticated
 				? [
-						...navItems,
-						...[navItemObjects[1], navItemObjects[2], navItemObjects[3]],
+						navItemObjects[0],
+						navItemObjects[1],
+						navItemObjects[2],
+						navItemObjects[3],
 				  ]
-				: [...navItems, ...[navItemObjects[4], navItemObjects[5]]],
+				: [navItemObjects[0], navItemObjects[4], navItemObjects[5]],
 		);
 		if (isAuthenticated) setNotifications(notificationsItems);
-	}, []);
+	}, [isAuthenticated]);
+
 	return (
 		<div id='nav' className='navigation-wrap bg-light start-header start-style'>
 			<div className='container'>
@@ -58,4 +70,15 @@ const Navbar = () => {
 		</div>
 	);
 };
-export default Navbar;
+
+Navbar.defaultProps = {
+	isAuthenticated: null,
+};
+
+Navbar.propTypes = {
+	isAuthenticated: PropTypes.bool,
+};
+
+export default connect(({ authState: { isAuthenticated } }) => ({
+	isAuthenticated,
+}))(Navbar);

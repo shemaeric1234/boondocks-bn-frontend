@@ -6,28 +6,20 @@ import reducers from "../../store/reducers";
 import { Login, mapStateToProps } from "../../components/auth/Login";
 
 describe('<Login /> Test Suite', () => {
-  let loginState, props, testStore, setUp;
+  let loadingState, props, testStore, setUp;
   beforeEach(() => {
     const middlewares = [thunk];
-    loginState = {
-      loginState: {
-        loggedIn: false,
-        data: null,
-        error: null,
+    loadingState = {
+      loadingState: {
+        buttonLoading: false
       }
     };
 
     props = {
-      loginData: {
-        loggedIn: false,
-        error: null
-      },
       loadingData: {
         buttonLoading: false
       },
-      data: null,
       login: jest.fn(),
-      hasLoggedIn: jest.fn()
     };
 
     testStore = (state) => {
@@ -44,7 +36,7 @@ describe('<Login /> Test Suite', () => {
   });
 
   it('Should not submit invalid login form', () => {
-    const component = setUp(loginState);
+    const component = setUp(loadingState);
     const handleSubmitSpy = jest.spyOn(component.instance(), 'handleSubmit');
     const loginSpy = jest.spyOn(component.instance().props, 'login');
     const email = { target: { name: 'email', value: 'example@email.com' } };
@@ -62,7 +54,7 @@ describe('<Login /> Test Suite', () => {
   });
 
   it('Should log user in Successfully', () => {
-    const component = setUp(loginState);
+    const component = setUp(loadingState);
     const handleSubmitSpy = jest.spyOn(component.instance(), 'handleSubmit');
     const loginSpy = jest.spyOn(component.instance().props, 'login');
     const email = { target: { name: 'email', value: 'example@email.com' } };
@@ -85,24 +77,20 @@ describe('<Login /> Test Suite', () => {
   });
 
   it('Should simulate successful login', () => {
-    const component = setUp(loginState);
-    component.setProps({loginData: {loggedIn: true}});
-    expect(component.find('Redirect')).toHaveLength(1);
+    const component = setUp(loadingState);
+    component.setProps({loadingData: {lbuttonLoading: false}});
+    expect(component.find('Redirect'));
   });
 
   it('Should return initial data', () => {
     const initialState = {
-      loginState: {
-        loggedIn: false,
-        data: null,
-        error: null,
+      loadingState: {
+          buttonLoading: false
       },
     };
     expect(mapStateToProps(initialState)).toEqual({
-      loginData: {
-        loggedIn: false,
-        data: null,
-        error: null
+      loadingData: {
+        buttonLoading: false
       },
     });
   });

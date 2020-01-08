@@ -2,7 +2,13 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { accountLinks } from '../utils/userAccountLinks';
+import Logout from './auth/Logout';
 
+/**
+ * UserAccount
+ * @returns {*}
+ * @constructor
+ */
 const UserAccount = () => (
 	<li
 		data-testid='user-account'
@@ -24,6 +30,7 @@ const UserAccount = () => (
 					{item.linkText}
 				</Link>
 			))}
+			<Logout />
 		</div>
 	</li>
 );

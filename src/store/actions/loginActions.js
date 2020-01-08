@@ -1,4 +1,3 @@
-import Cookies from 'universal-cookie';
 import toast from '../../lib/toast';
 import { LOGIN_FAILURE, LOGIN_SUCCESS, BUTTON_LOADING } from './types';
 import actionFunc from '../../utils/actionFunc';
@@ -19,14 +18,4 @@ const login = userRequest => async dispatch => {
 	dispatch(actionFunc(BUTTON_LOADING, false));
 };
 
-const hasLoggedIn = () => async dispatch => {
-	const cookies = new Cookies();
-
-	const token = cookies.get('bn_auth_token');
-	decodeToken(token);
-	if (token) {
-		dispatch(actionFunc(LOGIN_SUCCESS, 'success'));
-	}
-};
-
-export { login, hasLoggedIn };
+export default login;

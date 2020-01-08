@@ -8,7 +8,7 @@ import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
 import LoadingButton from '../templates/Button';
 import FormLinks from '../templates/FormLinks';
-import { login, hasLoggedIn } from '../../store/actions/loginActions';
+import login from '../../store/actions/loginActions';
 import { validation } from '../../utils/validations';
 import SocialAuthButtons from '../templates/SocialAuthButtons';
 
@@ -20,11 +20,6 @@ export class Login extends Component {
 			password: '',
 			checkError: '',
 		};
-	}
-
-	componentDidMount() {
-		const { props } = this;
-		props.hasLoggedIn();
 	}
 
 	handleChange(e) {
@@ -50,11 +45,9 @@ export class Login extends Component {
 	render() {
 		const { state } = this;
 		const { checkError } = this.state;
-		const { loginData } = this.props;
-		const { loggedIn } = loginData;
 		const { loadingData } = this.props;
 		const { buttonLoading } = loadingData;
-		if (loggedIn === true) {
+		if (localStorage.bn_user_data) {
 			return <Redirect to='/profile' />;
 		}
 		return (
@@ -113,26 +106,20 @@ export class Login extends Component {
 
 Login.propTypes = {
 	login: propTypes.func,
-	hasLoggedIn: propTypes.func,
-	loginData: propTypes.objectOf(propTypes.any),
 	loadingData: propTypes.objectOf(propTypes.any),
 };
 
 Login.defaultProps = {
 	login: null,
-	hasLoggedIn: null,
-	loginData: null,
 	loadingData: null,
 };
 
 export const mapStateToProps = state => ({
-	loginData: state.loginState,
 	loadingData: state.loadingState,
 });
 
 const mapDispatchToProps = {
 	login,
-	hasLoggedIn,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

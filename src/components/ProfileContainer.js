@@ -9,25 +9,21 @@ import {
 	updateProfile,
 } from '../store/actions/profile/profile.actions';
 import Profile from '../views/profile/Profile';
-import { hasLoggedIn } from '../store/actions/loginActions';
+import setAuthenticate from '../store/actions/authenticateAction';
 
 class ProfileContainer extends Component {
-	async componentDidMount() {
+	componentDidMount() {
 		const { props } = this;
-
-		props.hasLoggedIn();
+		props.setAuthenticate(true);
 		const user = JSON.parse(localStorage.getItem('bn_user_data'));
-		// eslint-disable-next-line react/prop-types
-		const userId = props.match.params.userId || user.userId;
-		props.fetchUserProfile(userId);
+		if (props.match.params.userId || user) {
+			const userId = props.match.params.userId || user.userId;
+			props.fetchUserProfile(userId);
+		}
 	}
 
 	render() {
 		const { props } = this;
-
-		if (!props.loggedIn) {
-			props.history.push('/login');
-		}
 		return (
 			<div className='container profile-container'>
 				<Profile
@@ -46,7 +42,6 @@ class ProfileContainer extends Component {
 		);
 	}
 }
-
 const mapStateToProps = state => ({
 	profile: state.profileState.userProfile,
 	managers: state.profileState.managers,
@@ -55,18 +50,15 @@ const mapStateToProps = state => ({
 	isEditing: state.profileState.isEditing,
 	loading: state.loadingState.buttonLoading,
 	currentUserId: state.profileState.currentUserId,
-	loggedIn: state.loginState.loggedIn,
 });
-
 export default connect(mapStateToProps, {
 	fetchUserProfile,
 	setIsEditing,
 	updateProfile,
 	saveProfile,
 	revertChanges,
-	hasLoggedIn,
+	setAuthenticate,
 })(ProfileContainer);
-
 ProfileContainer.propTypes = {
 	fetchUserProfile: PropTypes.func.isRequired,
 	updateProfile: PropTypes.func.isRequired,
@@ -79,12 +71,16 @@ ProfileContainer.propTypes = {
 	revertChanges: PropTypes.func.isRequired,
 	loading: PropTypes.bool.isRequired,
 	currentUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	loggedIn: PropTypes.bool.isRequired,
 	history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
-	hasLoggedIn: PropTypes.func.isRequired,
+	setAuthenticate: PropTypes.func.isRequired,
+	match: PropTypes.shape({
+		params: PropTypes.shape({
+			userId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		}),
+	}),
 };
-
 ProfileContainer.defaultProps = {
 	editErrors: null,
 	currentUserId: null,
+	match: null,
 };
