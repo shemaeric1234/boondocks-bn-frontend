@@ -16,6 +16,7 @@ const reducers = combineReducers({
 	loadingState: loadingReducer,
 	loginState: loginReducer,
 	profileState: profile,
+	authState: isAuthenticatedReducer,
 	singleRequestState: singleRequestReducer,
 	authState: isAuthenticatedReducer,
 	usersState: usersReducer,
