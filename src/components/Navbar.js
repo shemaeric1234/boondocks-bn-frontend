@@ -8,6 +8,7 @@ export default function Navbar() {
 			<Link to='/login'>Login</Link>
 			<Link to='/Signup'>signup</Link>
 			<Link to='/profile'>profile</Link>
+			<Link to='/requests'>requests</Link>
 		</div>
 	);
 }

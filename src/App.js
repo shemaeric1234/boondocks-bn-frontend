@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import LoginPage from './views/LoginPage';
 import Signup from './views/Signup';
+import Request from './views/Request';
 import NotFound from './views/NotFoundPage';
 import HomePage from './views/HomePage';
 import Profile from './components/ProfileContainer';
@@ -31,8 +32,9 @@ export default function App() {
 							component={ForgotPasswordPage}
 						/>
 						<Route path='/auth/reset-password' component={ResetPasswordPage} />
-						<Route component={NotFound} />
+						<Route path='/requests' exact component={Request} />
 						<Route path='/' exact component={HomePage} />
+						<Route component={NotFound} />
 					</Switch>
 					<ToastContainer />
 				</div>
