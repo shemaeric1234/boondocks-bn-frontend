@@ -1,4 +1,7 @@
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const apiCall = axios.create({
 	baseURL: `${process.env.API_URL}/api/v1`,
@@ -6,7 +9,7 @@ const apiCall = axios.create({
 });
 
 apiCall.interceptors.request.use(config => {
-	config.headers.Authorization = `Bearer ${localStorage.getItem('authToken')}`;
+	config.headers.Authorization = `Bearer ${cookies.get('bn_auth_token')}`;
 	return config;
 });
 

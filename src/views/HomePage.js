@@ -3,7 +3,7 @@ import Home from '../components/Home';
 
 export default function HomePage() {
 	return (
-		<div data-testid='home-page'>
+		<div className='container' data-testid='home-page'>
 			<Home />
 		</div>
 	);

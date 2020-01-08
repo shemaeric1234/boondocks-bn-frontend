@@ -3,6 +3,7 @@
 @use '../components/footer';
 @use '../components/button';
 @use '../components/forms';
+@use '../components/login';
 
 body {
   color: variables.$text-color;

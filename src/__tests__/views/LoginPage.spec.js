@@ -1,11 +1,10 @@
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import LoginPage from '../../views/LoginPage';
 import React from 'react';
+import { shallow } from 'enzyme';
+import LoginPage from '../../views/LoginPage';
 
-describe('LoginPage view', () => {
-	test('should render without error', () => {
-		const { getByTestId } = render(<LoginPage/>);
-		expect(getByTestId('login-page')).toBeInTheDocument();
-	});
+describe('Login page view', () => {
+	test('should render login page without error', () => {
+		const wrapper = shallow(<LoginPage />);
+		expect(wrapper.find("[data-testid='login-page']")).toHaveLength(1);
+  });
 });

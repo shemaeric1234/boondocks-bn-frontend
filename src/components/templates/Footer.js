@@ -6,7 +6,7 @@ function Footer() {
 			<div className='row mt-2 ml-4'>
 				<div className='float-sm-left'>
 					<p className='text-dark'>
-						Copyright &copy; Barefoot Nomad. All right reserved
+						Copyright &copy; Barefoot Nomad. All rights reserved.
 					</p>
 				</div>
 				<div className='text-right text-success socials'>

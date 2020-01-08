@@ -1,4 +1,4 @@
-# Barefoot Nomad (Frontend)
+# Barefoot Nomad (Front-end)
 [![Build Status](https://travis-ci.org/andela/boondocks-bn-frontend.svg?branch=develop)](https://travis-ci.org/andela/boondocks-bn-frontend) [![Maintainability](https://api.codeclimate.com/v1/badges/12507ac7cc8a8b5f657e/maintainability)](https://codeclimate.com/github/andela/boondocks-bn-frontend/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/12507ac7cc8a8b5f657e/test_coverage)](https://codeclimate.com/github/andela/boondocks-bn-frontend/test_coverage)
 
 ## Vision :telescope:
@@ -25,7 +25,7 @@ Run the app in development mode
 
 ```$ npm run watch```
 
-## Testing
+## Testing :microscope:
 Install dependencies by running ```npm install```
 
 Run tests by running either one of the two commands below:
@@ -34,13 +34,13 @@ Run tests by running either one of the two commands below:
 
 `npm run test:coverage`
 
-## To run the App in production
+## To run the App in production :factory:
 Build the project with ```npm run build```
 
 Start the built project with ```npm start```
 
-## View components documentation
+## View components documentation :page_facing_up:
 Start the storybook dashboard with ```npm run storybook```
 
-## Author
+## Author :man_artist:
 Team Boondocks

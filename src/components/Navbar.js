@@ -5,7 +5,7 @@ export default function Navbar() {
 	return (
 		<div data-testid='navbar'>
 			<Link to='/'>Home page</Link>
-			<Link to='/LoginPage'>login</Link>
+			<Link to='/login'>Login</Link>
 			<Link to='/Signup'>signup</Link>
 		</div>
 	);

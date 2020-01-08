@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginForm from '../components/LoginForm';
+import Login from '../components/auth/Login';
 
 export default function LoginPage() {
 	return (
-		<div data-testid='login-page' className='container'>
-			<LoginForm />
+		<div className='container' data-testid='login-page'>
+			<Login />
 		</div>
 	);
 }
