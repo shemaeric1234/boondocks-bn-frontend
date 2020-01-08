@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { forgotPassword } from '../../store/actions/resetPasswordAction';
 import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
@@ -36,6 +37,9 @@ export class ForgotPassword extends Component {
 	}
 
 	render() {
+		if (localStorage.bn_user_data) {
+			return <Redirect to='/profile' />;
+		}
 		const { email, checkError } = this.state;
 		const { loading } = this.props;
 

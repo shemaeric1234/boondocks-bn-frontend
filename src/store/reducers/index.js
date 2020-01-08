@@ -4,6 +4,7 @@ import signupReducer from './authReducers';
 import loadingReducer from './loadingReducer';
 import resetPassordReducer from './resetPasswordReducer';
 import loginReducer from './loginReducer';
+import isAuthenticatedReducer from './isAuthenticatedReducer';
 import singleRequestReducer from './singleRequestReducer';
 
 const reducers = combineReducers({
@@ -13,6 +14,7 @@ const reducers = combineReducers({
 	loadingState: loadingReducer,
 	loginState: loginReducer,
 	profileState: profile,
+	authState: isAuthenticatedReducer,
 	singleRequestState: singleRequestReducer,
 });
 
