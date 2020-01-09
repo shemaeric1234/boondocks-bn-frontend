@@ -23,6 +23,7 @@ const hasLoggedIn = () => async dispatch => {
 	const cookies = new Cookies();
 
 	const token = cookies.get('bn_auth_token');
+	decodeToken(token);
 	if (token) {
 		dispatch(actionFunc(LOGIN_SUCCESS, 'success'));
 	}

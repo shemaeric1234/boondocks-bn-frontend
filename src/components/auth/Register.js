@@ -3,15 +3,15 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import signupFields from '../../utils/signupFields';
-import signup from '../../store/actions/authActions';
+import { registerLinks } from '../../utils/AuthLinks';
 import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
-import { validation } from '../../utils/validations';
-import Button from '../templates/Button';
-import SocialAuthButtons from '../templates/SocialAuthButtons';
-import { registerLinks } from '../../utils/AuthLinks';
+import LoadingButton from '../templates/Button';
 import FormLinks from '../templates/FormLinks';
 import { hasLoggedIn } from '../../store/actions/loginActions';
+import signup from '../../store/actions/authActions';
+import { validation } from '../../utils/validations';
+import SocialAuthButtons from '../templates/SocialAuthButtons';
 
 export class Register extends Component {
 	constructor(props) {
@@ -27,7 +27,7 @@ export class Register extends Component {
 
 	componentDidMount() {
 		const { props } = this;
-		if (typeof props.hasLoggedIn == 'function') props.hasLoggedIn();
+		props.hasLoggedIn();
 	}
 
 	handleChange(event) {
@@ -40,11 +40,11 @@ export class Register extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		const { firstName, lastName, email, password } = this.state;
+		const { props } = this;
 		this.setState({
 			checkError: 'was-validated',
 		});
 		if (event.target.checkValidity()) {
-			const { props } = this;
 			const data = { firstName, lastName, email, password };
 			props.signup(data);
 		}
@@ -61,6 +61,7 @@ export class Register extends Component {
 		if (!loading && status === 'success') {
 			return <Redirect to='/login' />;
 		}
+
 		return (
 			<LayoutForms
 				title='Create your Account'
@@ -94,7 +95,7 @@ export class Register extends Component {
 						/>
 					),
 				)}
-				<Button
+				<LoadingButton
 					data-test='submit'
 					classNames='btn btn-success btn-block btn-rounded-border mt-5'
 					value='Register'
@@ -116,7 +117,7 @@ export class Register extends Component {
 }
 
 Register.propTypes = {
-	signup: propTypes.func,
+	signup: propTypes.func.isRequired,
 	status: propTypes.string,
 	loading: propTypes.bool,
 	hasLoggedIn: propTypes.func,
@@ -124,7 +125,6 @@ Register.propTypes = {
 };
 
 Register.defaultProps = {
-	signup: null,
 	status: '',
 	loading: null,
 	hasLoggedIn: null,

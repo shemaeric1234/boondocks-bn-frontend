@@ -60,7 +60,7 @@ export class Login extends Component {
 		return (
 			<LayoutForms
 				title='Log In'
-				info='Register with your social media account or email address'
+				info='Login with your social media account or email address'
 				classNames={checkError}
 				onSubmit={e => this.handleSubmit(e)}
 			>
