@@ -6,17 +6,21 @@ import {
 	render as reactRender,
 	waitForElement
 } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import "@testing-library/jest-dom/extend-expect";
-import { applyMiddleware, createStore } from "redux";
-import reducers from "../../store/reducers";
-import { Provider } from "react-redux";
-import ProfileContainer from "../../components/ProfileContainer";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import { getUserProfile, getUsers } from "../../lib/services/user.service";
-import localStorage from "../../__mocks__/LocalStorage";
-import { createMemoryHistory } from "history";
+import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/extend-expect';
+import { applyMiddleware, createStore } from 'redux';
+import reducers from '../../store/reducers';
+import { Provider } from 'react-redux';
+import ViewProfileComponent from '../../components/ViewProfileContainer';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import {
+	getUserProfile, getUsers,
+} from '../../lib/services/user.service';
+import localStorage from '../../__mocks__/LocalStorage';
+import { createMemoryHistory } from 'history';
+import { BrowserRouter } from 'react-router-dom';
+import EditProfileComponent from '../../components/EditProfileContainer';
 import Cookies from "universal-cookie";
 
 global.localStorage = localStorage;
@@ -46,8 +50,10 @@ const render = (ui, initialState = {}, options = {}) => {
 	return reactRender(ui, { wrapper: Providers, ...options });
 };
 
-describe("User should be be able to view and edit profile", () => {
-	let Component;
+describe('User should be be able to view and edit profile', () => {
+  let ViewComponent;
+  let EditComponent;
+
 	const userProfile = {
 		data: {
 			data: {
@@ -56,7 +62,7 @@ describe("User should be be able to view and edit profile", () => {
 				email: "requester@user.com",
 				isVerified: true,
 				birthDate: "2001-11-11T00:00:00.000Z",
-				residenceAddress: null,
+				residenceAddress: '',
 				preferredLanguage: "French USA",
 				preferredCurrency: "usd",
 				department: "marketing",
@@ -68,7 +74,7 @@ describe("User should be be able to view and edit profile", () => {
 					id: 7,
 					firstName: "john",
 					lastName: "doe",
-				}
+				},
 			}
 		}
 	};
@@ -82,14 +88,14 @@ describe("User should be be able to view and edit profile", () => {
 					lastName: "doe",
 					email: "john@barefoot.com",
 					birthDate: '2001-11-11T00:00:00.000Z',
-					residenceAddress: null,
-					lineManagerId: null,
-					preferredLanguage: null,
-					preferredCurrency: null,
-					department: null,
-					gender: null,
+					residenceAddress: '',
+					lineManagerId: '',
+					preferredLanguage: '',
+					preferredCurrency: '',
+					department: '',
+					gender: '',
 					role: "manager",
-					phoneNumber: null,
+					phoneNumber: '',
 					createdAt: "2019-12-11T18:15:54.157Z",
 					updatedAt: "2019-12-12T11:05:52.591Z"
 				}
@@ -105,7 +111,7 @@ describe("User should be be able to view and edit profile", () => {
 			initialProfile: {},
 			isFetching: false,
 			fetchError: null,
-			isEditing: false,
+			isEditing: true,
 			currentUserId: null
 		}
 	};
@@ -113,14 +119,19 @@ describe("User should be be able to view and edit profile", () => {
 	getUsers.mockImplementation(() => Promise.resolve(managers));
 	beforeEach(() => {
 		const history = createMemoryHistory();
-		Component = (
-			<ProfileContainer history={history} match={{ params: { userId: 1 } }}/>
-		);
+		ViewComponent = (
+			<BrowserRouter><ViewProfileComponent history={history} match={{ params: { userId: 2 }}}/></BrowserRouter>
+    );
+
+    EditComponent = (
+			<BrowserRouter><EditProfileComponent history={history} match={{ params: { userId: 2 }}}/></BrowserRouter>
+    );
+
 	});
 
 	afterEach(cleanup);
-	test("User can view profile information", async () => {
-		const { getByText, getByPlaceholderText } = render(Component, initialState);
+	test('User can view profile information', async () => {
+		const { getByText } = render(ViewComponent, initialState);
 		const profileTitle = await waitForElement(
 			() => getByText("Profile Information")
 		);
@@ -128,90 +139,124 @@ describe("User should be be able to view and edit profile", () => {
 		expect(getByText("marketing")).toBeInTheDocument();
 	});
 
-	test("User can edit profile information", async () => {
-		const { getByText, getByPlaceholderText, getByDisplayValue } = render(
-			Component, initialState);
-		const editButton = await waitForElement(
-			() => getByText('Edit Profile').closest('button')
+	test('User can edit profile information', async () => {
+    const { getByTestId, getByText, getByDisplayValue, getByPlaceholderText } = render(EditComponent, initialState);
+
+    const profileTitle = await waitForElement(
+			() => getByText('Update Profile')
 		);
-		fireEvent.click(editButton);
-		expect(getByDisplayValue('requester@user.com')).toBeInTheDocument();
-		const [emailField, languageField, managerField] = await waitForElement(
+    expect(getByDisplayValue('requester@user.com')).toBeInTheDocument();
+		const [emailField, departmentField, firstNameField] = await waitForElement(
 			() => [
-				getByPlaceholderText('Edit Email'),
-				getByPlaceholderText('Edit Preferred Language'),
-				getByPlaceholderText('Edit Line Manager'),
+				getByPlaceholderText('Enter Email'),
+        getByPlaceholderText('Enter Department'),
+        getByPlaceholderText('Enter First Name'),
 			]
-		);
+    );
+    
+    fireEvent.change(firstNameField, { target: { value: ''}});
+    fireEvent.blur(firstNameField);
+
+    fireEvent.change(firstNameField, { target: { value: 'user'}});
+    fireEvent.blur(firstNameField);
+    
 		fireEvent.change(emailField, { target: { value: 'user@'}});
 		fireEvent.blur(emailField);
 		expect(getByText('Email is not valid')).toBeInTheDocument();
-		fireEvent.change(languageField, { target: { value: ''}});
-		fireEvent.blur(languageField);
-		fireEvent.change(managerField, { target: { value: 0}});
-		fireEvent.blur(managerField);
-		expect(getByDisplayValue('Choose Manager')).toBeInTheDocument();
+		fireEvent.change(departmentField, { target: { value: ''}});
+		fireEvent.blur(departmentField);
 		fireEvent.change(emailField, { target: { value: 'user@gmail.com'}});
 		fireEvent.blur(emailField);
 	});
 
 	test('User can revert profile changes', async () => {
-		const { getByText, getByPlaceholderText, getByDisplayValue } = render(Component, initialState);
-		const editButton = await waitForElement(
-			() => getByText('Edit Profile').closest('button')
-		);
-		fireEvent.click(editButton);
+		const { getByTestId, getByText, getByPlaceholderText } = render(EditComponent, initialState);
+		const profileTitle = await waitForElement(
+			() => getByText('Update Profile')
+    );
+    
 		const [emailField, cancelButton] = await waitForElement(
 			() => [
-				getByPlaceholderText('Edit Email'),
+				getByPlaceholderText('Enter Email'),
 				getByText('Cancel')
 			]
 		);
 		fireEvent.change(emailField, { target: { value: 'user@'}});
 		fireEvent.blur(emailField);
 		fireEvent.click(cancelButton);
-		expect(getByText('requester@user.com')).toBeInTheDocument();
 	});
 
 	test('User can save profile changes', async () => {
-		const { getByText, getByPlaceholderText } = render(Component, initialState);
-		const editButton = await waitForElement(
-			() => getByText('Edit Profile').closest('button')
-		);
-		fireEvent.click(editButton);
-		const [phoneField, saveButton, dateField] = await waitForElement(
+		const { getByText, getByTestId, getByPlaceholderText, getByLabelText } = render(EditComponent, initialState);
+		const profileTitle = await waitForElement(
+			() => getByText('Update Profile')
+    );
+		const [phoneField, saveButton, dateField, managerField] = await waitForElement(
 			() => [
-				getByPlaceholderText('Edit Phone Number'),
-				getByText('Save Changes'),
-				getByPlaceholderText('Edit Birth Date')
+				getByPlaceholderText('Enter Phone Number'),
+        getByText('Save Changes'),
+        getByLabelText('Date of Birth').closest('input'),
+        getByPlaceholderText('Line Manager'),
 			]
-		);
-		fireEvent.change(phoneField, { target: { value: '0786666666'}});
+    );
+    fireEvent.change(dateField, { target: { value: '12/12/2020'}});
+    fireEvent.blur(dateField);
+
+    // fireEvent.change(managerField, { target: { value: 'none'}});
+    // fireEvent.blur(managerField);
+
+    fireEvent.click(saveButton);
+
+    fireEvent.change(dateField, { target: { value: '2000-02-09'}});
+    fireEvent.blur(dateField);
+
+    fireEvent.change(managerField, { target: { value: 1 }});
+    fireEvent.blur(managerField);
+
+    fireEvent.change(phoneField, { target: { value: '0786666666'}});
 		fireEvent.blur(phoneField);
 		fireEvent.click(saveButton);
-		expect(getByText('0786666666')).toBeInTheDocument();
 	});
 
 	test('User can not save profile changes with errors', async () => {
-		const { getByText, getByPlaceholderText } = render(Component, initialState);
-		const editButton = await waitForElement(
-			() => getByText('Edit Profile').closest('button')
-		);
-		fireEvent.click(editButton);
-		const [emailField, saveButton] = await waitForElement(
+		const { getByText, getByPlaceholderText } = render(EditComponent, initialState);
+		const profileTitle = await waitForElement(
+			() => getByText('Update Profile')
+    );
+
+		const [emailField, currencyField, saveButton, lineManagerField, languageField, genderField] = await waitForElement(
 			() => [
-				getByPlaceholderText('Edit Email'),
-				getByText('Save Changes')
+        getByPlaceholderText('Enter Email'),
+        getByPlaceholderText('Preferred Currency'),
+        getByText('Save Changes'),
+        getByPlaceholderText('Line Manager'),
+        getByPlaceholderText('Preferred Language'),
+        getByPlaceholderText('Select Gender'),
 			]
-		);
+    );
+    
+    fireEvent.change(currencyField, { target: { value: 'Dollars'}});
+    fireEvent.blur(currencyField);
+
+    fireEvent.change(lineManagerField, { target: { value: '7'}});
+    fireEvent.blur(lineManagerField);
+    
 		fireEvent.change(emailField, { target: { value: 'user@'}});
-		fireEvent.blur(emailField);
+    fireEvent.blur(emailField);
+
+    fireEvent.change(languageField, { target: { value: 'English'}});
+    fireEvent.blur(languageField);
+
+    fireEvent.change(genderField, { target: { value: 'male'}});
+    fireEvent.blur(genderField);
+
+    expect(getByText('Email is not valid')).toBeInTheDocument();
 		expect(getByText('Save Changes')).toBeInTheDocument();
 		fireEvent.click(saveButton);
-		fireEvent.change(emailField, { target: { value: 'user@gmail.com'}});
+    fireEvent.change(emailField, { target: { value: 'user@gmail.com'}});
+    
 		fireEvent.blur(emailField);
 		fireEvent.click(saveButton);
-		expect(getByText('user@gmail.com')).toBeInTheDocument();
 	});
 
 });

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 const InfoCard = ({ number, icon, label }) => {
 	return (
-		<div className='card border-secondary'>
+		<div className='card border-secondary info'>
 			<div className='card-body'>
-				<div className='info-card text-secondary text-center align-middle'>
+				<div className='info-card text-center align-middle'>
 					<i className={`fa ${icon} fa-4x`} aria-hidden='true' />
 					<div className='info-text'>
 						<span className='h5'>{number}</span>
-						<div className='h4 text-secondary'>{label}</div>
+						<div>{label}</div>
 					</div>
 				</div>
 			</div>

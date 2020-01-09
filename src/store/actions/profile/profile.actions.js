@@ -14,7 +14,8 @@ import {
 	isValidName,
 } from '../../../utils/validations';
 import actionFunc from '../../../utils/actionFunc';
-import { BUTTON_LOADING, LOADING } from '../types';
+import { BUTTON_LOADING } from '../types';
+import Toast from '../../../lib/toast';
 
 /**
  * Fetch user profile and dispatch action on success
@@ -22,21 +23,22 @@ import { BUTTON_LOADING, LOADING } from '../types';
  * @returns {function(...[*]=)}
  */
 const fetchUserProfile = userId => async dispatch => {
-	dispatch(actionFunc(LOADING, true));
 	const profileData = await getUserProfile(userId);
-
 	const profile = profileData.data.data;
+
 	const managersData = await getUsers('manager');
 	const managers = managersData.data.data;
 
 	dispatch(
 		actionFunc(ACTION_TYPES.GET_USER_PROFILE_SUCCESS, {
-			profile: nullToStr(profile),
+			profile: nullToStr({
+				...profile,
+				birthDate: profile.birthDate && profile.birthDate.split('T')[0],
+			}),
 			managers,
 			userId,
 		}),
 	);
-	dispatch(actionFunc(LOADING, false));
 };
 
 /**
@@ -118,6 +120,7 @@ const updateProfile = input => async dispatch => {
 	const errorKey = `${name}Error`;
 	error[errorKey] = errorMessage;
 	dispatch(actionFunc(ACTION_TYPES.UPDATE_PROFILE, { input, error }));
+	dispatch(actionFunc(ACTION_TYPES.SET_EDIT_MODE, true));
 };
 
 /**
@@ -135,10 +138,30 @@ const saveProfile = userProfile => async dispatch => {
 	delete userProfile.updatedAt;
 	delete userProfile.receiveNotification;
 
-	const { lineManager, ...profile } = userProfile;
+	if (userProfile.lineManagerId == 'none') {
+		const error = {};
+		error.lineManagerError = 'Please select a line manager';
+		dispatch(actionFunc(ACTION_TYPES.UPDATE_PROFILE, { input: {}, error }));
+		Toast('error', error.lineManagerError);
+		dispatch(actionFunc(BUTTON_LOADING, false));
+		dispatch(actionFunc(ACTION_TYPES.SET_EDIT_MODE, true));
+		return;
+	}
+
+	const notAllowed = ['', ' ', null, 'none', undefined];
+
+	const filteredFields = Object.keys(userProfile).filter(
+		key => !notAllowed.includes(userProfile[key]),
+	);
+
+	const validInformation = Object.assign(
+		{},
+		...filteredFields.map(key => ({ [key]: userProfile[key] })),
+	);
 
 	dispatch(actionFunc(BUTTON_LOADING, true));
-	await updateUserProfile(profile);
+	delete validInformation.lineManager;
+	await updateUserProfile(validInformation);
 
 	const { userId } = JSON.parse(localStorage.getItem('bn_user_data'));
 	const profileData = await getUserProfile(userId);
@@ -146,10 +169,17 @@ const saveProfile = userProfile => async dispatch => {
 	const updatedProfile = profileData.data.data;
 	dispatch(
 		actionFunc(ACTION_TYPES.SAVE_PROFILE_SUCCESS, {
-			updatedProfile,
+			updatedProfile: {
+				...updatedProfile,
+				birthDate:
+					updatedProfile.birthDate && updatedProfile.birthDate.split('T')[0],
+			},
 			userId,
 		}),
 	);
+	Toast('success', 'Profile updated successfully');
+	dispatch(actionFunc(ACTION_TYPES.SET_EDIT_MODE, false));
+	dispatch(actionFunc(BUTTON_LOADING, false));
 };
 
 export {

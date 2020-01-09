@@ -11,7 +11,6 @@ import LoginPage from './views/LoginPage';
 import RegisterPage from './views/RegisterPage';
 import NotFound from './views/NotFoundPage';
 import HomePage from './views/HomePage';
-import Profile from './components/ProfileContainer';
 import Navbar from './components/Navbar';
 import Footer from './components/templates/Footer';
 import store from './store';
@@ -20,6 +19,8 @@ import ResetPasswordPage from './views/ResetPasswordPage';
 import Loader from './components/templates/Loader';
 import Logout from './components/auth/Logout';
 import ProtectedRoute from './components/ProtectedRoute';
+import EditProfileContainer from './components/EditProfileContainer';
+import ViewProfileContainer from './components/ViewProfileContainer';
 
 export default function App() {
 	return (
@@ -32,8 +33,20 @@ export default function App() {
 						<Route path='/home' exact component={HomePage} />
 						<Route path='/register' exact component={RegisterPage} />
 						<Route path='/login' exact component={LoginPage} />
-						<Route path='/profile/:userId' exact component={Profile} />
-						<ProtectedRoute path='/profile' exact component={Profile} />
+						<ProtectedRoute
+							path='/profile/:userId'
+							component={ViewProfileContainer}
+						/>
+						<ProtectedRoute
+							path='/profile'
+							exact
+							component={ViewProfileContainer}
+						/>
+						<ProtectedRoute
+							path='/edit'
+							exact
+							component={EditProfileContainer}
+						/>
 						<Route
 							path='/auth/forgot-password'
 							component={ForgotPasswordPage}
