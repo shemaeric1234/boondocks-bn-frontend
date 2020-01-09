@@ -3,20 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
 	fetchUserProfile,
+	revertChanges,
+	saveProfile,
 	setIsEditing,
 	updateProfile,
-	saveProfile,
-	revertChanges,
 } from '../store/actions/profile/profile.actions';
 import Profile from '../views/profile/Profile';
+import setAuthenticate from '../store/actions/authenticateAction';
 
 class ProfileContainer extends Component {
-	async componentDidMount() {
+	componentDidMount() {
 		const { props } = this;
+		props.setAuthenticate(true);
 		const user = JSON.parse(localStorage.getItem('bn_user_data'));
-		// eslint-disable-next-line react/prop-types
-		const userId = props.match.params.userId || user.userId;
-		props.fetchUserProfile(userId);
+
+		if (props.match.params.userId || user) {
+			const userId = props.match.params.userId || user.userId;
+			props.fetchUserProfile(userId);
+		}
 	}
 
 	render() {
@@ -56,6 +60,7 @@ export default connect(mapStateToProps, {
 	updateProfile,
 	saveProfile,
 	revertChanges,
+	setAuthenticate,
 })(ProfileContainer);
 
 ProfileContainer.propTypes = {
@@ -70,9 +75,17 @@ ProfileContainer.propTypes = {
 	revertChanges: PropTypes.func.isRequired,
 	loading: PropTypes.bool.isRequired,
 	currentUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+	setAuthenticate: PropTypes.func.isRequired,
+	match: PropTypes.shape({
+		params: PropTypes.shape({
+			userId: PropTypes.string,
+		}),
+	}),
 };
 
 ProfileContainer.defaultProps = {
 	editErrors: null,
 	currentUserId: null,
+	match: null,
 };

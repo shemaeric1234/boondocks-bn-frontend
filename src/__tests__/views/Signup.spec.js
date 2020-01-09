@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Signup from '../../views/Signup';
 import React from 'react';
 
-describe('Signup view', () => {
+describe('Register view', () => {
 	test('should render without error', () => {
 		const wrapper = shallow(<Signup/>);
 		expect(wrapper.find("[data-testid='signup-page']")).toHaveLength(1);

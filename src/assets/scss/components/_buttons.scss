@@ -1,0 +1,42 @@
+@use "../utilities/variables" as *;
+
+.btn-round-login{
+  border-radius: 2.5rem;
+  padding-right: 2.5rem;
+  padding-left: 2.5rem;
+}
+
+.btn-rounded-border {
+  border-radius: 3.125rem !important;
+}
+
+.social-btns {
+  margin-top: 1.875rem;
+
+  > button {
+    width: 100%;
+    margin: 0.3125rem;
+  }
+
+  .btn {
+    &-facebook, &-google {
+      color: $color-white;
+    }
+
+    &-facebook {
+      background-color: $color-blue-facebook;
+
+      &:hover {
+        background-color: darken($color-blue-facebook, 10%);
+      }
+    }
+
+    &-google {
+      background-color: $color-red-google;
+
+      &:hover {
+        background-color: darken($color-red-google, 10%);
+      }
+    }
+  }
+}

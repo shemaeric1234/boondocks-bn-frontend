@@ -17,7 +17,8 @@ import thunk from 'redux-thunk';
 import {
 	getUserProfile, getUsers,
 } from '../../lib/services/user.service';
-import localStorage from '../../../test-setup/LocalStorage';
+import localStorage from '../../__mocks__/LocalStorage';
+import { createMemoryHistory } from 'history';
 
 global.localStorage = localStorage;
 
@@ -46,47 +47,51 @@ describe('User should be be able to view and edit profile', () => {
 	let Component;
 	const userProfile = {
 		data: {
-			firstName: "Requester",
-			lastName: "User",
-			email: "requester@user.com",
-			isVerified: true,
-			birthDate: "2001-11-11T00:00:00.000Z",
-			residenceAddress: null,
-			preferredLanguage: "French USA",
-			preferredCurrency: "usd",
-			department: "marketing",
-			gender: "male",
-			lastLogin: "2020-01-04T08:19:43.909Z",
-			role: "requester",
-			phoneNumber: "0786466253",
-			lineManager: {
-				id: 7,
-				firstName: "john",
-				lastName: "doe",
+			data: {
+				firstName: "Requester",
+				lastName: "User",
+				email: "requester@user.com",
+				isVerified: true,
+				birthDate: "2001-11-11T00:00:00.000Z",
+				residenceAddress: null,
+				preferredLanguage: "French USA",
+				preferredCurrency: "usd",
+				department: "marketing",
+				gender: "male",
+				lastLogin: "2020-01-04T08:19:43.909Z",
+				role: "requester",
+				phoneNumber: "0786466253",
+				lineManager: {
+					id: 7,
+					firstName: "john",
+					lastName: "doe",
+				}
 			}
 		}
 	};
 
 	const managers = {
-		data: [
-			{
-				id: 7,
-				firstName: "john",
-				lastName: "doe",
-				email: "john@barefoot.com",
-				birthDate: null,
-				residenceAddress: null,
-				lineManagerId: null,
-				preferredLanguage: null,
-				preferredCurrency: null,
-				department: null,
-				gender: null,
-				role: "manager",
-				phoneNumber: null,
-				createdAt: "2019-12-11T18:15:54.157Z",
-				updatedAt: "2019-12-12T11:05:52.591Z"
-			}
-		]
+		data: {
+			data: [
+				{
+					id: 7,
+					firstName: "john",
+					lastName: "doe",
+					email: "john@barefoot.com",
+					birthDate: '2001-11-11T00:00:00.000Z',
+					residenceAddress: null,
+					lineManagerId: null,
+					preferredLanguage: null,
+					preferredCurrency: null,
+					department: null,
+					gender: null,
+					role: "manager",
+					phoneNumber: null,
+					createdAt: "2019-12-11T18:15:54.157Z",
+					updatedAt: "2019-12-12T11:05:52.591Z"
+				}
+			]
+		}
 	};
 
 	const initialState = {
@@ -104,8 +109,9 @@ describe('User should be be able to view and edit profile', () => {
 	getUserProfile.mockImplementation(() => Promise.resolve(userProfile));
 	getUsers.mockImplementation(() => Promise.resolve(managers));
 	beforeEach(() => {
+		const history = createMemoryHistory();
 		Component = (
-				<ProfileContainer match={{ params: { userId: 2 }}}/>
+			<ProfileContainer history={history} match={{ params: { userId: 2 }}}/>
 		);
 	});
 
@@ -169,10 +175,11 @@ describe('User should be be able to view and edit profile', () => {
 			() => getByText('Edit Profile').closest('button')
 		);
 		fireEvent.click(editButton);
-		const [phoneField, saveButton] = await waitForElement(
+		const [phoneField, saveButton, dateField] = await waitForElement(
 			() => [
 				getByPlaceholderText('Edit Phone Number'),
-				getByText('Save Changes')
+				getByText('Save Changes'),
+				getByPlaceholderText('Edit Birth Date')
 			]
 		);
 		fireEvent.change(phoneField, { target: { value: '0786666666'}});

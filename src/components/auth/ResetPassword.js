@@ -78,7 +78,7 @@ export class ResetPassword extends Component {
 					value={state.password}
 					onChange={event => this.handleChange(event)}
 					data-test='password-reset'
-					classnames='form-control'
+					classNames='form-control'
 					type='password'
 					placeholder='password'
 					error={validation.validPassword.error}
@@ -88,7 +88,7 @@ export class ResetPassword extends Component {
 				<InputForm
 					name='confirmPassword'
 					value={state.confirmPassword}
-					classnames='form-control'
+					classNames='form-control'
 					data-test='confirm-password'
 					type='password'
 					placeholder='confirm password'
@@ -97,7 +97,7 @@ export class ResetPassword extends Component {
 					required
 				/>
 				<Button
-					classnames='btn btn-success btn-block btn-rounded-border mt-5'
+					classNames='btn btn-success btn-block btn-rounded-border mt-5'
 					value='Update Password'
 					buttonLoading={loading}
 				/>

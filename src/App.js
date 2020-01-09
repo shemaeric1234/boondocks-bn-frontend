@@ -1,9 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import LoginPage from './views/LoginPage';
-import Signup from './views/Signup';
+import RegisterPage from './views/RegisterPage';
 import NotFound from './views/NotFoundPage';
 import HomePage from './views/HomePage';
 import Profile from './components/ProfileContainer';
@@ -13,6 +18,8 @@ import store from './store';
 import ForgotPasswordPage from './views/ForgotPasswordPage';
 import ResetPasswordPage from './views/ResetPasswordPage';
 import Loader from './components/templates/Loader';
+import RequestPage from './views/RequestPage';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 export default function App() {
 	return (
@@ -22,20 +29,27 @@ export default function App() {
 				<Navbar />
 				<div data-testid='app' className='App'>
 					<Switch>
-						<Route path='/profile/:userId' component={Profile} />
-						<Route path='/profile' component={Profile} />
-						<Route path='/signup' exact component={Signup} />
+						<Route path='/home' exact component={HomePage} />
+						<Route path='/register' exact component={RegisterPage} />
 						<Route path='/login' exact component={LoginPage} />
+						<Route path='/profile/:userId' exact component={Profile} />
+						<Route path='/profile' exact component={Profile} />
 						<Route
 							path='/auth/forgot-password'
+							exact
 							component={ForgotPasswordPage}
 						/>
-						<Route path='/auth/reset-password' component={ResetPasswordPage} />
+						<Route
+							path='/auth/reset-password'
+							exact
+							component={ResetPasswordPage}
+						/>
+						<ProtectedRoute path='/requests' component={RequestPage} />
+						<Redirect exact from='/' to='home' />
 						<Route component={NotFound} />
-						<Route path='/' exact component={HomePage} />
 					</Switch>
-					<ToastContainer />
 				</div>
+				<ToastContainer />
 				<Footer />
 			</Router>
 		</Provider>

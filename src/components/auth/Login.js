@@ -3,13 +3,14 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import loginFields from '../../utils/loginFields';
-import loginLinks from '../../utils/loginLinks';
+import { loginLinks } from '../../utils/AuthLinks';
 import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
 import LoadingButton from '../templates/Button';
 import FormLinks from '../templates/FormLinks';
-import login from '../../store/actions/loginActions';
+import { login } from '../../store/actions/loginActions';
 import { validation } from '../../utils/validations';
+import SocialAuthButtons from '../templates/SocialAuthButtons';
 
 export class Login extends Component {
 	constructor(props) {
@@ -54,9 +55,11 @@ export class Login extends Component {
 		return (
 			<LayoutForms
 				title='Log In'
+				info='Register with your social media account or email address'
 				classNames={checkError}
 				onSubmit={e => this.handleSubmit(e)}
 			>
+				<SocialAuthButtons />
 				{loginFields.map(
 					({
 						id,
@@ -73,7 +76,7 @@ export class Login extends Component {
 							value={state[name]}
 							name={name}
 							type={type}
-							classnames='form-control'
+							classNames='form-control'
 							onChange={event => this.handleChange(event)}
 							error={validation[validationKey].error}
 							pattern={validation[validationKey].pattern}
@@ -84,7 +87,7 @@ export class Login extends Component {
 				)}
 				<LoadingButton
 					data-test='submitInput'
-					classnames='btn btn-success btn-block btn-round-login'
+					classNames='btn btn-success btn-block btn-round-login'
 					value='Login'
 					buttonLoading={buttonLoading}
 				/>

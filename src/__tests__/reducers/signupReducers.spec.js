@@ -8,7 +8,7 @@ describe('signupReducer Tests ', () => {
 			payload: {
         message: 'Successfully signed up into Barefoot nomad',
 			}
-		}
+		};
 		const changedState = signupReducer(undefined, signupSuccessed);
 		expect(changedState).toEqual({
 			status: 'success',
@@ -22,7 +22,7 @@ describe('signupReducer Tests ', () => {
 				message: 'Invalid inputs',
 			},
 			type: REGISTER_FAIL
-		}
+		};
 		const changedState = signupReducer(undefined, signupFail);
 		expect(changedState).toEqual({
 			status: 'error',
