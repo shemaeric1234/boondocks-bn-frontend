@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
 	fetchUserProfile,
+	revertChanges,
+	saveProfile,
 	setIsEditing,
 	updateProfile,
-	saveProfile,
-	revertChanges,
 } from '../store/actions/profile/profile.actions';
 import Profile from '../views/profile/Profile';
 
@@ -21,6 +21,10 @@ class ProfileContainer extends Component {
 
 	render() {
 		const { props } = this;
+
+		if (!props.loggedIn) {
+			props.history.push('/login');
+		}
 		return (
 			<div className='container mb-4'>
 				<Profile
@@ -48,6 +52,7 @@ const mapStateToProps = state => ({
 	isEditing: state.profileState.isEditing,
 	loading: state.loadingState.buttonLoading,
 	currentUserId: state.profileState.currentUserId,
+	loggedIn: state.loginState.loggedIn,
 });
 
 export default connect(mapStateToProps, {
@@ -70,6 +75,8 @@ ProfileContainer.propTypes = {
 	revertChanges: PropTypes.func.isRequired,
 	loading: PropTypes.bool.isRequired,
 	currentUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	loggedIn: PropTypes.bool.isRequired,
+	history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
 };
 
 ProfileContainer.defaultProps = {

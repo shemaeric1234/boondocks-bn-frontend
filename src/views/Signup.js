@@ -1,5 +1,5 @@
 import React from 'react';
-import Signup from '../components/auth/Signup';
+import Signup from '../components/auth/Register';
 
 export default function HomePage() {
 	return (

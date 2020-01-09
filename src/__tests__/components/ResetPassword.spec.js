@@ -18,7 +18,7 @@ describe('<ResetPassword /> Test suite', () => {
         status: 'status'
       }
     }
-  
+
     props = {
       forgot: null,
       dataError: null,
@@ -47,17 +47,17 @@ describe('<ResetPassword /> Test suite', () => {
   })
 
   it('Should should throw error to the UI if password do not match', () => {
-    const component = setUp(mainState); 
+    const component = setUp(mainState);
     const handleMatchSpy = jest.spyOn(component.instance(), 'handleMatch');
     const password = { target: { name: 'password', value: 'Boondocks11232' } };
-    const confirmPassword = { 
+    const confirmPassword = {
       target: {
         name: 'confirmPassword',
         value: 'Boondocks1123',
         setCustomValidity: jest.fn((x) => x)
-    } 
+    }
     };
-    
+
     component.find('[data-test="password-reset"]').simulate('change', password);
     component.find('[data-test="confirm-password"]').simulate('change', confirmPassword);
 
@@ -67,17 +67,17 @@ describe('<ResetPassword /> Test suite', () => {
   });
 
   it('Should handle password match Successfully', () => {
-    const component = setUp(mainState); 
+    const component = setUp(mainState);
     const handleMatchSpy = jest.spyOn(component.instance(), 'handleMatch');
     const password = { target: { name: 'password', value: 'Boondocks1123' } };
-    const confirmPassword = { 
+    const confirmPassword = {
       target: {
         name: 'confirmPassword',
         value: 'Boondocks1123',
         setCustomValidity: jest.fn((x) => x)
-    } 
+    }
     };
-    
+
     component.find('[data-test="password-reset"]').simulate('change', password);
     component.find('[data-test="confirm-password"]').simulate('change', confirmPassword);
 
@@ -91,14 +91,14 @@ describe('<ResetPassword /> Test suite', () => {
     const handleSubmitSpy = jest.spyOn(component.instance(), 'handleSubmit');
     const resetPasswordSpy = jest.spyOn(component.instance().props, 'resetPassword');
     const password = { target: { name: 'password', value: 'Boondocks1123' } };
-    const confirmPassword = { 
+    const confirmPassword = {
       target: {
         name: 'confirmPassword',
         value: 'Boondocks1123',
         setCustomValidity: jest.fn((x) => x)
-      } 
+      }
     };
-    
+
     component.find('[data-test="password-reset"]').simulate('change', password);
     component.find('[data-test="confirm-password"]').simulate('change', confirmPassword);
     component.find('LayoutForms').simulate('submit', {
@@ -115,14 +115,14 @@ describe('<ResetPassword /> Test suite', () => {
     const handleSubmitSpy = jest.spyOn(component.instance(), 'handleSubmit');
     const resetPasswordSpy = jest.spyOn(component.instance().props, 'resetPassword');
     const password = { target: { name: 'password', value: 'Boondocks1123' } };
-    const confirmPassword = { 
+    const confirmPassword = {
       target: {
         name: 'confirmPassword',
         value: 'Boondocks1123',
         setCustomValidity: jest.fn((x) => x)
-      } 
+      }
     };
-    
+
     component.find('[data-test="password-reset"]').simulate('change', password);
     component.find('[data-test="confirm-password"]').simulate('change', confirmPassword);
     component.find('LayoutForms').simulate('submit', {
@@ -134,25 +134,25 @@ describe('<ResetPassword /> Test suite', () => {
     expect(resetPasswordSpy).toHaveBeenCalled();
   });
 
-  it('Should Simulate Successfull Signup', () => {
+  it('Should Simulate Successfull Register', () => {
     const component = setUp(mainState);
     component.setProps({loading: false, status: 'success'});
 
     expect(component.find('Redirect')).toHaveLength(1);
-  }); 
+  });
 
   it('Should Simulate Failed Forgot password alert', () => {
-    const component = setUp(mainState); 
+    const component = setUp(mainState);
     component.setProps({ loading: false, error: { message: 'Failed' }, status: 'error' });
 
     expect(component.instance().props.status).toEqual('error');
-  }); 
+  });
 
   it('Should Simulate Failed Forgot password alert', () => {
-    const component = setUp(mainState); 
+    const component = setUp(mainState);
     component.setProps({ dataError: null, status: '' });
     expect(component.instance().props.status).toEqual('');
-  }); 
+  });
 
   it('Should return initial data', () => {
     const initialState = {

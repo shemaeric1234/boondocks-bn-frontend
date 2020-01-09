@@ -1,24 +1,25 @@
-@import '../utilities/variables';
+@use '../utilities/variables' as *;
 
-body{
-    background-color: $color-whitesmoke;
+body {
+  background-color: $color-whitesmoke;
 }
-#container{
-    background-color: $color-white;
-    padding: 1.875rem;
-    position: relative;
-    top: 5rem;
-    box-shadow: 0.4rem 0.1rem 2rem rgba(0,0,0,0.1);
-  
-    h3 {
-      color: $color-black;
-      font-size: 1.25rem;
-      text-align: center;
-    }
-  
-    p {
-      color: $color-grey;
-      font-size: .8em;
+
+#container {
+  background-color: $color-white;
+  padding: 1.875rem;
+  box-shadow: $color-box-shadow;
+  border-radius: $border-radius-default;
+  margin: 5rem 0;
+
+  h3 {
+    color: $color-black;
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  p {
+    color: $color-grey;
+    font-size: .8em;
       text-align: center;
     }
   }

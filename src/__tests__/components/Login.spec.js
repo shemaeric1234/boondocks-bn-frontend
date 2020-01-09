@@ -1,9 +1,9 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { Login, mapStateToProps } from '../../components/auth/Login';
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import reducers from '../../store/reducers';
+import React from "react";
+import { shallow } from "enzyme";
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
+import reducers from "../../store/reducers";
+import { Login, mapStateToProps } from "../../components/auth/Login";
 
 describe('<Login /> Test Suite', () => {
   let loginState, props, testStore, setUp;
@@ -15,7 +15,7 @@ describe('<Login /> Test Suite', () => {
         data: null,
         error: null,
       }
-    }
+    };
 
     props = {
       loginData: {
@@ -27,7 +27,8 @@ describe('<Login /> Test Suite', () => {
       },
       data: null,
       login: jest.fn(),
-    }
+      hasLoggedIn: jest.fn()
+    };
 
     testStore = (state) => {
       const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
@@ -36,11 +37,10 @@ describe('<Login /> Test Suite', () => {
 
     setUp = (initialState =  {}) => {
       const store = testStore(initialState);
-      const wrapper = shallow(
-          <Login {...props} store={store} />
+      return shallow(
+        <Login {...props} store={store}/>
       );
-        return wrapper;
-    } 
+    }
   });
 
   it('Should not submit invalid login form', () => {
@@ -49,7 +49,7 @@ describe('<Login /> Test Suite', () => {
     const loginSpy = jest.spyOn(component.instance().props, 'login');
     const email = { target: { name: 'email', value: 'example@email.com' } };
     const password = { target: { name: 'password', value: 'example@pass' } };
-    
+
     component.find('[data-test="email"]').simulate('change', email);
     component.find('[data-test="password"]').simulate('change', password);
     component.find('[data-test="submitInput"]').simulate('click');
@@ -67,7 +67,7 @@ describe('<Login /> Test Suite', () => {
     const loginSpy = jest.spyOn(component.instance().props, 'login');
     const email = { target: { name: 'email', value: 'example@email.com' } };
     const password = { target: { name: 'password', value: 'example@pass' } };
-    
+
     component.find('[data-test="email"]').simulate('change', email);
     component.find('[data-test="password"]').simulate('change', password);
     component.find('[data-test="submitInput"]').simulate('click');
@@ -88,7 +88,7 @@ describe('<Login /> Test Suite', () => {
     const component = setUp(loginState);
     component.setProps({loginData: {loggedIn: true}});
     expect(component.find('Redirect')).toHaveLength(1);
-  }); 
+  });
 
   it('Should return initial data', () => {
     const initialState = {

@@ -24,15 +24,11 @@ import { BUTTON_LOADING, LOADING } from '../types';
 const fetchUserProfile = userId => async dispatch => {
 	dispatch(actionFunc(LOADING, true));
 	const profileData = await getUserProfile(userId);
-	if (profileData.error) {
-		dispatch(
-			actionFunc(ACTION_TYPES.GET_USER_PROFILE_FAILURE, profileData.error),
-		);
-		return;
-	}
-	const profile = profileData.data;
+
+	const profile = profileData.data.data;
 	const managersData = await getUsers('manager');
-	const managers = managersData.data;
+	const managers = managersData.data.data;
+
 	dispatch(
 		actionFunc(ACTION_TYPES.GET_USER_PROFILE_SUCCESS, {
 			profile: nullToStr(profile),
@@ -147,14 +143,7 @@ const saveProfile = userProfile => async dispatch => {
 	const { userId } = JSON.parse(localStorage.getItem('bn_user_data'));
 	const profileData = await getUserProfile(userId);
 
-	if (profileData.error) {
-		dispatch(
-			actionFunc(ACTION_TYPES.GET_USER_PROFILE_FAILURE, profileData.error),
-		);
-		dispatch(actionFunc(BUTTON_LOADING, false));
-		return;
-	}
-	const updatedProfile = profileData.data;
+	const updatedProfile = profileData.data.data;
 	dispatch(
 		actionFunc(ACTION_TYPES.SAVE_PROFILE_SUCCESS, {
 			updatedProfile,

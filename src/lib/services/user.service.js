@@ -1,4 +1,5 @@
-import api from '../../utils/apiExtended';
+/* eslint-disable no-return-await */
+import api from '../../utils/api';
 
 /**
  * Retrieve user profile

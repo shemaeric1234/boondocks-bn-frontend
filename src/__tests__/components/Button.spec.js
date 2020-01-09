@@ -5,17 +5,17 @@ import Button from '../../components/templates/Button';
 describe('<Loader /> tests', () => {
 	test('should render <Loader /> without errors', () => {
     const props = {
-      classnames: 'btn',
+      classNames: 'btn',
       value: 'button',
       buttonLoading: false
     }
     const wrapper = shallow(<Button {...props} />);
     expect(wrapper.find('[data-test="button"]')).toHaveLength(1);
   });
-  
+
   test('should not render <Loader /> ', () => {
     const props = {
-      classnames: 'btn',
+      classNames: 'btn',
       value: 'button',
       buttonLoading: true
     }

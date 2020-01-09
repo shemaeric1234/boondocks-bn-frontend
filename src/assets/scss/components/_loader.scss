@@ -35,10 +35,10 @@
 }
 
 .loader-loading__container div{
-  width: calc(100px/5);
+  width: calc(6.25rem/5);
   background: $color-white;
   display: inline-block;
-  margin: 0 1px;
+  margin: 0 0.0625rem;
 }
 
 .loader-first__layer {
@@ -73,7 +73,7 @@
 .loader-last__layer2 {
   opacity: .5;
   height: 100%;
-  width: 0px !important;
+  width: 0 !important;
 }
 
 @keyframes line1{
