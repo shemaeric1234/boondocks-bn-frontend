@@ -8,7 +8,7 @@ import CommentRequest from '../components/request/CommentRequest';
 function SingleRequestPage(props) {
 	const { loading, status, data, match } = props;
 	useEffect(() => {
-		props.singleRequest(match.params.id);
+		props.singleRequest(match.params.requestId);
 	}, []);
 
 	if (!loading && status === 'success') {
@@ -21,7 +21,10 @@ function SingleRequestPage(props) {
 							<SingleRequest request={request} />
 						</div>
 						<div className='column-1 p-5'>
-							<CommentRequest comment={request.comments} />
+							<CommentRequest
+								requestId={match.params.requestId}
+								comment={request.comments}
+							/>
 						</div>
 					</div>
 				</div>

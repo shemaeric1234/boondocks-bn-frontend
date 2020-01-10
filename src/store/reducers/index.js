@@ -15,6 +15,7 @@ import createHotelReducer from './createHotelReducer';
 import getAccomodationReducers from './getAccomodationReducers';
 import getSingleHotelReducer from './getSingleHotelReducer';
 import createRoomsReducer from './createRoomsReducer';
+import commentReducer from './commentReducer';
 
 const reducers = combineReducers({
 	signupState: signupReducer,
@@ -34,6 +35,7 @@ const reducers = combineReducers({
 	createRoomState: createRoomsReducer,
 	hotelState: getAccomodationReducers,
 	singleHotelState: getSingleHotelReducer,
+	commentState: commentReducer,
 });
 
 export default reducers;
