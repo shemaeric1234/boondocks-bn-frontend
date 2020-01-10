@@ -15,8 +15,12 @@ module.exports = {
     },
     plugins: [
         new Dotenv({
-            safe: true
-        }),
+            safe: true,
+            systemvars: true,
+            silent: true,
+            defaults: false,
+          }), 
+      
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
             template: paths.templatePath,
