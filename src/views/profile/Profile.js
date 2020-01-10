@@ -228,7 +228,7 @@ const Profile = ({
 							});
 						}}
 						buttonLoading={loading}
-						classnames='btn btn-success save-btn float-right'
+						classNames='btn btn-success save-btn float-right'
 					/>
 					<button
 						className='btn btn-primary float-right mr-2'

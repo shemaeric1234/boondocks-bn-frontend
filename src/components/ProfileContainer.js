@@ -9,10 +9,13 @@ import {
 	updateProfile,
 } from '../store/actions/profile/profile.actions';
 import Profile from '../views/profile/Profile';
+import { hasLoggedIn } from '../store/actions/loginActions';
 
 class ProfileContainer extends Component {
 	async componentDidMount() {
 		const { props } = this;
+
+		props.hasLoggedIn();
 		const user = JSON.parse(localStorage.getItem('bn_user_data'));
 		// eslint-disable-next-line react/prop-types
 		const userId = props.match.params.userId || user.userId;
@@ -26,7 +29,7 @@ class ProfileContainer extends Component {
 			props.history.push('/login');
 		}
 		return (
-			<div className='container mb-4'>
+			<div className='container profile-container'>
 				<Profile
 					saveData={props.updateProfile}
 					profile={props.profile}
@@ -61,6 +64,7 @@ export default connect(mapStateToProps, {
 	updateProfile,
 	saveProfile,
 	revertChanges,
+	hasLoggedIn,
 })(ProfileContainer);
 
 ProfileContainer.propTypes = {
@@ -77,6 +81,7 @@ ProfileContainer.propTypes = {
 	currentUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	loggedIn: PropTypes.bool.isRequired,
 	history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+	hasLoggedIn: PropTypes.func.isRequired,
 };
 
 ProfileContainer.defaultProps = {

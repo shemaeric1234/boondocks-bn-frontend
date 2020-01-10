@@ -1,28 +1,27 @@
-import React from 'react';
+import React from "react";
 
 import {
-	render as reactRender,
-	waitForElement,
-	fireEvent,
 	cleanup,
-} from '@testing-library/react';
-import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/extend-expect';
-import { applyMiddleware, createStore } from 'redux';
-import reducers from '../../store/reducers';
-import { Provider } from 'react-redux';
-import ProfileContainer from '../../components/ProfileContainer';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import {
-	getUserProfile, getUsers,
-} from '../../lib/services/user.service';
-import localStorage from '../../__mocks__/LocalStorage';
-import { createMemoryHistory } from 'history';
+	fireEvent,
+	render as reactRender,
+	waitForElement
+} from "@testing-library/react";
+import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/extend-expect";
+import { applyMiddleware, createStore } from "redux";
+import reducers from "../../store/reducers";
+import { Provider } from "react-redux";
+import ProfileContainer from "../../components/ProfileContainer";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+import { getUserProfile, getUsers } from "../../lib/services/user.service";
+import localStorage from "../../__mocks__/LocalStorage";
+import { createMemoryHistory } from "history";
+import Cookies from "universal-cookie";
 
 global.localStorage = localStorage;
 
-global.localStorage.setItem('bn_user_data', `{
+global.localStorage.setItem("bn_user_data", `{
 	"email":"requestero@user.com",
 	"name":"Requester",
 	"userId":2,
@@ -33,17 +32,21 @@ global.localStorage.setItem('bn_user_data', `{
 	"exp":1578558831
 }`);
 
-jest.mock('../../lib/services/user.service');
+jest.mock("../../lib/services/user.service");
+jest.mock("universal-cookie", () => jest.fn());
+Cookies.mockImplementation(
+	() => ({ get: () => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpbGRuaXkwNUBnbWFpbC5jb20iLCJuYW1lIjoiR2lsZGFzIiwidXNlcklkIjoxLCJ2ZXJpZmllZCI6dHJ1ZSwicm9sZSI6InJlcXVlc3RlciIsImxpbmVNYW5hZ2VySWQiOm51bGwsImlhdCI6MTU3ODU3MTM0OSwiZXhwIjoxNTc4NjU3NzQ5fQ.SmBRYQ-zYgEl08jObfqrtFjrJTCU33-DsMGCRC2RZuc" }));
 
 const render = (ui, initialState = {}, options = {}) => {
-	const store = createStore(reducers, initialState, composeWithDevTools(applyMiddleware(thunk)));
+	const store = createStore(reducers, initialState,
+		composeWithDevTools(applyMiddleware(thunk)));
 	const Providers = ({ children }) => (
 		<Provider store={store}>{children}</Provider>
 	);
-	return reactRender(ui, {wrapper: Providers, ...options});
+	return reactRender(ui, { wrapper: Providers, ...options });
 };
 
-describe('User should be be able to view and edit profile', () => {
+describe("User should be be able to view and edit profile", () => {
 	let Component;
 	const userProfile = {
 		data: {
@@ -74,7 +77,7 @@ describe('User should be be able to view and edit profile', () => {
 		data: {
 			data: [
 				{
-					id: 7,
+					id: 1,
 					firstName: "john",
 					lastName: "doe",
 					email: "john@barefoot.com",
@@ -103,7 +106,7 @@ describe('User should be be able to view and edit profile', () => {
 			isFetching: false,
 			fetchError: null,
 			isEditing: false,
-			currentUserId: null,
+			currentUserId: null
 		}
 	};
 	getUserProfile.mockImplementation(() => Promise.resolve(userProfile));
@@ -111,22 +114,23 @@ describe('User should be be able to view and edit profile', () => {
 	beforeEach(() => {
 		const history = createMemoryHistory();
 		Component = (
-			<ProfileContainer history={history} match={{ params: { userId: 2 }}}/>
+			<ProfileContainer history={history} match={{ params: { userId: 1 } }}/>
 		);
 	});
 
 	afterEach(cleanup);
-	test('User can view profile information', async () => {
+	test("User can view profile information", async () => {
 		const { getByText, getByPlaceholderText } = render(Component, initialState);
 		const profileTitle = await waitForElement(
-			() => getByText('Profile Information')
+			() => getByText("Profile Information")
 		);
-		expect(getByText('Contact Information')).toBeInTheDocument();
-		expect(getByText('marketing')).toBeInTheDocument();
+		expect(getByText("Contact Information")).toBeInTheDocument();
+		expect(getByText("marketing")).toBeInTheDocument();
 	});
 
-	test('User can edit profile information', async () => {
-		const { getByText, getByPlaceholderText, getByDisplayValue } = render(Component, initialState);
+	test("User can edit profile information", async () => {
+		const { getByText, getByPlaceholderText, getByDisplayValue } = render(
+			Component, initialState);
 		const editButton = await waitForElement(
 			() => getByText('Edit Profile').closest('button')
 		);

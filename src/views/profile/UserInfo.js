@@ -81,7 +81,7 @@ class UserInfo extends Component {
 					onBlur={event => this.handleSave({ saveData, name, event })}
 					type={props.type}
 					placeholder={`Edit ${props.label}`}
-					classnames={`form-control form-control-sm ${props.error &&
+					classNames={`form-control form-control-sm ${props.error &&
 						'is-invalid'}`}
 					error={props.error}
 				/>
