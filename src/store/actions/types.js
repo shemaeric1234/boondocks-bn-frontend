@@ -9,3 +9,5 @@ export const LOADING = 'LOADING';
 export const TOAST = 'TOAST';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const FETCH_REQUEST_SUCCESS = 'FETCH_REQUEST_SUCCESS';
+export const FETCH_REQUEST_FAIL = 'FETCH_REQUEST_FAIL';

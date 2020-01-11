@@ -1,0 +1,110 @@
+.container-request {
+  min-width: 100%;
+}
+.request{
+  margin-top: 6rem;
+}
+
+.row-flex {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 0 0 0;
+  .column {
+    width: 60%;
+    border-right: .05rem solid #dbd9d9;
+  }
+  .column-1 {
+    width: 30%;
+    height: 70vh;
+    overflow: scroll;
+  }
+}
+.request-details {
+  margin-left: 3vw;
+  display: block;
+  h2 {
+    text-align: center;
+    text-decoration:  none;
+    color: #6b6b6a;
+    margin: 1rem;
+  }
+  .value {
+    margin-left: 1vw;
+    text-align: center;
+  }
+}
+
+span.status-dot {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 1rem;
+  text-align: center;
+  &.open {
+    background-color: #2df178;
+  }
+  &.declined {
+    background-color: #f74008;
+  }
+  &.approved {
+    background-color: #08abf7;
+  }
+}
+.btn-approve {
+  margin-top: -4rem;
+  float: right;
+}
+.hr-text {
+  margin: 10px 0;
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: 0.5;
+  &:before {
+    content: "";
+    background: linear-gradient(to right, transparent, #3a3a38, transparent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+  }
+  &:after {
+    content: attr(data-content);
+    position: relative;
+    border: 1px #141414 solid;
+    border-radius: 25px; 
+    display: inline-block;
+    color: black;
+    padding: .1rem 2rem;
+    line-height: 1.5em;
+    color: #272726;
+    background-color: #fcfcfa;
+  } 
+}
+
+@media only screen and (max-width: 48rem) {
+  .row-flex {
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    .column {
+      width: 100%;
+      border-right: 0rem;
+    }
+    .column-1 {
+      width: 100%;
+    }
+    .btn-approve {
+      margin-top: 0;
+      margin-left: 1rem;
+    }
+  }
+}
+
+

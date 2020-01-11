@@ -18,6 +18,7 @@ import store from './store';
 import ForgotPasswordPage from './views/ForgotPasswordPage';
 import ResetPasswordPage from './views/ResetPasswordPage';
 import Loader from './components/templates/Loader';
+import SingleRequestPage from './views/SingleRequestPage';
 
 export default function App() {
 	return (
@@ -38,6 +39,7 @@ export default function App() {
 						/>
 						<Route path='/auth/reset-password' component={ResetPasswordPage} />
 						<Redirect exact from='/' to='home' />
+						<Route path='/request/:id' exact component={SingleRequestPage} />
 						<Route component={NotFound} />
 					</Switch>
 				</div>
