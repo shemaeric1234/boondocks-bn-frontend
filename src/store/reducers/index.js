@@ -5,6 +5,7 @@ import loadingReducer from './loadingReducer';
 import resetPassordReducer from './resetPasswordReducer';
 import loginReducer from './loginReducer';
 import isAuthenticatedReducer from './isAuthenticatedReducer';
+import singleRequestReducer from './singleRequestReducer';
 import usersReducer from './usersReducer';
 import navbarReducer from './navbarReducer';
 
@@ -15,6 +16,7 @@ const reducers = combineReducers({
 	loadingState: loadingReducer,
 	loginState: loginReducer,
 	profileState: profile,
+	singleRequestState: singleRequestReducer,
 	authState: isAuthenticatedReducer,
 	usersState: usersReducer,
 	navbarState: navbarReducer,
