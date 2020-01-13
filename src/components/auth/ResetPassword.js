@@ -59,7 +59,7 @@ export class ResetPassword extends Component {
 
 	render() {
 		if (localStorage.bn_user_data) {
-			return <Redirect to='/profile' />;
+			return <Redirect to='/home' />;
 		}
 
 		const { state } = this;

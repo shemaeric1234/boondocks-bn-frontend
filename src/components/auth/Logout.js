@@ -24,6 +24,7 @@ export const Logout = ({ history, setAuthState, updateNavbar }) => (
 	<button
 		type='button'
 		className='dropdown-item'
+		href='/home'
 		onClick={() => {
 			setAuthState(false);
 			updateNavbar();
