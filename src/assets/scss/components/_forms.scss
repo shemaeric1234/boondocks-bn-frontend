@@ -24,10 +24,10 @@ body {
     }
   }
   input{
-    text-align: center;
+    text-align: left !important;
   }
 
 ::placeholder{
-    text-align: center;
+    text-align: left !important;
     font-size: 0.75rem;
 }

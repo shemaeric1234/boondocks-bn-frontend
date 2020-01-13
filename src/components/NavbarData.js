@@ -40,6 +40,10 @@ const navItemObjects = {
 	supplier: [],
 	un_authenticated: [
 		{
+			linkText: 'Home',
+			linkRoute: '/home',
+		},
+		{
 			linkText: 'Login',
 			linkRoute: '/login',
 		},
