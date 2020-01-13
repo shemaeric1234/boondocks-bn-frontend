@@ -36,7 +36,7 @@ function AssignRole({
 						{`${user.firstName} ${user.lastName} `}
 					</span>
 					<span className='text-dark'>
-						is currently a
+						<span>is currently a</span>
 						<span className='text-capitalize'>{` ${role}`}</span>
 					</span>
 				</p>
