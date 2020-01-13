@@ -1,0 +1,9 @@
+@use "../utilities/variables";
+
+.main-content {
+  margin-top: 7rem;
+}
+
+.drop-shadow {
+  box-shadow: 0 0.625rem 1.875rem 0 variables.$color-box-shadow;
+}

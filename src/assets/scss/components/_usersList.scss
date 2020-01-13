@@ -1,0 +1,8 @@
+@use '../utilities/variables';
+.users-list {
+  .item-user {
+    &:hover {
+      background-color: variables.$color-bg-light;
+    }
+  }
+}

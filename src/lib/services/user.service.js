@@ -23,10 +23,22 @@ export const updateUserProfile = async userProfile => {
 };
 
 /**
- * Get profile by role
+ * Get profile by role, returns all users when role is not given
  * @param role
  * @returns {Promise<T>}
  */
 export const getUsers = async role => {
-	return await api.get(`auth/users?role=${role}`).catch(axiosErrorHandler);
+	return await api
+		.get('auth/users', { params: { role } })
+		.catch(axiosErrorHandler);
+};
+
+/**
+ * Change user role
+ * @param {Object} user info
+ */
+export const updateUserRole = async ({ email, role }) => {
+	return await api
+		.patch('auth/user/role', { email, role })
+		.catch(axiosErrorHandler);
 };

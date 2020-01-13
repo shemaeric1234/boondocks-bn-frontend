@@ -7,7 +7,7 @@ import {
 	saveProfile,
 	setIsEditing,
 	revertChanges,
-} from '../store/actions/profile/profile.actions';
+} from '../store/actions/profile/profileActions';
 import setAuthenticate from '../store/actions/authenticateAction';
 import Profile from '../views/profile/ProfileView';
 

@@ -7,7 +7,7 @@ import {
 	saveProfile,
 	setIsEditing,
 	revertChanges,
-} from '../store/actions/profile/profile.actions';
+} from '../store/actions/profile/profileActions';
 import EditProfile from './profile/EditProfile';
 
 class EditProfileContainer extends Component {
@@ -74,6 +74,6 @@ EditProfileContainer.propTypes = {
 	revertChanges: PropTypes.func.isRequired,
 	editErrors: PropTypes.instanceOf(Object).isRequired,
 	managers: PropTypes.instanceOf(Array).isRequired,
-  loading: PropTypes.bool.isRequired,
-  isEditing: PropTypes.bool.isRequired,
+	loading: PropTypes.bool.isRequired,
+	isEditing: PropTypes.bool.isRequired,
 };

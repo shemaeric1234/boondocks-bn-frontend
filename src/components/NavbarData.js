@@ -22,7 +22,7 @@ const navItemObjects = [
 	{
 		linkText: 'Register',
 		linkRoute: '/register',
-	},
+	}
 ];
 
 const notificationsItems = [

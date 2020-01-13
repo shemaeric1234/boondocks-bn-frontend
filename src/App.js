@@ -21,6 +21,7 @@ import Logout from './components/auth/Logout';
 import ProtectedRoute from './components/ProtectedRoute';
 import EditProfileContainer from './components/EditProfileContainer';
 import ViewProfileContainer from './components/ViewProfileContainer';
+import UsersContainer from './components/UsersContainer';
 
 export default function App() {
 	return (
@@ -30,7 +31,7 @@ export default function App() {
 				<Navbar />
 				<div data-testid='app' className='App'>
 					<Switch>
-						<Route path='/home' exact component={HomePage} />
+						<ProtectedRoute path='/home' exact component={HomePage} />
 						<Route path='/register' exact component={RegisterPage} />
 						<Route path='/login' exact component={LoginPage} />
 						<ProtectedRoute
@@ -52,12 +53,9 @@ export default function App() {
 							component={ForgotPasswordPage}
 							exact
 						/>
-						<Route
-							path='/auth/reset-password'
-							exact
-							component={ResetPasswordPage}
-						/>
 						<Route path='/logout' exact component={Logout} />
+						<ProtectedRoute path='/users' component={UsersContainer} />
+						<Route path='/auth/reset-password' component={ResetPasswordPage} />
 						<Redirect exact from='/' to='home' />
 						<Route component={NotFound} />
 					</Switch>
