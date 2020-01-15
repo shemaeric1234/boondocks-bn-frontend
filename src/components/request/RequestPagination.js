@@ -59,7 +59,11 @@ const RequestPagination = ({ setRequests }) => {
 	const { allRequests } = paginateObject;
 	const totalRequests = allRequests.length;
 	return (
-		<div data-test='request-pagination' data-testid='request-pagination' className='my-4 ml-auto'>
+		<div
+			data-test='request-pagination'
+			data-testid='request-pagination'
+			className='my-4 ml-auto'
+		>
 			<PaginationButtons
 				setRequests={setRequests}
 				allRequests={allRequests}

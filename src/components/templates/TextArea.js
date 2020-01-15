@@ -8,6 +8,7 @@ export default function TextArea({
 	value,
 	required,
 	label,
+	testId,
 }) {
 	return (
 		<div data-test='input-form'>
@@ -21,6 +22,7 @@ export default function TextArea({
 				required={required}
 				minLength='15'
 				value={value}
+				data-testid={testId}
 			/>
 			<span data-testid='error-text' className='invalid-feedback'>
 				should have at least 15 characters...
@@ -36,6 +38,7 @@ TextArea.propTypes = {
 	placeholder: PropTypes.string,
 	onChange: PropTypes.func,
 	required: PropTypes.bool,
+	testId: PropTypes.string,
 };
 
 TextArea.defaultProps = {
@@ -43,4 +46,5 @@ TextArea.defaultProps = {
 	placeholder: null,
 	onChange: null,
 	required: false,
+	testId: null,
 };

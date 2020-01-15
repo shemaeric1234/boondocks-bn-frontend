@@ -1,21 +1,22 @@
-import toast from '../../lib/toast';
+import toast from '../../../lib/toast';
 import {
 	CREATE_TRIP_FAILURE,
 	CREATE_TRIP_SUCCESS,
 	BUTTON_LOADING,
 	FETCH_CREATE_TRIP_DATA_SUCCESS,
 	FETCH_CREATE_TRIP_DATA_FAILURE,
-} from './types';
-import actionFunc from '../../utils/actionFunc';
-import apiCall from '../../utils/api';
+} from '../types';
+import actionFunc from '../../../utils/actionFunc';
+import {
+	getLocations,
+	getLocationsWithHotels,
+	createATrip,
+} from '../../../lib/services/createRequest.service';
 
 const fetchCreateTripData = () => async dispatch => {
-
 	try {
-		const allLocations = await apiCall.get('/location');
-		const locationsWithHotels = await apiCall.get(
-			'/location/?with_hotels=true',
-		);
+		const allLocations = await getLocations();
+		const locationsWithHotels = await getLocationsWithHotels();
 
 		dispatch(
 			actionFunc(FETCH_CREATE_TRIP_DATA_SUCCESS, {
@@ -28,14 +29,13 @@ const fetchCreateTripData = () => async dispatch => {
 			actionFunc(FETCH_CREATE_TRIP_DATA_FAILURE, error.response.data.message),
 		);
 	}
-	// dispatch(actionFunc(LOADING, false));
 };
 
 const createTrip = (userRequest, endpoint) => async dispatch => {
 	dispatch(actionFunc(BUTTON_LOADING, true));
 
 	try {
-		const res = await apiCall.post(endpoint, userRequest);
+		const res = await createATrip(userRequest, endpoint);
 		dispatch(actionFunc(CREATE_TRIP_SUCCESS, res.data.message));
 		toast('success', 'Trip request created successfully');
 	} catch (error) {

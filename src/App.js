@@ -28,6 +28,7 @@ import CreateAccomodationPage from './views/accomodations/CreateAccomodationPage
 import CreateRoomsPage from './views/accomodations/CreateRoomsPage';
 import SingleHotelPage from './views/accomodations/SingleHotelPage';
 import EditRequest from './components/request/EditRequest';
+import CreateRequestPage from './views/requests/CreateRequestPage';
 
 export default function App() {
 	return (
@@ -86,7 +87,11 @@ export default function App() {
 							component={ResetPasswordPage}
 						/>
 						<ProtectedRoute path='/users' exact component={UsersContainer} />
-						<ProtectedRoute path='/trip-request' exact component={HomePage} />
+						<ProtectedRoute
+							path='/trip-request'
+							exact
+							component={CreateRequestPage}
+						/>
 						<ProtectedRoute path='/destinations' exact component={HomePage} />
 						<ProtectedRoute path='/approved-trips' exact component={HomePage} />
 						<ProtectedRoute

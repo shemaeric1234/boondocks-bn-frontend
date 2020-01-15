@@ -16,7 +16,7 @@ function AssignRole({
 		{ id: 3, name: 'Travel Team Member', value: 'travel_team_member' },
 		{ id: 4, name: 'Manager', value: 'manager' },
 		{ id: 5, name: 'Requester', value: 'requester' },
-		{ id: 6, name: 'Supplier', value: 'suppliers' },
+		{ id: 6, name: 'Suppliers', value: 'suppliers' },
 	];
 
 	const role = user.role && user.role.split('_').join(' ');

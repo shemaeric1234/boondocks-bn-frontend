@@ -1,0 +1,124 @@
+@use '../utilities/variables' as *;
+
+.createTripContainer {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 56.25rem;
+}
+.center-trip-radio-buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+.trips-date-divs{
+  display: flex;
+}
+.dateDivs{
+  display: flex;
+  flex-direction: column;
+}
+div.trips-date-divs:nth-child(3) > div:nth-child(1) > label:nth-child(1),
+div.trips-date-divs:nth-child(3) > div:nth-child(3) > label:nth-child(1),
+.tripReason > label {
+  font-style: normal;
+  font-weight: bold;
+  color: $text-color-black;
+}
+.trips-date-divs > span{
+  flex-grow:1; 
+}
+.trips-date-divs > .dateDivs{
+  flex-grow:0;
+  width:47%;
+}
+.accomodationDiv{
+  display: flex;
+}
+.accomodationDiv > span{
+  flex-grow:1; 
+}
+.accomodationDiv > div{
+  flex-grow:0;
+  width:47%;
+}
+.tripReason{
+  display: flex;
+  flex-direction: column;
+}
+.tripReason textarea.form-control{
+  height: 6.25rem;
+}
+.createTripForm{
+  width: 75%;
+}
+.createTripBtn{
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.createTripInputs{
+  height: 2.5rem;
+}
+.center-trip-radio-buttons div.form-check:nth-child(1){
+  margin-right: 6.25rem;
+}
+.deleteTripForm{
+  display: flex;
+  flex-direction: row-reverse;
+}
+@media only screen and (max-width: 37.5rem) {
+  .createTripContainer {
+    margin-top: 3.125rem;
+  }
+  .trips-date-divs{
+    display: flex;
+    flex-direction: column;
+  }
+  .dateDivs{
+    display: flex;
+    flex-direction: column;
+  }
+  .trips-date-divs > span{
+    display: none;
+  }
+  .accomodationDiv{
+    display: flex;
+    flex-direction: column;
+  }
+  .accomodationDiv > span{
+    display: none;
+  }
+  div.form-group:nth-child(4) > div:nth-child(1) > select:nth-child(1){
+    margin-bottom: 1.563rem;
+  }
+  .tripReason{
+    display: flex;
+    flex-direction: column;
+  }
+  .createTripForm{
+    width: 100%;
+  }
+  .eachForm{
+    margin-bottom: 2rem;
+  }
+  .trips-date-divs > .dateDivs{
+    width:100%;
+  }
+  .accomodationDiv > div{
+    width:100%;
+  }
+  div.form-group:nth-child(2) > div:nth-child(1) > label:nth-child(2),
+  div.trips-date-divs:nth-child(3) > div:nth-child(1) > label:nth-child(1) > select:nth-child(1){
+    margin-bottom: 1.25rem;
+  }
+  div.trips-date-divs:nth-child(3) > div:nth-child(3) > label:nth-child(1) > select:nth-child(1){
+    margin-bottom: 0.625rem;
+  }
+  .tripReason > label:nth-child(1){
+    margin-top: 0.625rem;
+  }
+}
