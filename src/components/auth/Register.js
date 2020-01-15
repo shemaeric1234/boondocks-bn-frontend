@@ -8,7 +8,6 @@ import InputForm from '../templates/InputForm';
 import LayoutForms from '../templates/LayoutForms';
 import LoadingButton from '../templates/Button';
 import FormLinks from '../templates/FormLinks';
-import { hasLoggedIn } from '../../store/actions/loginActions';
 import signup from '../../store/actions/authActions';
 import { validation } from '../../utils/validations';
 import SocialAuthButtons from '../templates/SocialAuthButtons';
@@ -23,11 +22,6 @@ export class Register extends Component {
 			password: '',
 			checkError: '',
 		};
-	}
-
-	componentDidMount() {
-		const { props } = this;
-		props.hasLoggedIn();
 	}
 
 	handleChange(event) {
@@ -51,12 +45,12 @@ export class Register extends Component {
 	}
 
 	render() {
-		const { state } = this;
-		const { status, loading, loggedIn } = this.props;
-
-		if (loggedIn === true) {
+		if (localStorage.bn_user_data) {
 			return <Redirect to='/profile' />;
 		}
+
+		const { state } = this;
+		const { status, loading } = this.props;
 
 		if (!loading && status === 'success') {
 			return <Redirect to='/login' />;
@@ -120,15 +114,11 @@ Register.propTypes = {
 	signup: propTypes.func.isRequired,
 	status: propTypes.string,
 	loading: propTypes.bool,
-	hasLoggedIn: propTypes.func,
-	loggedIn: propTypes.bool,
 };
 
 Register.defaultProps = {
 	status: '',
 	loading: null,
-	hasLoggedIn: null,
-	loggedIn: null,
 };
 
 export const mapStateToProps = state => ({
@@ -140,7 +130,6 @@ export const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
 	signup,
-	hasLoggedIn,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

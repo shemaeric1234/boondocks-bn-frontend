@@ -4,9 +4,9 @@ import moxios from 'moxios';
 import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
-  BUTTON_LOADING
+  BUTTON_LOADING,
 } from '../../store/actions/types';
-import { login, hasLoggedIn } from '../../store/actions/loginActions';
+import login from '../../store/actions/loginActions';
 import apiCall from '../../utils/api';
 
 let store;
@@ -93,21 +93,6 @@ describe('Login Actions Test Suite', () => {
     const email = 'valid_user@google.com';
     const password = '12345678';
     await store.dispatch(login({ email, password }))
-    .then(async () => {
-      const calledActions = store.getActions();
-      expect(calledActions).toEqual(expectedActions);
-    });
-  });
-
-  it('it Should check the logged in status', async () => {
-    const expectedActions = [
-      {
-        payload: 'success',
-        type: LOGIN_SUCCESS,
-      },
-    ];
-    store = mockStore({});
-    await store.dispatch(hasLoggedIn())
     .then(async () => {
       const calledActions = store.getActions();
       expect(calledActions).toEqual(expectedActions);

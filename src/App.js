@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from 'react';
 import {
 	BrowserRouter as Router,
 	Redirect,
@@ -18,6 +18,8 @@ import store from './store';
 import ForgotPasswordPage from './views/ForgotPasswordPage';
 import ResetPasswordPage from './views/ResetPasswordPage';
 import Loader from './components/templates/Loader';
+import Logout from './components/auth/Logout';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
 	return (
@@ -30,13 +32,19 @@ export default function App() {
 						<Route path='/home' exact component={HomePage} />
 						<Route path='/register' exact component={RegisterPage} />
 						<Route path='/login' exact component={LoginPage} />
-						<Route path='/profile/:userId' component={Profile} />
-						<Route path='/profile' component={Profile} />
+						<Route path='/profile/:userId' exact component={Profile} />
+						<ProtectedRoute path='/profile' exact component={Profile} />
 						<Route
 							path='/auth/forgot-password'
 							component={ForgotPasswordPage}
+							exact
 						/>
-						<Route path='/auth/reset-password' component={ResetPasswordPage} />
+						<Route
+							path='/auth/reset-password'
+							exact
+							component={ResetPasswordPage}
+						/>
+						<Route path='/logout' exact component={Logout} />
 						<Redirect exact from='/' to='home' />
 						<Route component={NotFound} />
 					</Switch>

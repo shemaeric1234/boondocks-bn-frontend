@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+
 const Toast = (type, message) => {
 	switch (type) {
 		case 'success':
