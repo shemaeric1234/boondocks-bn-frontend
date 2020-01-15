@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function CommentRequest() {
 	return (
-		<div>
+		<div className='column-1 p-5'>
 			<h3>Comments</h3>
 			<div className='text'>
 				<div className='d-flex'>

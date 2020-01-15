@@ -1,0 +1,29 @@
+@use "../utilities/variables";
+.card.request-header {
+  border: none;
+
+  button {
+    min-width: 10rem;
+    border: none;
+    box-shadow: none;
+    font-size: .8rem;
+    line-height: 1.5rem;
+
+    &.requests {
+      &-filter:after {
+        content: '';
+      }
+
+      &-new:before {
+        content: '+ ';
+      }
+    }
+
+  }
+  .dropdown-item {
+    color: variables.$color-dark-grey !important;
+    &:hover {
+      background-color: variables.$color-light-grey !important;
+    }
+  }
+}
