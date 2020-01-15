@@ -16,9 +16,10 @@ import { $ } from '../jquery-loader';
  * @returns {*}
  * @constructor
  */
-const Navbar = ({ isAuthenticated }) => {
+export const Navbar = ({ isAuthenticated }) => {
 	const [navItems, setNavItems] = useState([]);
 	const [notifications, setNotifications] = useState();
+	const hasUserData = !!localStorage.bn_user_data;
 
 	useEffect(() => {
 		$(() => {
@@ -42,7 +43,7 @@ const Navbar = ({ isAuthenticated }) => {
 		});
 
 		setNavItems(
-			isAuthenticated
+			isAuthenticated || hasUserData
 				? [
 						navItemObjects[0],
 						navItemObjects[1],
@@ -51,7 +52,7 @@ const Navbar = ({ isAuthenticated }) => {
 				  ]
 				: [navItemObjects[0], navItemObjects[4], navItemObjects[5]],
 		);
-		if (isAuthenticated) setNotifications(notificationsItems);
+		if (isAuthenticated || hasUserData) setNotifications(notificationsItems);
 	}, [isAuthenticated]);
 
 	return (

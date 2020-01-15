@@ -1,4 +1,4 @@
-import nullToStr from '../../lib/helpers';
+import { nullToStr } from '../../lib/helpers';
 
 describe('Helpers', () => {
 	it('nullToStr() should convert null values into empty string', () => {

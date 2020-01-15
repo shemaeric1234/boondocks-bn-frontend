@@ -2,7 +2,8 @@
 react/jsx-props-no-spreading,
 no-undef, import/no-extraneous-dependencies,
 no-unused-expressions,
-no-return-assign
+no-return-assign,
+prettier/prettier
 */
 import { Redirect, Route } from 'react-router';
 import React from 'react';

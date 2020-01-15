@@ -13,6 +13,7 @@ function SingleRequestPage(props) {
 
 	if (!loading && status === 'success') {
 		const request = data.data;
+	console.log('request: ', request)
 		return (
 			<div className='container request'>
 				<div className='card'>

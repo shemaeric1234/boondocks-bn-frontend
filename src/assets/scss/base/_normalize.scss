@@ -1,22 +1,12 @@
-textarea:hover,
-input:hover,
-textarea:active,
-input:active,
-textarea:focus,
-input:focus,
-button:focus,
-button:active,
-button:hover,
-label:focus,
-.btn:active,
-.btn.active
-{
-  outline:0 !important;
-  -webkit-appearance:none;
-  box-shadow: none !important;
+textarea, input, button, label, .btn, .form-control {
+  &, &:hover, &:focus, &:active, &.active {
+    outline: 0 !important;
+    -webkit-appearance: none !important;
+    box-shadow: none !important;
+  }
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
 }

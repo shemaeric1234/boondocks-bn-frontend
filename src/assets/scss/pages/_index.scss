@@ -7,6 +7,9 @@
 @use '../components/login';
 @use '../components/navigation';
 @use '../components/loader';
+@use '../components/pagination';
+@use '../components/table';
+@use '../components/card';
 @use '../components/cards';
 @use './requestPage';
 @use '../components/comments';

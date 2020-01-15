@@ -36,7 +36,7 @@ const request = {
 			   returnDate: null,
 			   createdAt: "2020-01-14T18:03:40.451Z",
 			   updatedAt: "2020-01-14T18:03:40.451Z",
-			   hotel:{ 
+			   hotel:{
 				   name: "Marriot Hotel"
 			   },
 			   going: {
@@ -52,8 +52,8 @@ const request = {
 		   user: {
 			   lastName: "User",
 			   firstName: "Requester"
-		   }  
-	   	
+		   }
+
 		}
 	}
 }

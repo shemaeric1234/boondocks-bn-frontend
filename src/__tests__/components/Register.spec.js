@@ -96,9 +96,8 @@ describe('<Register /> Test Suite', () => {
         status: '',
       },
       loadingState: { buttonLoading: null },
-      loginState:{loggedIn: false,}
     };
-    expect(mapStateToProps(initialState)).toEqual({loading: null, error: null,  status: '', loggedIn: false,});
-  });
 
+    expect(mapStateToProps(initialState)).toEqual({loading: null, error: null,  status: ''});
+  });
 });
