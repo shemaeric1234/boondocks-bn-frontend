@@ -12,16 +12,18 @@ export const RequestPage = () => {
 	const [requests, setRequests] = useState([]);
 	return (
 		<div data-testid='request-page' className='container pt-5'>
-			<RequestHeader />
-			<RequestTable
-				requests={[
-					...requests.map(item => ({
-						...item,
-						createdAt: item.createdAt && item.createdAt.split('T')[0],
-						updatedAt: item.createdAt && item.updatedAt.split('T')[0],
-					})),
-				]}
-			/>
+			<RequestHeader setRequests={setRequests} />
+			{requests && (
+				<RequestTable
+					requests={[
+						...requests.map(item => ({
+							...item,
+							createdAt: item.createdAt && item.createdAt.split('T')[0],
+							updatedAt: item.createdAt && item.updatedAt.split('T')[0],
+						})),
+					]}
+				/>
+			)}
 			<RequestPagination setRequests={setRequests} />
 		</div>
 	);

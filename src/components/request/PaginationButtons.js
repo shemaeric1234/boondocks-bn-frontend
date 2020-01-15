@@ -8,38 +8,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from '../../utils/react-redux-hooks';
 import PaginateButton from './PaginateButton';
-
-const LEFT_PAGE = 'LEFT';
-const RIGHT_PAGE = 'RIGHT';
-
-/**
- * Range calculation
- * @param from
- * @param to
- * @param step
- * @returns {[]}
- */
-export const range = (from, to, step = 1) => {
-	console.group('range - starts');
-	console.log('==========================');
-	console.log('', JSON.stringify({ from, to, step }));
-	console.log('==========================');
-	console.groupEnd();
-	let i = from;
-	const _range = [];
-
-	while (i <= to) {
-		_range.push(i);
-		i += step;
-	}
-	console.group('range - ends');
-	console.log('==========================');
-	console.log('', JSON.stringify({ _range }));
-	console.log('==========================');
-	console.groupEnd();
-
-	return _range;
-};
+import { getAllPages } from '../../lib/getAllRequestPages';
+import { LEFT_HAND, RIGHT_HAND } from '../../utils/constants';
 
 /**
  * Go to Page
@@ -72,66 +42,6 @@ export const gotoPage = (
 };
 
 /**
- * Get All Pages
- * @param pageNeighbours
- * @param totalPages
- * @param currentPage
- * @returns {*[]}
- */
-export const getAllPages = (pageNeighbours, totalPages, currentPage) => {
-	console.group('getAllPages - starts');
-	console.log('==========================');
-	console.log(
-		'',
-		JSON.stringify({
-			pageNeighbours,
-			totalPages,
-			currentPage,
-		}),
-	);
-	console.log('==========================');
-	console.groupEnd();
-	const totalNumbers = pageNeighbours * 2 + 3;
-	const totalBlocks = totalNumbers + 2;
-
-	if (totalPages > totalBlocks) {
-		let pages = [];
-
-		const leftBound = currentPage - pageNeighbours;
-		const rightBound = currentPage + pageNeighbours;
-		const beforeLastPage = totalPages - 1;
-
-		const startPage = leftBound > 2 ? leftBound : 2;
-		const endPage = rightBound < beforeLastPage ? rightBound : beforeLastPage;
-
-		pages = range(startPage, endPage);
-
-		const pagesCount = pages.length;
-		const singleSpillOffset = totalNumbers - pagesCount - 1;
-
-		const leftSpill = startPage > 2;
-		const rightSpill = endPage < beforeLastPage;
-
-		const leftSpillPage = LEFT_PAGE;
-		const rightSpillPage = RIGHT_PAGE;
-
-		if (leftSpill && !rightSpill) {
-			const extraPages = range(startPage - singleSpillOffset, startPage - 1);
-			pages = [leftSpillPage, ...extraPages, ...pages];
-		} else if (!leftSpill && rightSpill) {
-			const extraPages = range(endPage + 1, endPage + singleSpillOffset);
-			pages = [...pages, ...extraPages, rightSpillPage];
-		} else if (leftSpill && rightSpill) {
-			pages = [leftSpillPage, ...pages, rightSpillPage];
-		}
-
-		return [1, ...pages, totalPages];
-	}
-
-	return range(1, totalPages);
-};
-
-/**
  * Handle Click
  * @param page
  * @param totalPages
@@ -150,7 +60,6 @@ export const handleClick = (
 	setCurrentPage,
 	onPageChanged,
 ) => {
-	console.log('CLICKED');
 	evt.preventDefault();
 	gotoPage(
 		page,
@@ -200,10 +109,32 @@ export const handleMoveLeft = (
  * @param evt
  * @param currentPage
  * @param pageNeighbours
+ * @param totalPages
+ * @param pageLimit
+ * @param totalRecords
+ * @param setCurrentPage
+ * @param onPageChanged
  */
-export const handleMoveRight = (evt, currentPage, pageNeighbours) => {
+export const handleMoveRight = (
+	evt,
+	currentPage,
+	pageNeighbours,
+	totalPages,
+	pageLimit,
+	totalRecords,
+	setCurrentPage,
+	onPageChanged,
+) => {
+	const page = currentPage + pageNeighbours * 2 + 1;
 	evt.preventDefault();
-	gotoPage(currentPage + pageNeighbours * 2 + 1);
+	gotoPage(
+		page,
+		totalPages,
+		pageLimit,
+		totalRecords,
+		setCurrentPage,
+		onPageChanged,
+	);
 };
 
 /**
@@ -215,11 +146,9 @@ export const handleMoveRight = (evt, currentPage, pageNeighbours) => {
  * @constructor
  */
 const PaginationButtons = ({ onPageChanged, allRequests, pageNeighbours }) => {
-
 	const { pageLimit } = useSelector(state => state.requestPageLimitState);
 	const totalRecords = allRequests.length;
 	pageNeighbours = Math.max(0, Math.min(pageNeighbours, 2));
-	// eslint-disable-next-line no-unused-vars
 	const [currentPage, setCurrentPage] = React.useState(1);
 	const totalPages = Math.ceil(totalRecords / pageLimit);
 
@@ -240,7 +169,7 @@ const PaginationButtons = ({ onPageChanged, allRequests, pageNeighbours }) => {
 		<div data-test='paginate-buttons' aria-label='Requests PaginationButtons'>
 			<ul className='pagination d-flex  justify-content-center justify-content-sm-end'>
 				{allPages.map((page, index) => {
-					if (page === LEFT_PAGE) {
+					if (page === LEFT_HAND) {
 						return (
 							<PaginateButton
 								onClick={evt =>
@@ -253,8 +182,8 @@ const PaginationButtons = ({ onPageChanged, allRequests, pageNeighbours }) => {
 										totalRecords,
 										setCurrentPage,
 										onPageChanged,
-									)
-								}
+										// eslint-disable-next-line prettier/prettier
+									)}
 								arrow='&laquo;'
 								key={index}
 								text='Previous'
@@ -262,12 +191,21 @@ const PaginationButtons = ({ onPageChanged, allRequests, pageNeighbours }) => {
 						);
 					}
 
-					if (page === RIGHT_PAGE) {
+					if (page === RIGHT_HAND) {
 						return (
 							<PaginateButton
 								onClick={evt =>
-									handleMoveRight(evt, currentPage, pageNeighbours)
-								}
+									handleMoveRight(
+										evt,
+										currentPage,
+										pageNeighbours,
+										totalPages,
+										pageLimit,
+										totalRecords,
+										setCurrentPage,
+										onPageChanged,
+										// eslint-disable-next-line prettier/prettier
+										)}
 								arrow='&raquo;'
 								key={index}
 								text='Next'
@@ -293,8 +231,8 @@ const PaginationButtons = ({ onPageChanged, allRequests, pageNeighbours }) => {
 										totalRecords,
 										setCurrentPage,
 										onPageChanged,
-									)
-								}
+										// eslint-disable-next-line prettier/prettier
+									)}
 							>
 								{page}
 							</button>

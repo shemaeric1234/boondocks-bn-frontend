@@ -14,14 +14,14 @@ describe('<ForgotPassword /> Test Suite', () => {
         dataError: null,
         status: 'status'
       }
-    }
+    };
 
     props = {
       forgot: null,
       dataError: null,
       status: '',
       forgotPassword: jest.fn()
-    }
+    };
 
     testStore = (state) => {
       const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
@@ -34,7 +34,7 @@ describe('<ForgotPassword /> Test Suite', () => {
           <ForgotPassword {...props} store={store} />
       );
         return wrapper;
-    } 
+    }
   });
 
   it('Should not submit invalid forgot password form Successfully', () => {
@@ -42,7 +42,7 @@ describe('<ForgotPassword /> Test Suite', () => {
     const handleSubmitSpy = jest.spyOn(component.instance(), 'handleSubmit');
     const forgotPasswordSpy = jest.spyOn(component.instance().props, 'forgotPassword');
     const email = { target: { name: 'email', value: 'example@email.com' } };
-    
+
     component.find('[data-test="email"]').simulate('change', email);
     component.find('[data-test="submitInput"]').simulate('click');
     component.find('LayoutForms').simulate('submit', {
@@ -58,7 +58,7 @@ describe('<ForgotPassword /> Test Suite', () => {
     const handleSubmitSpy = jest.spyOn(component.instance(), 'handleSubmit');
     const forgotPasswordSpy = jest.spyOn(component.instance().props, 'forgotPassword');
     const email = { target: { name: 'email', value: 'example@email.com' } };
-    
+
     component.find('[data-test="email"]').simulate('change', email);
     component.find('[data-test="submitInput"]').simulate('click');
     component.find('LayoutForms').simulate('submit', {
@@ -71,22 +71,22 @@ describe('<ForgotPassword /> Test Suite', () => {
   });
 
   it('Should Simulate success Forgot password alert', () => {
-    const component = setUp(mainState); 
+    const component = setUp(mainState);
     component.setProps({ status: 'success', loading: false });
     expect(component.instance().props.status).toEqual('success');
-  }); 
+  });
 
   it('Should Simulate Failed Forgot password alert', () => {
-    const component = setUp(mainState); 
+    const component = setUp(mainState);
     component.setProps({ dataError: { data: { message: 'Failed' } }, status: 'error', loading: false });
     expect(component.instance().props.status).toEqual('error');
-  }); 
+  });
 
   it('Should not Simulate any alert', () => {
-    const component = setUp(mainState); 
+    const component = setUp(mainState);
     component.setProps({ dataError: null, status: '', loading: true });
     expect(component.instance().props.status).toEqual('');
-  }); 
+  });
 
   it('Should return initial data', () => {
     const initialState = {

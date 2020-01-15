@@ -25,27 +25,31 @@ export const getRequests = status => async dispatch => {
 		dispatch(
 			actionFunc(
 				REQUEST_FETCH_SUCCESS,
-				data.data.map(({ id, status, type, createdAt, updatedAt, user }) => {
-					let requestData = {
-						status,
-						type,
-						createdAt,
-						updatedAt,
-					};
-
-					if (user) {
-						requestData = {
-							...{
-								'': `${user.firstName.split('')[0]}${
-									user.lastName.split('')[0]
-								}`,
-								names: `${user.firstName} ${user.lastName}`,
-							},
-							...requestData,
+				data.data.map(
+					({ id, status, type, createdAt, updatedAt, user, trips }) => {
+						let requestData = {
+							status,
+							type,
+							createdAt,
+							updatedAt,
 						};
-					}
-					return { id, ...requestData };
-				}),
+
+						if (user) {
+							requestData = {
+								...{
+									'': `${user.firstName.split('')[0]}${
+										user.lastName.split('')[0]
+									}`,
+									names: `${user.firstName} ${user.lastName}`,
+								},
+								...requestData,
+								reason: trips.map(trip => trip.reason)[0],
+							};
+						}
+
+						return { id, ...requestData };
+					},
+				),
 			),
 		);
 	} catch (error) {

@@ -8,17 +8,6 @@
     box-shadow: none;
     font-size: .8rem;
     line-height: 1.5rem;
-
-    &.requests {
-      &-filter:after {
-        content: '';
-      }
-
-      &-new:before {
-        content: '+ ';
-      }
-    }
-
   }
   .dropdown-item {
     color: variables.$color-dark-grey !important;

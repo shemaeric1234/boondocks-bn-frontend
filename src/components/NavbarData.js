@@ -25,8 +25,18 @@ const navItemObjects = {
 	],
 	travel_administrator: [],
 	travel_team_member: [],
-	manager: [],
-	requester: [],
+	manager: [
+		{
+			linkText: 'Requests',
+			linkRoute: '/requests',
+		},
+	],
+	requester: [
+		{
+			linkText: 'Requests',
+			linkRoute: '/requests',
+		},
+	],
 	supplier: [],
 	un_authenticated: [
 		{

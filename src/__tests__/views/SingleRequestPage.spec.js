@@ -56,7 +56,7 @@ const request = {
 
 		}
 	}
-}
+};
 
 beforeEach(() => {
 	global.localStorage.setItem("bn_user_data", `{
@@ -76,7 +76,7 @@ afterEach(() => {
 	localStorage.store = {};
 });
 
-apiCall.get.mockImplementation(() => Promise.resolve(request))
+apiCall.get.mockImplementation(() => Promise.resolve(request));
 
 describe('Single request view', () => {
 	test('Users should be able to able to view single request', async() => {

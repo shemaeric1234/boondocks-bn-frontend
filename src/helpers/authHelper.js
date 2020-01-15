@@ -13,6 +13,13 @@ const storeToken = token => {
 const decodeToken = token => {
 	const userData = JWTDecode(token);
 	localStorage.setItem('bn_user_data', JSON.stringify(userData));
+	localStorage.setItem(
+		'name_initials',
+		userData.name
+			.split(' ')
+			.map(name => name.split('')[0])
+			.join(),
+	);
 };
 
 export { storeToken, decodeToken };

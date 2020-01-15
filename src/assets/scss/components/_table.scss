@@ -14,13 +14,13 @@
       background-color: variables.$color-white;
       border-bottom: 10px solid #f5f5f5 !important;
       &:hover {
-        background-color: lighten(variables.$color-light-grey, 11);
+        background-color: lighten(darken(variables.$color-light-grey, 1), 5);
         cursor: pointer;
       }
       td {
         text-align: center;
         padding: 0!important;
-        div[data-content*="td-6-"] {
+        div[data-content*="td-7-"] {
           margin: 10px auto;
           border-radius: 50%;
           background-color: rgb(255,123,1);
@@ -29,6 +29,15 @@
           line-height: 50px!important;
           height: 50px!important;
           width: 50px!important;
+        }
+        div[data-content="td-5-open"] {
+          color: #FFB22E;
+        }
+        div[data-content="td-5-declined"] {
+          color: #ac2342;
+        }
+        div[data-content="td-5-approved"] {
+          color: #4b9448;
         }
         div[data-content="td-4-open"] {
           color: #FFB22E;

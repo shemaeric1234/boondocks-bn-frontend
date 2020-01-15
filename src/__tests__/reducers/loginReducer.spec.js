@@ -6,7 +6,7 @@ describe('Login Reducer Tests ', () => {
 		const loginSuccessful = {
 			type: LOGIN_SUCCESS,
 			payload: 'success'
-		}
+		};
 		const changedState = loginReducer(undefined, loginSuccessful);
 		expect(changedState).toEqual({
       loggedIn: true,
@@ -19,7 +19,7 @@ describe('Login Reducer Tests ', () => {
 		const loginFailed = {
 			type: LOGIN_FAILURE,
 			payload: 'invalid credentials'
-		}
+		};
 		const changedState = loginReducer(undefined, loginFailed);
 		expect(changedState).toEqual({
       loggedIn: false,
@@ -27,11 +27,11 @@ describe('Login Reducer Tests ', () => {
       error: loginFailed.payload,
 		})
   });
-  
+
   it('Should return loggedIn as false', () => {
 		const loginChangedToFalse = {
 			type: LOGOUT_USER,
-		}
+		};
 		const changedState = loginReducer(undefined, loginChangedToFalse);
 		expect(changedState).toEqual({
       loggedIn: false,

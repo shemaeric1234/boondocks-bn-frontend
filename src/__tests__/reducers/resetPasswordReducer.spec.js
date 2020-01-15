@@ -8,7 +8,7 @@ describe('Reset Password Reducer Tests ', () => {
 			payload: {
         message: 'Updated your password successful',
 			}
-		}
+		};
 		const changedState = resetPasswordReducer(undefined, successForgotPassword);
 		expect(changedState).toEqual({
 			status: 'success',
@@ -23,7 +23,7 @@ describe('Reset Password Reducer Tests ', () => {
 				message: 'successful reset password',
 			},
 			type: RESET_PASSWORD
-		}
+		};
 		const changedState = resetPasswordReducer(undefined, successresetPassword);
 		expect(changedState).toEqual({
 			status: 'success',
@@ -38,7 +38,7 @@ describe('Reset Password Reducer Tests ', () => {
 				message: 'invalid password',
 			},
 			type: ERROR
-		}
+		};
 		const changedState = resetPasswordReducer(undefined, errorResetPassword);
 		expect(changedState).toEqual({
 			status: 'error',
@@ -53,7 +53,7 @@ describe('Reset Password Reducer Tests ', () => {
 				message: 'invalid password',
 			},
 			type: ERROR
-		}
+		};
 		const changedState = resetPasswordReducer(undefined, errorforgotPassword);
 		expect(changedState).toEqual({
 			status: 'error',

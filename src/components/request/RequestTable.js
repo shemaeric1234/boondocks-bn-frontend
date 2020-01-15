@@ -71,12 +71,14 @@ const RequestTable = ({ history, requests }) => {
 	};
 
 	return (
-		<div data-testid='request-table' className='table-responsive my-4'>
+		<div data-test='request-table' className='table-responsive my-4'>
 			<table className='table thead-borderless request-table'>
 				<thead className='header'>
 					<tr data-testid='request-list-container'>{renderTableHeader()}</tr>
 				</thead>
-				<tbody className='content' data-testid='content'>{renderTableData()}</tbody>
+				<tbody className='content' data-testid='content'>
+					{renderTableData()}
+				</tbody>
 			</table>
 		</div>
 	);

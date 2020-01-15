@@ -63,8 +63,16 @@ export default function App() {
 						<ProtectedRoute path='/trip-request' exact component={HomePage} />
 						<ProtectedRoute path='/destinations' exact component={HomePage} />
 						<ProtectedRoute path='/approved-trips' exact component={HomePage} />
-						<ProtectedRoute path='/profile/:userId' exact component={Profile} />
-						<ProtectedRoute path='/profile' exact component={Profile} />
+						<ProtectedRoute
+							path='/profile/:userId'
+							exact
+							component={ViewProfileContainer}
+						/>
+						<ProtectedRoute
+							path='/profile'
+							exact
+							component={ViewProfileContainer}
+						/>
 						<ProtectedRoute path='/requests' exact component={RequestPage} />
 						<Redirect exact from='/' to='home' />
 						<Route path='/request/:id' exact component={SingleRequestPage} />

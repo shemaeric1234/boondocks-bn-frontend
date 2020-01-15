@@ -7,6 +7,7 @@ export const allRequestsManager = [
 		type: 'single',
 		createdAt: '2020-01-12T14:00:10.221Z',
 		updatedAt: '2020-01-12T14:00:10.221Z',
+		reason: 'Branch visit',
 	},
 	{
 		id: 2,
@@ -16,6 +17,7 @@ export const allRequestsManager = [
 		type: 'single',
 		createdAt: '2020-01-12T19:09:09.078Z',
 		updatedAt: '2020-01-12T19:09:09.078Z',
+		reason: 'Branch visit',
 	},
 	{
 		id: 5,
@@ -25,6 +27,7 @@ export const allRequestsManager = [
 		type: 'single',
 		createdAt: '2020-01-12T19:09:41.152Z',
 		updatedAt: '2020-01-12T19:09:41.152Z',
+		reason: 'Branch visit',
 	},
 	{
 		id: 6,
@@ -34,6 +37,7 @@ export const allRequestsManager = [
 		type: 'single',
 		createdAt: '2020-01-12T19:09:48.022Z',
 		updatedAt: '2020-01-12T19:09:48.022Z',
+		reason: 'Branch visit',
 	},
 	{
 		id: 9,
@@ -43,6 +47,7 @@ export const allRequestsManager = [
 		type: 'single',
 		createdAt: '2020-01-12T19:10:02.359Z',
 		updatedAt: '2020-01-12T19:10:02.359Z',
+		reason: 'Branch visit',
 	},
 	{
 		id: 10,
@@ -52,78 +57,6 @@ export const allRequestsManager = [
 		type: 'single',
 		createdAt: '2020-01-12T19:10:07.618Z',
 		updatedAt: '2020-01-12T19:10:07.618Z',
-	},
-];
-
-export const allRequestsRequester = [
-	{
-		id: 10,
-		status: 'open',
-		type: 'single',
-		createdAt: '2020-01-12T19:10:07.618Z',
-		updatedAt: '2020-01-12T19:10:07.618Z',
-	},
-	{
-		id: 2,
-		status: 'open',
-		type: 'single',
-		createdAt: '2020-01-12T19:09:09.078Z',
-		updatedAt: '2020-01-12T19:09:09.078Z',
-	},
-	{
-		id: 5,
-		status: 'open',
-		type: 'single',
-		createdAt: '2020-01-12T19:09:41.152Z',
-		updatedAt: '2020-01-12T19:09:41.152Z',
-	},
-	{
-		id: 8,
-		status: 'declined',
-		type: 'single',
-		createdAt: '2020-01-12T19:09:55.967Z',
-		updatedAt: '2020-01-12T19:09:55.967Z',
-	},
-	{
-		id: 6,
-		status: 'open',
-		type: 'single',
-		createdAt: '2020-01-12T19:09:48.022Z',
-		updatedAt: '2020-01-12T19:09:48.022Z',
-	},
-	{
-		id: 4,
-		status: 'approved',
-		type: 'single',
-		createdAt: '2020-01-12T19:09:31.388Z',
-		updatedAt: '2020-01-12T19:09:31.388Z',
-	},
-	{
-		id: 1,
-		status: 'open',
-		type: 'single',
-		createdAt: '2020-01-12T14:00:10.221Z',
-		updatedAt: '2020-01-12T14:00:10.221Z',
-	},
-	{
-		id: 3,
-		status: 'approved',
-		type: 'single',
-		createdAt: '2020-01-12T19:09:18.297Z',
-		updatedAt: '2020-01-12T19:09:18.297Z',
-	},
-	{
-		id: 9,
-		status: 'open',
-		type: 'single',
-		createdAt: '2020-01-12T19:10:02.359Z',
-		updatedAt: '2020-01-12T19:10:02.359Z',
-	},
-	{
-		id: 7,
-		status: 'declined',
-		type: 'single',
-		createdAt: '2020-01-12T19:09:51.642Z',
-		updatedAt: '2020-01-12T19:09:51.642Z',
+		reason: 'Branch visit',
 	},
 ];

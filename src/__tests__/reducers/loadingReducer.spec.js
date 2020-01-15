@@ -6,7 +6,7 @@ describe('Reset Password Reducer Tests ', () => {
 		const loadingTrue = {
 			type: LOADING,
 			payload: true
-		}
+		};
 		const changedState = loadingReducer(undefined, loadingTrue);
 		expect(changedState).toEqual({
 			loading: loadingTrue.payload,
@@ -18,7 +18,7 @@ describe('Reset Password Reducer Tests ', () => {
 		const loadingFalse = {
 			type: LOADING,
 			payload: false
-		}
+		};
 		const changedState = loadingReducer(undefined, loadingFalse);
 		expect(changedState).toEqual({
 			loading: loadingFalse.payload,
@@ -30,7 +30,7 @@ describe('Reset Password Reducer Tests ', () => {
 		const btnLoadingTrue = {
 			type: BUTTON_LOADING,
 			payload: true
-		}
+		};
 		const changedState = loadingReducer(undefined, btnLoadingTrue);
 		expect(changedState).toEqual({
 			loading: false,
@@ -42,7 +42,7 @@ describe('Reset Password Reducer Tests ', () => {
 		const btnLoadingFalse = {
 			type: BUTTON_LOADING,
 			payload: false
-		}
+		};
 		const changedState = loadingReducer(undefined, btnLoadingFalse);
 		expect(changedState).toEqual({
 			loading: false,

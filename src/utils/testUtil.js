@@ -7,15 +7,6 @@ import/named
 import React from 'react';
 import { mount } from 'enzyme';
 
+// eslint-disable-next-line import/prefer-default-export
 export const findByTestAttr = (component, attr) =>
 	component.find(`[data-test='${attr}']`);
-
-export const makeMountRender = (Component, defaultProps = {}) => {
-	return (customProps = {}) => {
-		const props = {
-			...defaultProps,
-			...customProps,
-		};
-		return mount(<Component {...props} />);
-	};
-};

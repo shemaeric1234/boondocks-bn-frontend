@@ -24,6 +24,7 @@ export const ProtectedRoute = ({
 
 	return (
 		<Route
+			data-test='protected-route'
 			render={props =>
 				isAuthenticated ? (
 					<Component {...props} />
@@ -31,7 +32,6 @@ export const ProtectedRoute = ({
 					<Redirect
 						to={{ pathname: '/login', state: { from: props.location } }}
 					/>
-					// eslint-disable-next-line prettier/prettier
 				)}
 			{...rest}
 		/>

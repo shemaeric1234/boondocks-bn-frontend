@@ -78,14 +78,13 @@ span.status-dot {
     content: attr(data-content);
     position: relative;
     border: 1px #141414 solid;
-    border-radius: 25px; 
+    border-radius: 25px;
     display: inline-block;
-    color: black;
     padding: .1rem 2rem;
     line-height: 1.5em;
     color: #272726;
     background-color: #fcfcfa;
-  } 
+  }
 }
 
 @media only screen and (max-width: 48rem) {

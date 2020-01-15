@@ -1,7 +1,9 @@
 /* eslint-disable
 jsx-a11y/click-events-have-key-events,
 jsx-a11y/no-static-element-interactions,
-jsx-a11y/anchor-is-valid
+jsx-a11y/anchor-is-valid,
+no-shadow,
+react/prop-types
 */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
@@ -14,6 +16,7 @@ import updateNavbar from '../../store/actions/navbar/navbarActions';
  * Logout
  * @param history
  * @param setAuthState
+ * @param updateNavbar
  * @returns {*}
  * @constructor
  */
@@ -33,6 +36,7 @@ export const Logout = ({ history, setAuthState, updateNavbar }) => (
 
 Logout.defaultProps = {
 	setAuthState: null,
+	updateNavbar: null,
 	history: null,
 };
 
@@ -41,6 +45,7 @@ Logout.propTypes = {
 	history: PropTypes.shape({
 		push: PropTypes.func,
 	}),
+	updateNavbar: PropTypes.func,
 };
 
 export default withRouter(

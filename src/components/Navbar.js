@@ -21,7 +21,7 @@ class Navbar extends Component {
 					<div className='row'>
 						<div className='col-12'>
 							<NavbarNav
-								notifications={isAuthenticated && notifications}
+								notifications={isAuthenticated ? notifications : []}
 								isAuthenticated={isAuthenticated}
 								navItems={navItems}
 							/>

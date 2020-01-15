@@ -17,6 +17,7 @@ const setAuthenticate = isAuthenticated => dispatch => {
 			});
 
 			localStorage.removeItem('bn_user_data');
+			localStorage.removeItem('name_initials');
 			dispatch(actionFunc(NOT_AUTHENTICATED));
 		}
 	}

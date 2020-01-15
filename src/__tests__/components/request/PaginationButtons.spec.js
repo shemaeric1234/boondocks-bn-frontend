@@ -2,7 +2,7 @@ import { findByTestAttr } from "../../../utils/testUtil";
 import { allRequestsManager } from "../../../__mocks__/PaginationButtons.mock";
 import { shallow } from "enzyme";
 import React from "react";
-import PaginationButtons, { range, gotoPage, getAllPages, handleClick, handleMoveLeft, handleMoveRight } from "../../../components/request/PaginationButtons";
+import PaginationButtons, { gotoPage, handleClick, handleMoveLeft, handleMoveRight } from "../../../components/request/PaginationButtons";
 import * as ReactReduxHooks from "../../../utils/react-redux-hooks";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";

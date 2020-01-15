@@ -8,7 +8,7 @@ describe('<Loader /> tests', () => {
       classNames: 'btn',
       value: 'button',
       buttonLoading: false
-    }
+    };
     const wrapper = shallow(<Button {...props} />);
     expect(wrapper.find('[data-test="button"]')).toHaveLength(1);
   });
@@ -18,7 +18,7 @@ describe('<Loader /> tests', () => {
       classNames: 'btn',
       value: 'button',
       buttonLoading: true
-    }
+    };
     const wrapper = shallow(<Button {...props} />);
 
     expect(wrapper.find('[data-test="loading"]')).toHaveLength(1);
