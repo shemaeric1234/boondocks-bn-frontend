@@ -7,8 +7,8 @@ function AssignRole({
 	handleCancel,
 	handleChangeRole,
 	user,
-  handleSelectRole,
-  loading,
+	handleSelectRole,
+	loading,
 }) {
 	const roles = [
 		{ id: 1, name: 'Super Administrator', value: 'super_administrator' },
@@ -16,6 +16,7 @@ function AssignRole({
 		{ id: 3, name: 'Travel Team Member', value: 'travel_team_member' },
 		{ id: 4, name: 'Manager', value: 'manager' },
 		{ id: 5, name: 'Requester', value: 'requester' },
+		{ id: 6, name: 'Supplier', value: 'supplier' },
 	];
 
 	const role = user.role && user.role.split('_').join(' ');
@@ -79,5 +80,6 @@ AssignRole.propTypes = {
 	handleChangeRole: PropTypes.func.isRequired,
 	user: PropTypes.instanceOf(Object).isRequired,
 	handleSelectRole: PropTypes.func.isRequired,
+	loading: PropTypes.bool.isRequired,
 };
 export default AssignRole;

@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import setAuthenticate from '../../store/actions/authenticateAction';
+import updateNavbar from '../../store/actions/navbar/navbarActions';
 
 /**
  * Logout
@@ -16,12 +17,13 @@ import setAuthenticate from '../../store/actions/authenticateAction';
  * @returns {*}
  * @constructor
  */
-export const Logout = ({ history, setAuthState }) => (
+export const Logout = ({ history, setAuthState, updateNavbar }) => (
 	<button
 		type='button'
 		className='dropdown-item'
 		onClick={() => {
 			setAuthState(false);
+			updateNavbar();
 			history.push('/home');
 		}}
 	>
@@ -44,5 +46,6 @@ Logout.propTypes = {
 export default withRouter(
 	connect(null, {
 		setAuthState: setAuthenticate,
+		updateNavbar,
 	})(Logout),
 );

@@ -15,6 +15,7 @@ const setAuthenticate = isAuthenticated => dispatch => {
 			cookies.remove('bn_auth_token', {
 				path: '/',
 			});
+
 			localStorage.removeItem('bn_user_data');
 			dispatch(actionFunc(NOT_AUTHENTICATED));
 		}

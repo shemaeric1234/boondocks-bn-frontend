@@ -16,9 +16,7 @@ class EditProfileContainer extends Component {
 
 		const user = JSON.parse(localStorage.getItem('bn_user_data'));
 		// eslint-disable-next-line react/prop-types
-		const userId = props.match.params.userId || user.userId;
-
-		props.fetchUserProfile(userId);
+		props.fetchUserProfile(user.userId);
 	}
 
 	render() {

@@ -6,6 +6,7 @@ import resetPassordReducer from './resetPasswordReducer';
 import loginReducer from './loginReducer';
 import isAuthenticatedReducer from './isAuthenticatedReducer';
 import usersReducer from './usersReducer';
+import navbarReducer from './navbarReducer';
 
 const reducers = combineReducers({
 	signupState: signupReducer,
@@ -16,6 +17,7 @@ const reducers = combineReducers({
 	profileState: profile,
 	authState: isAuthenticatedReducer,
 	usersState: usersReducer,
+	navbarState: navbarReducer,
 });
 
 export default reducers;
