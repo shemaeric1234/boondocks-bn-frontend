@@ -13,21 +13,8 @@ describe('signupReducer Tests ', () => {
 		expect(changedState).toEqual({
 			status: 'success',
 			error: null,
-			data: requestFetchSuccessed.payload
-		})
-	});
-	it('Should handle fetch single request error', () => {
-		const requestFetchFailed = {
-			payload: {
-				message: 'No request with such id',
-			},
-			type: FETCH_REQUEST_FAIL
-		};
-		const changedState = singleRequestReducer(undefined, requestFetchFailed);
-		expect(changedState).toEqual({
-			status: 'error',
-			error: requestFetchFailed.payload,
-			data: null
+			data: requestFetchSuccessed.payload,
+			request: {}
 		})
 	});
 });

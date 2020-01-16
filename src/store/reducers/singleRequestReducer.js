@@ -1,9 +1,14 @@
-import { FETCH_REQUEST_SUCCESS, FETCH_REQUEST_FAIL } from '../actions/types';
+import {
+	FETCH_REQUEST_SUCCESS,
+	FETCH_REQUEST_FAIL,
+	REQUEST_STATUS_CHANGE_SUCCESS,
+} from '../actions/types';
 
 const initialState = {
 	data: null,
 	error: null,
 	status: '',
+	request: {},
 };
 
 export default (state = initialState, action) => {
@@ -14,11 +19,13 @@ export default (state = initialState, action) => {
 				data: action.payload,
 				status: 'success',
 			};
-		case FETCH_REQUEST_FAIL:
+		case REQUEST_STATUS_CHANGE_SUCCESS:
 			return {
 				...state,
-				error: action.payload,
-				status: 'error',
+				request: {
+					...state.request,
+					status: action.payload,
+				},
 			};
 		default:
 			return {
