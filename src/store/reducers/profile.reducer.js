@@ -23,13 +23,6 @@ export const reducer = (state = initialState, { type, payload }) => {
 				fetchError: null,
 			};
 
-		case ACTION_TYPES.GET_USER_PROFILE_FAILURE:
-			return {
-				...state,
-				isFetching: true,
-				fetchError: payload,
-			};
-
 		case ACTION_TYPES.REVERT_CHANGES:
 			return {
 				...state,

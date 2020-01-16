@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
 	fetchUserProfile,
-	revertChanges,
+	updateProfile,
 	saveProfile,
 	setIsEditing,
-	updateProfile,
+	revertChanges,
 } from '../store/actions/profile/profile.actions';
-import Profile from '../views/profile/Profile';
 import setAuthenticate from '../store/actions/authenticateAction';
+import Profile from '../views/profile/ProfileView';
 
-class ProfileContainer extends Component {
-	componentDidMount() {
+class ViewProfileContainer extends Component {
+	async componentDidMount() {
 		const { props } = this;
 		props.setAuthenticate(true);
 		const user = JSON.parse(localStorage.getItem('bn_user_data'));
@@ -25,18 +25,11 @@ class ProfileContainer extends Component {
 	render() {
 		const { props } = this;
 		return (
-			<div className='container profile-container'>
+			<div className='container profile-container p-3'>
 				<Profile
-					saveData={props.updateProfile}
 					profile={props.profile}
-					isEditing={props.isEditing}
-					setIsEditing={props.setIsEditing}
-					saveProfile={props.saveProfile}
-					errors={props.editErrors}
-					revertChanges={props.revertChanges}
-					managers={props.managers}
-					loading={props.loading}
 					currentUser={props.currentUserId}
+					setIsEditing={props.setIsEditing}
 				/>
 			</div>
 		);
@@ -44,32 +37,24 @@ class ProfileContainer extends Component {
 }
 const mapStateToProps = state => ({
 	profile: state.profileState.userProfile,
+	currentUserId: state.profileState.currentUserId,
+	loggedIn: state.loginState.loggedIn,
 	managers: state.profileState.managers,
 	editErrors: state.profileState.errors,
-	isLoading: state.profileState.isFetching,
-	isEditing: state.profileState.isEditing,
 	loading: state.loadingState.buttonLoading,
-	currentUserId: state.profileState.currentUserId,
+	isEditing: state.profileState.isEditing,
 });
 export default connect(mapStateToProps, {
 	fetchUserProfile,
-	setIsEditing,
 	updateProfile,
 	saveProfile,
+	setIsEditing,
 	revertChanges,
 	setAuthenticate,
-})(ProfileContainer);
-ProfileContainer.propTypes = {
+})(ViewProfileContainer);
+
+ViewProfileContainer.propTypes = {
 	fetchUserProfile: PropTypes.func.isRequired,
-	updateProfile: PropTypes.func.isRequired,
-	saveProfile: PropTypes.func.isRequired,
-	profile: PropTypes.instanceOf(Object).isRequired,
-	managers: PropTypes.instanceOf(Array).isRequired,
-	editErrors: PropTypes.instanceOf(Object),
-	isEditing: PropTypes.bool.isRequired,
-	setIsEditing: PropTypes.func.isRequired,
-	revertChanges: PropTypes.func.isRequired,
-	loading: PropTypes.bool.isRequired,
 	currentUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
 	setAuthenticate: PropTypes.func.isRequired,
@@ -78,9 +63,11 @@ ProfileContainer.propTypes = {
 			userId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		}),
 	}),
+	profile: PropTypes.instanceOf(Object).isRequired,
+	setIsEditing: PropTypes.func.isRequired,
 };
-ProfileContainer.defaultProps = {
-	editErrors: null,
+
+ViewProfileContainer.defaultProps = {
 	currentUserId: null,
 	match: null,
 };

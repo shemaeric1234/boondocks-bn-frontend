@@ -36,7 +36,7 @@ export const isNotEmpty = value => {
 };
 
 export const isValidId = value => {
-	return /^[0-9]+$/.test(value) && value > 1;
+	return /^[0-9]+$/.test(value) && value > 0;
 };
 
 export const isPhoneNumber = value => {

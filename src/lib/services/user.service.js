@@ -1,5 +1,6 @@
 /* eslint-disable no-return-await */
 import api from '../../utils/api';
+import axiosErrorHandler from './axiosErrorHandler';
 
 /**
  * Retrieve user profile
@@ -7,7 +8,7 @@ import api from '../../utils/api';
  * @returns {Promise<T>}
  */
 export const getUserProfile = async userId => {
-	return await api.get(`user/${userId}`);
+	return await api.get(`user/${userId}`).catch(axiosErrorHandler);
 };
 
 /**
@@ -16,7 +17,9 @@ export const getUserProfile = async userId => {
  * @returns {Promise<T>}
  */
 export const updateUserProfile = async userProfile => {
-	return await api.patch(`user/update-profile`, userProfile);
+	return await api
+		.patch(`user/update-profile`, userProfile)
+		.catch(axiosErrorHandler);
 };
 
 /**
@@ -25,5 +28,5 @@ export const updateUserProfile = async userProfile => {
  * @returns {Promise<T>}
  */
 export const getUsers = async role => {
-	return await api.get(`auth/users?role=${role}`);
+	return await api.get(`auth/users?role=${role}`).catch(axiosErrorHandler);
 };

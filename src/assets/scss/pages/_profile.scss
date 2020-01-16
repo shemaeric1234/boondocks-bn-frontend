@@ -1,3 +1,4 @@
+@use './../utilities/variables';
 .avatar {
   height: 12rem;
   width: 12rem;
@@ -8,7 +9,7 @@
 }
 
 .card.profile {
-  box-shadow: 0 0.3125rem 0.4375rem -0.0625rem #c1c1c1;
+  box-shadow: variables.$color-box-shadow;
 }
 
 .save-btn {
@@ -16,12 +17,62 @@
   height: 2.375rem;
 }
 
-.profile {
+.grid-input {
+  margin: 1.5rem 0 2rem !important;
+	display: grid !important;
+	grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr)) !important;
+  grid-gap: .1rem !important;
+  & > * {
+    margin: 1rem 3rem;
+  }
+}
+
+
+.update-profile {
   input {
-    text-align: left;
+    text-align: left !important;
+    &::placeholder {
+      text-align: left !important;
+    }
   }
 
+  label {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    color: #1F2041;
+  }
+}
+.profile {
+  
+
   &-container {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    background-color: white !important;
+    border-radius: .5rem;
+    box-shadow: variables.$color-box-shadow;
+  }
+
+  .info {
+    width: 156px;
+    height: 140px;
+    color: variables.$color-grey;
+    &:hover {
+      background-color: variables.$color-primary;
+      color: white !important;
+    }
+  }
+
+  .col-sm-6 {
+    width: auto !important;
+  }
+}
+
+@media(max-width: 500px) {
+  .profile-container {
     margin: 7rem 0;
   }
 }
