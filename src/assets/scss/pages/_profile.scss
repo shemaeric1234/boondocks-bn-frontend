@@ -24,6 +24,7 @@
   grid-gap: .1rem !important;
   & > * {
     margin: 1rem 3rem;
+    min-width: 60% !important;
   }
 }
 
@@ -74,5 +75,18 @@
 @media(max-width: 500px) {
   .profile-container {
     margin: 7rem 0;
+  }
+}
+
+@media(max-width: 48rem) {
+  .grid-input {
+    margin: 0rem 0 0rem !important;
+    display: grid !important;
+    // grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)) !important;
+    grid-gap: .1rem !important;
+    & > * {
+      margin: 1rem 3rem;
+      min-width: 60% !important;
+    }
   }
 }

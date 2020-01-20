@@ -9,6 +9,7 @@ const LoadingButton = ({ classNames, value, buttonLoading, onClick }) => {
 				className={`form-group ${classNames}`}
 				type='submit'
 				onClick={onClick}
+				disabled={false}
 			>
 				<span className='spinner-border spinner-border-sm' />
 			</button>

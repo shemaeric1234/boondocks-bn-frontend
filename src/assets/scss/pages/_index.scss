@@ -14,13 +14,17 @@
 @use './requestPage';
 @use '../components/comments';
 
+
 body {
-  color: $text-color-black;
-  font-family: typography.$font-stack;
+  color: $color-black-text;
   font-size:  typography.$font-size;
 }
 
 .App {
   min-height: calc(100vh - .5rem);
   background-color: $color-whitesmoke;
+}
+
+.mt-7 {
+  margin-top: 7rem;
 }

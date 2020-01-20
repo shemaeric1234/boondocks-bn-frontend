@@ -38,7 +38,7 @@ export class ForgotPassword extends Component {
 
 	render() {
 		if (localStorage.bn_user_data) {
-			return <Redirect to='/profile' />;
+			return <Redirect to='/home' />;
 		}
 		const { email, checkError } = this.state;
 		const { loading } = this.props;

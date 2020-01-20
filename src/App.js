@@ -23,6 +23,10 @@ import EditProfileContainer from './components/EditProfileContainer';
 import ViewProfileContainer from './components/ViewProfileContainer';
 import SingleRequestPage from './views/SingleRequestPage';
 import UsersContainer from './components/UsersContainer';
+// eslint-disable-next-line max-len
+import CreateAccomodationPage from './views/accomodations/CreateAccomodationPage';
+import CreateRoomsPage from './views/accomodations/CreateRoomsPage';
+import SingleHotelPage from './views/accomodations/SingleHotelPage';
 
 export default function App() {
 	return (
@@ -48,6 +52,21 @@ export default function App() {
 							path='/edit'
 							exact
 							component={EditProfileContainer}
+						/>
+						<ProtectedRoute
+							path='/hotel/create'
+							exact
+							component={CreateAccomodationPage}
+						/>
+						<ProtectedRoute
+							path='/hotel/:id'
+							exact
+							component={SingleHotelPage}
+						/>
+						<ProtectedRoute
+							path='/hotel/:id/room/create'
+							exact
+							component={CreateRoomsPage}
 						/>
 						<Route
 							path='/auth/forgot-password'

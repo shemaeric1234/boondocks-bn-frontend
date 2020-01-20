@@ -50,7 +50,7 @@ export class Login extends Component {
 		const { loadingData } = this.props;
 		const { buttonLoading } = loadingData;
 		if (localStorage.bn_user_data) {
-			return <Redirect to='/profile' />;
+			return <Redirect to='/home' />;
 		}
 		return (
 			<LayoutForms
