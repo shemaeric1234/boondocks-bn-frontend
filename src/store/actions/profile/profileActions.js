@@ -138,7 +138,7 @@ const saveProfile = userProfile => async dispatch => {
 	delete userProfile.updatedAt;
 	delete userProfile.receiveNotification;
 
-	if (userProfile.lineManagerId == 'none') {
+	if (userProfile.lineManagerId === 'none') {
 		const error = {};
 		error.lineManagerError = 'Please select a line manager';
 		dispatch(actionFunc(ACTION_TYPES.UPDATE_PROFILE, { input: {}, error }));

@@ -13,7 +13,7 @@ import Profile from '../views/profile/ProfileView';
 import updateNavbar from '../store/actions/navbar/navbarActions';
 
 class ViewProfileContainer extends Component {
-	async componentDidMount() {
+	componentDidMount() {
 		const { props } = this;
 		props.setAuthenticate(true);
 		props.updateNavbar();

@@ -35,4 +35,3 @@ export const range = (from, to, step = 1) => {
 
 	return _range;
 };
-

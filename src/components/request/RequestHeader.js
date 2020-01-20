@@ -15,7 +15,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getRequests } from '../../store/actions/requestAction';
 import { $ } from '../../jquery-loader';
-import { SET_REQUEST_PAGE_LIMIT } from '../../store/actions/types';
+import {
+	IS_REQUEST_SEARCHING,
+	SET_REQUEST_PAGE_LIMIT,
+} from '../../store/actions/types';
+import RequestSearchForm from './RequestSearchForm';
+import setRequestsList from '../../store/actions/requestListAction';
 
 /**
  * Request Header
@@ -23,6 +28,7 @@ import { SET_REQUEST_PAGE_LIMIT } from '../../store/actions/types';
  * @param setPageLimit
  * @param setRequests
  * @param getAllRequests
+ * @param resetIsSearching
  * @returns {*}
  * @constructor
  */
@@ -31,27 +37,34 @@ export const RequestHeader = ({
 	setPageLimit,
 	setRequests,
 	getAllRequests,
+	resetIsSearching,
 }) => {
 	const [type, setType] = React.useState('all');
-	const { role } = JSON.parse(localStorage.getItem('bn_user_data'));
+
 	React.useEffect(() => {
 		$('.dropdown-item.request-filter').click(function() {
 			$('#dropdownMenuButton').text($(this).text());
 		});
-		getAllRequests(type).then(req => {
-			setRequests(req);
-		});
-	}, [type, pageLimit]);
+		getAllRequests(type).then(req => setRequests(req));
+		resetIsSearching();
+	}, [type]);
 
 	return (
-		<div data-test='request-header' className='card my-4 request-header'>
-			<div className='card-body'>
-				<div className='row'>
-					<div className='col-12 col-md-6 mb-2 mb-md-0'>
-						<div className='d-flex justify-content-end justify-content-md-none'>
-							<div className='dropdown'>
+		<div className='row my-4' data-test='request-header'>
+			<div className='col-12 col-md-8'>
+				<div className='card request-header'>
+					<div className='card-body'>
+						<RequestSearchForm />
+					</div>
+				</div>
+			</div>
+			<div className='col-12 col-md-4'>
+				<div className='card request-header'>
+					<div className='card-body'>
+						<div className='row'>
+							<div className='dropdown col-md-6 my-2 my-md-4'>
 								<button
-									className='btn btn-secondary btn-sm-block dropdown-toggle requests-filter'
+									className='btn btn-secondary dropdown-toggle requests-filter col-md-12'
 									type='button'
 									id='dropdownMenuButton2'
 									data-toggle='dropdown'
@@ -77,13 +90,9 @@ export const RequestHeader = ({
 									))}
 								</div>
 							</div>
-						</div>
-					</div>
-					<div className='col-12 col-md-6'>
-						<div className='d-flex justify-content-end'>
-							<div className='dropdown'>
+							<div className='dropdown col-md-6 my-2 my-md-4'>
 								<button
-									className='btn btn-secondary btn-sm-block dropdown-toggle requests-filter'
+									className='btn btn-secondary dropdown-toggle col-md-12'
 									type='button'
 									id='dropdownMenuButton'
 									data-toggle='dropdown'
@@ -125,6 +134,7 @@ RequestHeader.propTypes = {
 	setPageLimit: PropTypes.func.isRequired,
 	setRequests: PropTypes.func.isRequired,
 	getAllRequests: PropTypes.func.isRequired,
+	resetIsSearching: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = ({ requestPageLimitState }) => ({
@@ -132,10 +142,12 @@ export const mapStateToProps = ({ requestPageLimitState }) => ({
 });
 export const mapDispatchToProps = {
 	getAllRequests: getRequests,
+	setRequests: setRequestsList,
 	setPageLimit: limit => ({
 		type: SET_REQUEST_PAGE_LIMIT,
 		payload: { pageLimit: limit },
 	}),
+	resetIsSearching: () => ({ type: IS_REQUEST_SEARCHING, payload: false }),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequestHeader);

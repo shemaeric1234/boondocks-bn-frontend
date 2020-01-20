@@ -5,8 +5,9 @@ max-len
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from '../../utils/react-redux-hooks';
+import { connect } from 'react-redux';
 import PaginationButtons from './PaginationButtons';
+import setRequestsList from '../../store/actions/requestListAction';
 
 /**
  * On Page Changed
@@ -15,12 +16,12 @@ import PaginationButtons from './PaginationButtons';
  * @param setPaginateObject
  * @param setRequests
  */
-const onPageChanged = (
+export const onPageChanged = ({
 	data,
 	paginateObject,
 	setPaginateObject,
-	setRequests,
-) => {
+	setRequests
+}) => {
 	const { allRequests } = paginateObject;
 	const { currentPage, totalPages, pageLimit } = data;
 	const offset = (currentPage - 1) * pageLimit;
@@ -39,33 +40,48 @@ const onPageChanged = (
 /**
  * RequestPagination component
  * @param setRequests
- * @returns {null|*}
+ * @param requestsData
+ * @param requests
+ * @param searching
+ * @returns {*}
  * @constructor
  */
-const RequestPagination = ({ setRequests }) => {
+export const RequestPagination = ({
+	setRequests,
+	requestsData,
+	requests,
+	searching
+}) => {
 	const [paginateObject, setPaginateObject] = React.useState({
 		allRequests: [],
 		currentRequests: [],
 		currentPage: null,
-		totalPages: null,
+		totalPages: null
 	});
-	const { requestsData } = useSelector(state => state.requestsState);
+
 	React.useEffect(() => {
 		setPaginateObject({
 			...paginateObject,
-			...{ allRequests: requestsData },
+			...{ allRequests: searching ? requests : requestsData }
 		});
-	}, [requestsData]);
+	}, [requestsData, searching]);
 	const { allRequests } = paginateObject;
-	const totalRequests = allRequests.length;
 	return (
-		<div data-test='request-pagination' data-testid='request-pagination' className='my-4 ml-auto'>
+		<div
+			data-test='request-pagination'
+			data-testid='request-pagination'
+			className='my-4 ml-auto'
+		>
 			<PaginationButtons
-				setRequests={setRequests}
 				allRequests={allRequests}
-				onPageChanged={data =>
-					onPageChanged(data, paginateObject, setPaginateObject, setRequests)
-				}
+				onPageChanged={data => {
+					onPageChanged({
+						data,
+						paginateObject,
+						setPaginateObject,
+						setRequests
+					});
+				}}
 			/>
 		</div>
 	);
@@ -73,6 +89,26 @@ const RequestPagination = ({ setRequests }) => {
 
 RequestPagination.propTypes = {
 	setRequests: PropTypes.func.isRequired,
+	requestsData: PropTypes.any.isRequired,
+	requests: PropTypes.any,
+	searching: PropTypes.bool
 };
 
-export default RequestPagination;
+RequestPagination.defaultProps = {
+	requests: null,
+	searching: false
+};
+
+export const mapStateToProps = ({
+	requestsState: { requestsData },
+	requestSearchState: { requests },
+	isSearchingState
+}) => ({
+	requestsData,
+	requests,
+	searching: isSearchingState
+});
+
+export default connect(mapStateToProps, { setRequests: setRequestsList })(
+	RequestPagination
+);
