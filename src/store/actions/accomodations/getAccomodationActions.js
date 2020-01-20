@@ -8,6 +8,7 @@ import {
 } from '../types';
 import actionFunc from '../../../utils/actionFunc';
 import apiCall from '../../../utils/api';
+import { getHotelById } from '../../../lib/services/accommodation.service';
 
 export const getAllHotels = () => async dispatch => {
 	dispatch(actionFunc(LOADING, true));
@@ -26,7 +27,7 @@ export const getHotel = id => async dispatch => {
 	dispatch(actionFunc(LOADING, true));
 
 	try {
-		const res = await apiCall.get(`/hotel/${id}`);
+		const res = await getHotelById(id);
 		dispatch(actionFunc(FETCH_SINGLE_HOTEL_SUCCESS, res.data));
 		dispatch(actionFunc(LOADING, false));
 	} catch (error) {

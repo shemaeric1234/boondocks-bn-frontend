@@ -1,0 +1,99 @@
+@use './../utilities/variables';
+.room-check {
+  position: relative;
+  left: 6.5rem;
+  top: 6rem;
+  z-index: 100;
+  opacity: 0;
+  clear: both;
+  color: red;
+  transition: opacity .2s ease-in .2s, transform .2s ease-in-out .2s, color .2s ease-in-out .2s;
+}
+
+.room-item {
+  min-width: 16.75rem;
+  &.reserved {
+    .card{
+      margin-top: 3.5rem;
+    }
+  }
+}
+
+.room-chosen {
+  opacity: 1;
+  color: lightseagreen !important;
+}
+
+.room-link {
+
+  text-decoration: none !important;
+  &:hover .room-check {
+    opacity: 1;
+    color: orange;
+    transform: scale(1.5);
+  }
+
+  .room {
+    transition: transform .1s ease-in-out .1s;
+  }
+
+  &:hover .room {
+    position: relative;
+    transform: scale(1.1);
+    z-index: 10;
+    .card {
+      border: variables.$color-bg-light 2px solid;
+      box-shadow: 0 0.625rem 1.875rem 0 variables.$color-box-shadow;
+    }
+  }
+
+}
+
+.numberCircle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  padding-top: 3px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #0074D9;
+}
+
+//.book-btn {
+//  position: fixed;
+//}
+
+.grid-input {
+  margin: 0 !important;
+}
+
+.float-container{
+  position:fixed;
+  bottom: 95px;
+  left:15%;
+  z-index: 999;
+}
+
+.float-content {
+  margin-top: 22px;
+}
+
+.booking-table tbody tr td div[data-content*=td-6-] {
+  margin: 10px auto;
+  border-radius: 50%;
+  background-color: #ff7b01;
+  text-align: center;
+  color: white;
+  line-height: 50px !important;
+  height: 50px !important;
+  width: 50px !important;
+}
+
+
+.booking{
+  .book-now {
+    display: none;
+  }
+}

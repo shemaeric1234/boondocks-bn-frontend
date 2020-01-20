@@ -20,9 +20,7 @@ export const SingleHotelPage = ({ getHotel, match, data, loading, status }) => {
 				<h2 className='text-dark'>Rooms</h2>
 				<div className='ml-2 card-deck'>
 					{data.rooms.map(room => {
-						if (room.status === 'available') {
 							return <Room key={room.id} data={room} />;
-						}
 					})}
 				</div>
 			</div>

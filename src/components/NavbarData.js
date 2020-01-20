@@ -8,14 +8,6 @@ const navItemObjects = {
 			linkText: 'Request a trip',
 			linkRoute: '/trip-request',
 		},
-		{
-			linkText: 'Destinations',
-			linkRoute: '/destinations',
-		},
-		{
-			linkText: 'Approved trips',
-			linkRoute: '/approved-trips',
-		},
 	],
 	super_administrator: [
 		{
@@ -23,7 +15,12 @@ const navItemObjects = {
 			linkRoute: '/users',
 		},
 	],
-	travel_administrator: [],
+	travel_administrator: [
+		{
+			linkText: 'Booking',
+			linkRoute: '/booking',
+		},
+	],
 	travel_team_member: [],
 	manager: [
 		{
@@ -36,8 +33,17 @@ const navItemObjects = {
 			linkText: 'Requests',
 			linkRoute: '/requests',
 		},
+		{
+			linkText: 'Booking',
+			linkRoute: '/booking',
+		},
 	],
-	suppliers: [],
+	suppliers: [
+		{
+			linkText: 'Booking',
+			linkRoute: '/booking',
+		},
+	],
 	un_authenticated: [
 		{
 			linkText: 'Home',

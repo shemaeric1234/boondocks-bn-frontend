@@ -6,6 +6,7 @@ const LoadingButton = ({
 	value,
 	buttonLoading,
 	onClick,
+	hidden,
 	testId,
 }) => {
 	if (buttonLoading === true) {
@@ -17,6 +18,7 @@ const LoadingButton = ({
 				type='submit'
 				onClick={onClick}
 				disabled={false}
+				hidden={hidden}
 			>
 				<span className='spinner-border spinner-border-sm' />
 			</button>
@@ -29,6 +31,8 @@ const LoadingButton = ({
 			className={`form-group ${classNames}`}
 			type='submit'
 			onClick={onClick}
+			data-testid={testId}
+			hidden={hidden}
 		>
 			{value}
 		</button>
@@ -41,6 +45,7 @@ LoadingButton.propTypes = {
 	buttonLoading: PropTypes.bool,
 	onClick: PropTypes.func,
 	testId: PropTypes.string,
+	hidden: PropTypes.bool,
 };
 
 LoadingButton.defaultProps = {
@@ -48,6 +53,7 @@ LoadingButton.defaultProps = {
 	buttonLoading: false,
 	onClick: null,
 	testId: null,
+	hidden: null,
 };
 
 export default LoadingButton;

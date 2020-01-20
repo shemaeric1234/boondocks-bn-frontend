@@ -21,6 +21,7 @@ import requestListReducer from './requestListReducer';
 import commentReducer from './commentReducer';
 import createTripReducer from './createTripReducer';
 import editRequestReducer from './editRequestReducer';
+import bookingReducer from './bookingReducer';
 
 const reducers = combineReducers({
 	signupState: signupReducer,
@@ -45,6 +46,7 @@ const reducers = combineReducers({
 	commentState: commentReducer,
 	createTripState: createTripReducer,
 	updateTripState: editRequestReducer,
+	bookingState: bookingReducer,
 });
 
 export default reducers;

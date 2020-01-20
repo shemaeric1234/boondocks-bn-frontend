@@ -26,7 +26,7 @@ const RequestTable = ({ history, requests, pageLimit }) => {
 	useEffect(() => {}, [pageLimit]);
 	const handleOpenRequest = id => history.push(`/request/${id}`);
 	const renderTableHeader = () => {
-		if (!requests[0]) {
+		if (requests.length === 0) {
 			return <h2 data-testid='empty-header'>No results found.</h2>;
 		}
 		const header = Object.keys(requests[0]);

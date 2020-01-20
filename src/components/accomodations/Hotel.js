@@ -66,8 +66,8 @@ export default function Hotel({ data }) {
 					) : (
 						<div>
 							<Link
-								to='/'
-								className='btn btn-primary btn-sm text-white float-right ml-2'
+								to={`/booking/${id}`}
+								className='btn btn-primary book-now btn-sm text-white float-right ml-2'
 							>
 								Book Now
 							</Link>

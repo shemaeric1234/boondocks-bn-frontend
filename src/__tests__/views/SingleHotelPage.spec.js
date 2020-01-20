@@ -42,7 +42,7 @@ describe('Single Hotel page', () => {
 					id: 1
 				}
 			}
-		}
+		};
 		const component = render(<BrowserRouter><SingleHotelPage {...props} /></BrowserRouter>);
 		expect(component.findByText())
 	});

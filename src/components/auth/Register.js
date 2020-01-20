@@ -20,7 +20,6 @@ export class Register extends Component {
 			lastName: '',
 			email: '',
 			password: '',
-			checkError: '',
 		};
 	}
 
@@ -35,13 +34,11 @@ export class Register extends Component {
 		event.preventDefault();
 		const { firstName, lastName, email, password } = this.state;
 		const { props } = this;
-		this.setState({
-			checkError: 'was-validated',
-		});
-		if (event.target.checkValidity()) {
+
+
 			const data = { firstName, lastName, email, password };
 			props.signup(data);
-		}
+
 	}
 
 	render() {

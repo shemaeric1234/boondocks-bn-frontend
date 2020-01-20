@@ -52,12 +52,12 @@
     flex-basis: 23%;
   }
 
-  .col-6 {
+  .col-6, .col-100 {
     flex-basis: 2%;
   }
 
   .table-row {
-    .col-6 {
+    .col-6, .col-100 {
       border-radius: 50%;
       background-color: rgb(255,123,1);
       color: white;

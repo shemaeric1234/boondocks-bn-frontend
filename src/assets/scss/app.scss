@@ -3,6 +3,8 @@
 @use './pages/profile';
 @use './pages/errorPage';
 @use './components/modal';
+@use './components/hotel_card';
 @use './components/assignRole';
 @use './components/usersList';
+@use './pages/booking';
 @use './node_modules/react-toastify/scss/main.scss';

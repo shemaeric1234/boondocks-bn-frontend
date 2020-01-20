@@ -20,7 +20,7 @@ export const onPageChanged = ({
 	data,
 	paginateObject,
 	setPaginateObject,
-	setRequests
+	setRequests,
 }) => {
 	const { allRequests } = paginateObject;
 	const { currentPage, totalPages, pageLimit } = data;
@@ -50,19 +50,19 @@ export const RequestPagination = ({
 	setRequests,
 	requestsData,
 	requests,
-	searching
+	searching,
 }) => {
 	const [paginateObject, setPaginateObject] = React.useState({
 		allRequests: [],
 		currentRequests: [],
 		currentPage: null,
-		totalPages: null
+		totalPages: null,
 	});
 
 	React.useEffect(() => {
 		setPaginateObject({
 			...paginateObject,
-			...{ allRequests: searching ? requests : requestsData }
+			...{ allRequests: searching ? requests : requestsData },
 		});
 	}, [requestsData, searching]);
 	const { allRequests } = paginateObject;
@@ -79,7 +79,7 @@ export const RequestPagination = ({
 						data,
 						paginateObject,
 						setPaginateObject,
-						setRequests
+						setRequests,
 					});
 				}}
 			/>
@@ -91,24 +91,24 @@ RequestPagination.propTypes = {
 	setRequests: PropTypes.func.isRequired,
 	requestsData: PropTypes.any.isRequired,
 	requests: PropTypes.any,
-	searching: PropTypes.bool
+	searching: PropTypes.bool,
 };
 
 RequestPagination.defaultProps = {
 	requests: null,
-	searching: false
+	searching: false,
 };
 
 export const mapStateToProps = ({
 	requestsState: { requestsData },
 	requestSearchState: { requests },
-	isSearchingState
+	isSearchingState,
 }) => ({
 	requestsData,
 	requests,
-	searching: isSearchingState
+	searching: isSearchingState,
 });
 
 export default connect(mapStateToProps, { setRequests: setRequestsList })(
-	RequestPagination
+	RequestPagination,
 );

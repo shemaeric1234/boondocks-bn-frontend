@@ -46,9 +46,6 @@ export const getRequests = status => async dispatch => {
 								...requestData,
 							};
 						}
-
-						console.log('requestData: ', requestData);
-
 						return { id, ...requestData };
 					}),
 			),

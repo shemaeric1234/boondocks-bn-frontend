@@ -17,17 +17,18 @@ function HotelCard({ data }) {
 		location,
 	} = data;
 	return (
-		<div className='card' data-testid='hotels'>
-			<div className='embed-responsive embed-responsive-16by9'>
-				<img
-					className='card-img-top img-fluid embed-responsive-item'
-					src={image || hotelPlaceholder}
-					alt='hotel'
-				/>
-			</div>
-			<div className='card-body'>
+		<div className='card hotel' data-testid='hotels'>
+			<Link to={`/hotel/${id}`}>
+				<div className='embed-responsive embed-responsive-16by9'>
+					<img
+						className='card-img-top img-fluid embed-responsive-item'
+						src={image || hotelPlaceholder}
+						alt='hotel'
+					/>
+				</div>
+				<div className='card-body'>
 				<div className='d-flex'>
-					<h5 className='card-title mr-3'>{name}</h5>
+					<h5 className='card-title mr-3 text-dark'>{name}</h5>
 					<StarRatings
 						rating={Number(average_rating)}
 						starRatedColor='gold'
@@ -37,10 +38,11 @@ function HotelCard({ data }) {
 						name='rating'
 					/>
 				</div>
-				<p className='card-text'>{description}</p>
+				<p className='card-text text-secondary'>{description}</p>
 			</div>
+			</Link>
 			<div className='d-inline-block p-3'>
-				<Link to={`/hotel/${id}`} className='btn btn-primary text-white mr-2'>
+				<Link to={`/booking/${id}`} className='btn btn-primary text-white mr-2'>
 					Book Now
 				</Link>
 				<i className='fa fa-thumbs-o-up mr-2' aria-hidden='true'>
