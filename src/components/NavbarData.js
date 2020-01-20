@@ -1,29 +1,54 @@
-const navItemObjects = [
-	{
-		linkText: 'Home',
-		linkRoute: '/home',
-	},
-	{
-		linkText: 'Request a trip',
-		linkRoute: '/trip-request',
-	},
-	{
-		linkText: 'Destinations',
-		linkRoute: '/destinations',
-	},
-	{
-		linkText: 'Approved trips',
-		linkRoute: '/approved-trips',
-	},
-	{
-		linkText: 'Login',
-		linkRoute: '/login',
-	},
-	{
-		linkText: 'Register',
-		linkRoute: '/register',
-	},
-];
+const navItemObjects = {
+	general: [
+		{
+			linkText: 'Home',
+			linkRoute: '/home',
+		},
+		{
+			linkText: 'Request a trip',
+			linkRoute: '/trip-request',
+		},
+		{
+			linkText: 'Destinations',
+			linkRoute: '/destinations',
+		},
+		{
+			linkText: 'Approved trips',
+			linkRoute: '/approved-trips',
+		},
+	],
+	super_administrator: [
+		{
+			linkText: 'Manage Users',
+			linkRoute: '/users',
+		},
+	],
+	travel_administrator: [],
+	travel_team_member: [],
+	manager: [
+		{
+			linkText: 'Requests',
+			linkRoute: '/requests',
+		},
+	],
+	requester: [
+		{
+			linkText: 'Requests',
+			linkRoute: '/requests',
+		},
+	],
+	supplier: [],
+	un_authenticated: [
+		{
+			linkText: 'Login',
+			linkRoute: '/login',
+		},
+		{
+			linkText: 'Register',
+			linkRoute: '/register',
+		},
+	],
+};
 
 const notificationsItems = [
 	{

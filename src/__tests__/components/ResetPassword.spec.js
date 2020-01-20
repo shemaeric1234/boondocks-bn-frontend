@@ -17,7 +17,7 @@ describe('<ResetPassword /> Test suite', () => {
         error: null,
         status: 'status'
       }
-    }
+    };
 
     props = {
       forgot: null,
@@ -30,7 +30,7 @@ describe('<ResetPassword /> Test suite', () => {
       location: {
         search:'token_reset'
       }
-    }
+    };
 
     testStore = (state) => {
       const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
@@ -44,7 +44,7 @@ describe('<ResetPassword /> Test suite', () => {
       );
         return wrapper;
     }
-  })
+  });
 
   it('Should should throw error to the UI if password do not match', () => {
     const component = setUp(mainState);

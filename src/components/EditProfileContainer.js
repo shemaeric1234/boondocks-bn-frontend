@@ -7,7 +7,7 @@ import {
 	saveProfile,
 	setIsEditing,
 	revertChanges,
-} from '../store/actions/profile/profile.actions';
+} from '../store/actions/profile/profileActions';
 import EditProfile from './profile/EditProfile';
 
 class EditProfileContainer extends Component {
@@ -16,9 +16,7 @@ class EditProfileContainer extends Component {
 
 		const user = JSON.parse(localStorage.getItem('bn_user_data'));
 		// eslint-disable-next-line react/prop-types
-		const userId = props.match.params.userId || user.userId;
-
-		props.fetchUserProfile(userId);
+		props.fetchUserProfile(user.userId);
 	}
 
 	render() {
@@ -74,6 +72,6 @@ EditProfileContainer.propTypes = {
 	revertChanges: PropTypes.func.isRequired,
 	editErrors: PropTypes.instanceOf(Object).isRequired,
 	managers: PropTypes.instanceOf(Array).isRequired,
-  loading: PropTypes.bool.isRequired,
-  isEditing: PropTypes.bool.isRequired,
+	loading: PropTypes.bool.isRequired,
+	isEditing: PropTypes.bool.isRequired,
 };

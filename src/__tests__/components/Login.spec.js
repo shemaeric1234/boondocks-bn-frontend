@@ -20,6 +20,7 @@ describe('<Login /> Test Suite', () => {
         buttonLoading: false
       },
       login: jest.fn(),
+      updateNavbar: jest.fn(),
     };
 
     testStore = (state) => {

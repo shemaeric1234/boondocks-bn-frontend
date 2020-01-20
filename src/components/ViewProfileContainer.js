@@ -7,14 +7,16 @@ import {
 	saveProfile,
 	setIsEditing,
 	revertChanges,
-} from '../store/actions/profile/profile.actions';
+} from '../store/actions/profile/profileActions';
 import setAuthenticate from '../store/actions/authenticateAction';
 import Profile from '../views/profile/ProfileView';
+import updateNavbar from '../store/actions/navbar/navbarActions';
 
 class ViewProfileContainer extends Component {
 	async componentDidMount() {
 		const { props } = this;
 		props.setAuthenticate(true);
+		props.updateNavbar();
 		const user = JSON.parse(localStorage.getItem('bn_user_data'));
 		if (props.match.params.userId || user) {
 			const userId = props.match.params.userId || user.userId;
@@ -51,6 +53,7 @@ export default connect(mapStateToProps, {
 	setIsEditing,
 	revertChanges,
 	setAuthenticate,
+	updateNavbar,
 })(ViewProfileContainer);
 
 ViewProfileContainer.propTypes = {

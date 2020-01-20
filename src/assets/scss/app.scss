@@ -1,4 +1,8 @@
+@use './components/content';
 @use './pages/index';
 @use './pages/profile';
 @use './pages/errorPage';
+@use './components/modal';
+@use './components/assignRole';
+@use './components/usersList';
 @use './node_modules/react-toastify/scss/main.scss';

@@ -1,10 +1,10 @@
-import ACTION_TYPES from './types';
+import ACTION_TYPES from './profileTypes';
 import {
 	getUserProfile,
 	getUsers,
 	updateUserProfile,
 } from '../../../lib/services/user.service';
-import nullToStr from '../../../lib/helpers';
+import { nullToStr } from '../../../lib/helpers';
 import {
 	isEmail,
 	isNotEmpty,

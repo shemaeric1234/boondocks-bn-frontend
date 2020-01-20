@@ -125,7 +125,6 @@ export const mapStateToProps = state => ({
 	error: state.signupState.error,
 	status: state.signupState.status,
 	loading: state.loadingState.buttonLoading,
-	loggedIn: state.loginState.loggedIn,
 });
 
 const mapDispatchToProps = {

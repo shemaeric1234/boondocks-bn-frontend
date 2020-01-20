@@ -1,0 +1,10 @@
+@use '../utilities/variables';
+.assign-role {
+  label {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 0.9375rem;
+    color: variables.$color-dark-blue;
+  }
+}

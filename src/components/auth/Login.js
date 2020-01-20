@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import loginFields from '../../utils/loginFields';
 import { loginLinks } from '../../utils/AuthLinks';
 import InputForm from '../templates/InputForm';
@@ -11,6 +11,7 @@ import FormLinks from '../templates/FormLinks';
 import login from '../../store/actions/loginActions';
 import { validation } from '../../utils/validations';
 import SocialAuthButtons from '../templates/SocialAuthButtons';
+import updateNavbar from '../../store/actions/navbar/navbarActions';
 
 export class Login extends Component {
 	constructor(props) {
@@ -31,15 +32,16 @@ export class Login extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		const { props } = this;
 		const { email, password } = this.state;
 		this.setState({
 			checkError: 'was-validated',
 		});
 		if (e.target.checkValidity()) {
-			const { props } = this;
 			const data = { email, password };
 			props.login(data);
 		}
+		props.updateNavbar();
 	}
 
 	render() {
@@ -105,8 +107,9 @@ export class Login extends Component {
 }
 
 Login.propTypes = {
-	login: propTypes.func,
-	loadingData: propTypes.objectOf(propTypes.any),
+	login: PropTypes.func,
+	loadingData: PropTypes.objectOf(PropTypes.any),
+	updateNavbar: PropTypes.func.isRequired,
 };
 
 Login.defaultProps = {
@@ -120,6 +123,7 @@ export const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
 	login,
+	updateNavbar,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

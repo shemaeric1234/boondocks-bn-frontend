@@ -2,7 +2,8 @@
 react/jsx-props-no-spreading,
 no-undef, import/no-extraneous-dependencies,
 no-unused-expressions,
-no-return-assign
+no-return-assign,
+prettier/prettier
 */
 import { Redirect, Route } from 'react-router';
 import React from 'react';
@@ -23,6 +24,7 @@ export const ProtectedRoute = ({
 
 	return (
 		<Route
+			data-test='protected-route'
 			render={props =>
 				isAuthenticated ? (
 					<Component {...props} />
@@ -30,7 +32,6 @@ export const ProtectedRoute = ({
 					<Redirect
 						to={{ pathname: '/login', state: { from: props.location } }}
 					/>
-					// eslint-disable-next-line prettier/prettier
 				)}
 			{...rest}
 		/>

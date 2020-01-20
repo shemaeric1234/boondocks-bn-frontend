@@ -22,7 +22,7 @@ const UserAccount = () => (
 			aria-expanded='false'
 		>
 			<span>Account</span>
-			<div className='user-avatar'>JD</div>
+			<div className='user-avatar'>{localStorage.name_initials}</div>
 		</div>
 		<div className='dropdown-menu'>
 			{accountLinks.map((item, idx) => (

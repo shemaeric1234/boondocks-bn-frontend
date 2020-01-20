@@ -17,10 +17,12 @@ import store from './store';
 import ForgotPasswordPage from './views/ForgotPasswordPage';
 import ResetPasswordPage from './views/ResetPasswordPage';
 import Loader from './components/templates/Loader';
-import Logout from './components/auth/Logout';
 import ProtectedRoute from './components/ProtectedRoute';
+import RequestPage from './views/RequestPage';
 import EditProfileContainer from './components/EditProfileContainer';
 import ViewProfileContainer from './components/ViewProfileContainer';
+import SingleRequestPage from './views/SingleRequestPage';
+import UsersContainer from './components/UsersContainer';
 
 export default function App() {
 	return (
@@ -28,7 +30,7 @@ export default function App() {
 			<Router>
 				<Loader />
 				<Navbar />
-				<div data-testid='app' className='App'>
+				<div data-testid='app' className='App pt-5'>
 					<Switch>
 						<Route path='/home' exact component={HomePage} />
 						<Route path='/register' exact component={RegisterPage} />
@@ -57,8 +59,23 @@ export default function App() {
 							exact
 							component={ResetPasswordPage}
 						/>
-						<Route path='/logout' exact component={Logout} />
+						<ProtectedRoute path='/users' exact component={UsersContainer} />
+						<ProtectedRoute path='/trip-request' exact component={HomePage} />
+						<ProtectedRoute path='/destinations' exact component={HomePage} />
+						<ProtectedRoute path='/approved-trips' exact component={HomePage} />
+						<ProtectedRoute
+							path='/profile/:userId'
+							exact
+							component={ViewProfileContainer}
+						/>
+						<ProtectedRoute
+							path='/profile'
+							exact
+							component={ViewProfileContainer}
+						/>
+						<ProtectedRoute path='/requests' exact component={RequestPage} />
 						<Redirect exact from='/' to='home' />
+						<Route path='/request/:id' exact component={SingleRequestPage} />
 						<Route component={NotFound} />
 					</Switch>
 				</div>

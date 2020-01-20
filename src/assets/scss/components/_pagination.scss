@@ -1,0 +1,20 @@
+ul.pagination {
+  margin: 0 !important;
+
+  li.page-item {
+    .page-link {
+      width: 50px !important;
+      height: 30px !important;
+      line-height: 10px !important;
+      border: none;
+      color: #666;
+      margin: 1px;
+    }
+    &.active {
+      .page-link {
+        background-color: #555;
+        color: #fff;
+      }
+    }
+  }
+}

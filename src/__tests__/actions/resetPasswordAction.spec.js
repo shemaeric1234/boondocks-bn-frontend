@@ -84,7 +84,7 @@ describe('Reset password Actions Test Suite', () => {
     }
   ];
     store = mockStore({});
-    const email = 'bonvic@gmail.com'
+    const email = 'bonvic@gmail.com';
     await store.dispatch(forgotPassword({ email }))
       .then(async () => {
         const calledActions = store.getActions();
@@ -124,7 +124,7 @@ describe('Reset password Actions Test Suite', () => {
     store = mockStore({});
     const data = {
       token: 'dougw7r634568frdgohuwe387h4dts8rfg3',
-    }
+    };
     await store.dispatch(resetPassword(data))
       .then(async () => {
         const calledActions = store.getActions();
@@ -164,7 +164,7 @@ describe('Reset password Actions Test Suite', () => {
     store = mockStore({});
     const data = {
       token: 'dougw7r634568frdgohuwe387h4dts8rfg3',
-    }
+    };
     await store.dispatch(resetPassword(data))
       .then(async () => {
         const calledActions = store.getActions();

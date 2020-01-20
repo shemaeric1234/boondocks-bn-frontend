@@ -1,4 +1,4 @@
-import ACTION_TYPES from '../actions/profile/types';
+import ACTION_TYPES from '../actions/profile/profileTypes';
 
 const initialState = {
 	userProfile: {},
@@ -11,7 +11,7 @@ const initialState = {
 	isEditing: false,
 };
 
-export const reducer = (state = initialState, { type, payload }) => {
+const reducer = (state = initialState, { type, payload }) => {
 	switch (type) {
 		case ACTION_TYPES.GET_USER_PROFILE_SUCCESS:
 			return {

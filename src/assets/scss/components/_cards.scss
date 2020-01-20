@@ -1,0 +1,19 @@
+ .card-trip-group {
+ 
+   .card-trip {
+     column-count: 2;
+     background: whitesmoke;
+     padding: 1.875rem;
+     margin: 0.625rem;
+     p {
+       font-size: .8rem;
+       text-align: justify;
+       span.value {
+         margin-left: 1rem;
+       }
+       span.key {
+         font-weight: bolder;
+       }
+     }
+   }
+ }

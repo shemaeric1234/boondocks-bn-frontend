@@ -8,7 +8,7 @@ describe('<FormLinks></FormLinks> tests', () => {
 			paragraphText: 'A paragraph',
 			link: 'A link',
 			linkLabel: 'A label',
-		}
+		};
 		const wrapper = shallow(<FormLinks {...props} />);
 		expect(wrapper.find("[data-test='form-links']")).toHaveLength(1);
 	});

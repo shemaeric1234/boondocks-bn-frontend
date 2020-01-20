@@ -43,6 +43,10 @@ export class ForgotPassword extends Component {
 		const { email, checkError } = this.state;
 		const { loading } = this.props;
 
+		if (localStorage.bn_user_data) {
+			return <Redirect to='/profile' />;
+		}
+
 		return (
 			<LayoutForms
 				onSubmit={event => this.handleSubmit(event)}
