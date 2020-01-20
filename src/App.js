@@ -32,7 +32,7 @@ export default function App() {
 				<Navbar />
 				<div data-testid='app' className='App pt-5'>
 					<Switch>
-						<Route path='/home' exact component={HomePage} />
+						<ProtectedRoute path='/home' exact component={HomePage} />
 						<Route path='/register' exact component={RegisterPage} />
 						<Route path='/login' exact component={LoginPage} />
 						<ProtectedRoute
@@ -74,6 +74,8 @@ export default function App() {
 							component={ViewProfileContainer}
 						/>
 						<ProtectedRoute path='/requests' exact component={RequestPage} />
+						<ProtectedRoute path='/users' component={UsersContainer} />
+						<Route path='/auth/reset-password' component={ResetPasswordPage} />
 						<Redirect exact from='/' to='home' />
 						<Route path='/request/:id' exact component={SingleRequestPage} />
 						<Route component={NotFound} />
