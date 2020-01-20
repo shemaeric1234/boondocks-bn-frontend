@@ -16,6 +16,8 @@ import getAccomodationReducers from './getAccomodationReducers';
 import getSingleHotelReducer from './getSingleHotelReducer';
 import createRoomsReducer from './createRoomsReducer';
 import commentReducer from './commentReducer';
+import createTripReducer from './createTripReducer';
+import editRequestReducer from './editRequestReducer';
 
 const reducers = combineReducers({
 	signupState: signupReducer,
@@ -24,11 +26,11 @@ const reducers = combineReducers({
 	loadingState: loadingReducer,
 	loginState: loginReducer,
 	profileState: profile,
+	singleRequestState: singleRequestReducer,
 	authState: isAuthenticatedReducer,
 	errorState: errorReducer,
 	requestPageLimitState: requestPageLimitReducer,
 	requestsState: requestReducer,
-	singleRequestState: singleRequestReducer,
 	usersState: usersReducer,
 	navbarState: navbarReducer,
 	createHotelState: createHotelReducer,
@@ -36,6 +38,8 @@ const reducers = combineReducers({
 	hotelState: getAccomodationReducers,
 	singleHotelState: getSingleHotelReducer,
 	commentState: commentReducer,
+	createTripState: createTripReducer,
+	updateTripState: editRequestReducer,
 });
 
 export default reducers;

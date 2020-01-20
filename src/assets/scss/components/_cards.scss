@@ -1,22 +1,30 @@
  .card-trip-group {
  
    .card-trip {
-     column-count: 2;
      background: whitesmoke;
-     padding: 1.875rem;
      margin: 0.625rem;
-     p {
-       font-size: .8rem;
-       text-align: justify;
-       span.value {
-         margin-left: 1rem;
-       }
-       span.key {
-         font-weight: bolder;
-       }
-     }
-   }
+     padding: 0.1rem;
+     .card-details{
+      padding: 1.775rem;
+      column-count: 2;
+      p {
+        font-size: .8rem;
+        text-align: justify;
+        span.value {
+          margin-left: 1rem;
+        }
+        span.key {
+          font-weight: bolder;
+        }
+      }
+    }
+  }
  }
+
+ .pointer {
+   cursor: pointer;
+ }
+
 .card-deck {
   margin: 0 -15px;
   justify-content: flex-start;
@@ -49,5 +57,12 @@
   .card-deck .card {
     -ms-flex: 0 0 24%;
     flex: 0 0 24%;
+  }
+}
+
+@media (max-width: 992px)
+{
+  .card-details{
+    column-count: 1 !important;
   }
 }

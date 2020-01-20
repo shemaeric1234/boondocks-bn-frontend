@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function SelectInput({
+	multiple,
 	label,
 	placeholder,
 	classNames,
@@ -18,7 +19,7 @@ function SelectInput({
 		<div data-test='input-form' className='form-group'>
 			{label && <label htmlFor={name}>{label}</label>}
 			<select
-				id={name}
+				multiple={multiple}
 				className={classNames}
 				name={name}
 				value={value}
@@ -28,7 +29,7 @@ function SelectInput({
 				onBlur={onBlur}
 			>
 				<option disabled value=''>
-					{`Select ${placeholder}`}
+					{!multiple && `select ${placeholder}`}
 				</option>
 				{option.map(({ value, name, id }) => (
 					<option key={id} value={value}>
@@ -47,7 +48,11 @@ function SelectInput({
 
 SelectInput.propTypes = {
 	name: PropTypes.string.isRequired,
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	value: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+		PropTypes.array,
+	]),
 	label: PropTypes.string,
 	classNames: PropTypes.string,
 	placeholder: PropTypes.string,
@@ -56,6 +61,7 @@ SelectInput.propTypes = {
 	required: PropTypes.bool,
 	option: PropTypes.array.isRequired,
 	error: PropTypes.string,
+	multiple: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 SelectInput.defaultProps = {
@@ -67,6 +73,7 @@ SelectInput.defaultProps = {
 	required: false,
 	value: '',
 	error: null,
+	multiple: false,
 };
 
 export default SelectInput;

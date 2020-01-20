@@ -37,8 +37,12 @@ const navItemObjects = {
 			linkRoute: '/requests',
 		},
 	],
-	supplier: [],
+	suppliers: [],
 	un_authenticated: [
+		{
+			linkText: 'Home',
+			linkRoute: '/home',
+		},
 		{
 			linkText: 'Login',
 			linkRoute: '/login',
