@@ -1,8 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
-import { FETCH_REQUEST_SUCCESS, FETCH_REQUEST_FAIL } from '../../store/actions/types';
+import { FETCH_REQUEST_SUCCESS, FETCH_REQUEST_FAIL,COMMENT_SUCCESS,
+	COMMENT_FAIL, } from '../../store/actions/types';
 import singleRequest from '../../store/actions/requests/singleRequestActions';
+import comment from '../../store/actions/commentActions';
 import apiCall from '../../utils/api';
 
 let store;

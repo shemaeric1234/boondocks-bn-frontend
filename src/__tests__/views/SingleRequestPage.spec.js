@@ -8,6 +8,7 @@ import {
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
 import Cookies from 'universal-cookie';
+import postComment from '../../lib/services/commentService';
 import localStorage from '../../__mocks__/LocalStorage';
 import render from '../../__mocks__/render';
 import SingleRequestPage from '../../views/SingleRequestPage';
@@ -15,6 +16,7 @@ import apiCall from '../../utils/api';
 
 global.localStorage = localStorage;
 jest.mock('../../utils/api');
+jest.mock('../../lib/services/commentService')
 jest.mock('universal-cookie', () => jest.fn());
 Cookies.mockImplementation(() => ({
 	get: () =>
@@ -36,7 +38,7 @@ const request = {
 			   returnDate: null,
 			   createdAt: "2020-01-14T18:03:40.451Z",
 			   updatedAt: "2020-01-14T18:03:40.451Z",
-			   hotel:{
+			   hotel:{ 
 				   name: "Marriot Hotel"
 			   },
 			   going: {
@@ -48,15 +50,40 @@ const request = {
 				   city: "Narobi"
 			   }
 		   }],
-		   comments: [],
+		   comments: [{
+			id: 1,
+			requestId: 1,
+			userId: 2,
+			comment: "nnnn",
+			isVisible: true,
+			createdAt: "2020-01-20T08:51:31.090Z",
+			updatedAt: "2020-01-20T08:51:31.090Z",
+			author: {
+				"firstName": "Requester",
+				"lastName": "User"
+			}
+		   },
+		   {
+			id: 2,
+			requestId: 1,
+			userId: 3,
+			comment: "ppp",
+			isVisible: true,
+			createdAt: "2020-01-20T08:51:31.090Z",
+			updatedAt: "2020-01-20T08:51:31.090Z",
+			author: {
+				"firstName": "Line",
+				"lastName": "Manager"
+			}
+		   }],
 		   user: {
 			   lastName: "User",
 			   firstName: "Requester"
-		   }
-
+		   }  
+	   	
 		}
 	}
-};
+}
 
 beforeEach(() => {
 	global.localStorage.setItem("bn_user_data", `{
@@ -76,7 +103,8 @@ afterEach(() => {
 	localStorage.store = {};
 });
 
-apiCall.get.mockImplementation(() => Promise.resolve(request));
+apiCall.get.mockImplementation(() => Promise.resolve(request))
+postComment.mockImplementation(() => Promise.resolve({}))
 
 describe('Single request view', () => {
 	test('Users should be able to able to view single request', async() => {
@@ -85,5 +113,13 @@ describe('Single request view', () => {
 	    await waitForElement(()=> getByText('Approve'));
 		expect(getByText('Approve')).toBeInTheDocument();
 		expect(getByText('Request Details')).toBeInTheDocument();
+	});
+	test('Users should be able to post comment', async() => {
+		const { getByText, getByPlaceholderText }  = render(<SingleRequestPage match={{params : {id:1}}}/>);
+
+		const [commentButton, commemntBox] = 
+		await waitForElement(()=> [getByText('Add comment'), getByPlaceholderText('Enter your comment here')]);
+		fireEvent.change(commemntBox, {target : {value: 'comment'}})
+		fireEvent.click(commentButton)
 	});
 });

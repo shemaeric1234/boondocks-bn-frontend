@@ -1,20 +1,36 @@
-textarea{
+@use '../utilities/variables' as *;
+
+.commentContainer{
+    textarea{
     margin-bottom: 0.7rem;
     border-radius: 0.2rem;
-    text-align: right;
     width: 12.5rem;
     height: 4rem;
-    float: right;
+   padding: 0.4rem;
 }
-::placeholder{
-    text-align: center;
-    font-size: 0.8125rem;
-}
+    h3{
+        margin-bottom: 40px;
+    }
 .text{
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-  
+    margin-left: 0.625rem;
+}
+.name{
+    font-size: 0.8rem;
+}
+.commentfromCurrent{
+   font-family: Arial, Helvetica, sans-serif;
+}
+.comment{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;;
+}
+.icon-comment {
+    height: 1.875rem;
+    width: 1.875rem;
+    border-radius: 3.125rem;
+    background: $color-orange;
+    line-height: 1.875rem;
+    text-align: center;
+    color: $color-white;
+}
+}
