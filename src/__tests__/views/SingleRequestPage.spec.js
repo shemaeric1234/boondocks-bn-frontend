@@ -39,6 +39,7 @@ const request = {
 		   createdAt: "2020-01-14T18:03:40.430Z",
 		   updatedAt: "2020-01-14T18:03:40.430Z",
 		   trips: [{
+				 id: 1,
 			   type: "return",
 			   reason: "visit our agents in that city",
 			   travelDate: "2019-11-18T00:00:00.000Z",

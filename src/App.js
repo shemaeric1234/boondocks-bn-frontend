@@ -27,6 +27,7 @@ import UsersContainer from './components/UsersContainer';
 import CreateAccomodationPage from './views/accomodations/CreateAccomodationPage';
 import CreateRoomsPage from './views/accomodations/CreateRoomsPage';
 import SingleHotelPage from './views/accomodations/SingleHotelPage';
+import EditRequest from './components/request/EditRequest';
 
 export default function App() {
 	return (
@@ -36,9 +37,10 @@ export default function App() {
 				<Navbar />
 				<div data-testid='app' className='App pt-5'>
 					<Switch>
-						<ProtectedRoute path='/home' exact component={HomePage} />
+						<Route path='/home' exact component={HomePage} />
 						<Route path='/register' exact component={RegisterPage} />
 						<Route path='/login' exact component={LoginPage} />
+						<Route path='/edit-request' exact component={EditRequest} />
 						<ProtectedRoute
 							path='/profile/:userId'
 							component={ViewProfileContainer}

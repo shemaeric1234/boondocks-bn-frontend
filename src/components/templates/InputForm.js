@@ -14,6 +14,8 @@ const InputForm = ({
 	required,
 	label,
 	pattern,
+	disabled,
+	min,
 }) => (
 	<div data-test='input-form' className='form-group'>
 		{label && <label htmlFor={name}>{label}</label>}
@@ -30,6 +32,8 @@ const InputForm = ({
 			required={required}
 			id={name}
 			pattern={pattern}
+			disabled={disabled}
+			min={min}
 		/>
 		{error && error !== '' && (
 			<span data-testid='error-text' className='invalid-feedback'>
@@ -51,12 +55,16 @@ InputForm.propTypes = {
 	onBlur: PropTypes.func,
 	onClick: PropTypes.func,
 	required: PropTypes.bool,
+	disabled: PropTypes.bool,
+	min: PropTypes.string,
 	pattern: PropTypes.string,
 };
 
 InputForm.defaultProps = {
+	min: null,
 	type: 'text',
 	error: null,
+	disabled: null,
 	label: null,
 	classNames: null,
 	placeholder: null,

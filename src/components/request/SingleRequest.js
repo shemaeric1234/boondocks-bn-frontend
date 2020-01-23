@@ -96,9 +96,13 @@ const SingleRequest = ({ request, loading, changeStatus }) => {
 			</div>
 			<hr className='hr-text' data-content='Trips' />
 			<div className='card-trip-group'>
-				{trips.map((trip, id) => (
-					// eslint-disable-next-line react/no-array-index-key
-					<TripCard key={id} trip={trip} />
+				{trips.map(trip => (
+					<TripCard
+						key={trip.id.toString()}
+						trip={trip}
+						status={status}
+						role={role}
+					/>
 				))}
 			</div>
 
