@@ -6,7 +6,7 @@ import SingleRequest from '../components/request/SingleRequest';
 import CommentRequest from '../components/request/CommentRequest';
 
 function SingleRequestPage(props) {
-	const { loading, status, data, match } = props;
+	const { loading, status, data, match, btnLoading } = props;
 	useEffect(() => {
 		props.singleRequest(match.params.requestId);
 	}, []);
@@ -18,7 +18,7 @@ function SingleRequestPage(props) {
 				<div className='card'>
 					<div className='row-flex'>
 						<div className='column'>
-							<SingleRequest request={request} />
+							<SingleRequest request={request} loading={btnLoading} />
 						</div>
 						<div className='column-1 p-5'>
 							<CommentRequest
@@ -38,6 +38,7 @@ SingleRequestPage.propTypes = {
 	data: PropTypes.objectOf(PropTypes.any),
 	status: PropTypes.string,
 	loading: PropTypes.bool,
+	btnLoading: PropTypes.bool,
 	singleRequest: PropTypes.func.isRequired,
 	match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
@@ -46,12 +47,15 @@ SingleRequestPage.defaultProps = {
 	data: null,
 	status: '',
 	loading: null,
+	btnLoading: null,
 };
 
 export const mapStateToProps = state => ({
 	data: state.singleRequestState.data,
 	loading: state.loadingState.loading,
+	btnLoading: state.loadingState.buttonLoading,
 	status: state.singleRequestState.status,
+	request: state.singleRequestState.request,
 });
 
 export default connect(mapStateToProps, {

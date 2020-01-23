@@ -71,6 +71,11 @@ export default function App() {
 							component={CreateRoomsPage}
 						/>
 						<Route
+							path='/request/:requestId'
+							exact
+							component={SingleRequestPage}
+						/>
+						<Route
 							path='/auth/forgot-password'
 							component={ForgotPasswordPage}
 							exact

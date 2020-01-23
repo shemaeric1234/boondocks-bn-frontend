@@ -20,6 +20,10 @@ body {
   font-size:  typography.$font-size;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 .App {
   min-height: calc(100vh - .5rem);
   background-color: $color-whitesmoke;

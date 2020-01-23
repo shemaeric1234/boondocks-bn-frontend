@@ -22,6 +22,7 @@ import { createMemoryHistory } from 'history';
 import { BrowserRouter } from 'react-router-dom';
 import EditProfileComponent from '../../components/EditProfileContainer';
 import Cookies from "universal-cookie";
+import token from '../../__mocks__/token';
 
 global.localStorage = localStorage;
 
@@ -37,9 +38,8 @@ global.localStorage.setItem("bn_user_data", `{
 }`);
 
 jest.mock("../../lib/services/user.service");
-jest.mock("universal-cookie", () => jest.fn());
-Cookies.mockImplementation(
-	() => ({ get: () => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpbGRuaXkwNUBnbWFpbC5jb20iLCJuYW1lIjoiR2lsZGFzIiwidXNlcklkIjoxLCJ2ZXJpZmllZCI6dHJ1ZSwicm9sZSI6InJlcXVlc3RlciIsImxpbmVNYW5hZ2VySWQiOm51bGwsImlhdCI6MTU3ODU3MTM0OSwiZXhwIjoxNTc4NjU3NzQ5fQ.SmBRYQ-zYgEl08jObfqrtFjrJTCU33-DsMGCRC2RZuc" }));
+jest.mock("universal-cookie");
+Cookies.mockImplementation(() => ({ get: () => token }));
 
 const render = (ui, initialState = {}, options = {}) => {
 	const store = createStore(reducers, initialState,

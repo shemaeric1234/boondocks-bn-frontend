@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/named
-import { REQUEST_FETCH_FAILURE, REQUEST_FETCH_SUCCESS } from '../actions/types';
+import { REQUEST_FETCH_SUCCESS } from '../actions/types';
 
 const initialState = {
 	requestsData: [],
@@ -13,12 +13,6 @@ const reducer = (state = initialState, { type, payload }) => {
 				...state,
 				requestsData: payload,
 				requestsError: null,
-			};
-		case REQUEST_FETCH_FAILURE:
-			return {
-				...state,
-				requestData: [],
-				requestsError: payload,
 			};
 		default:
 			return state;

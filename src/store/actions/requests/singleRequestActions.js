@@ -1,20 +1,32 @@
-import { FETCH_REQUEST_SUCCESS, FETCH_REQUEST_FAIL, LOADING } from '../types';
+import {
+	BUTTON_LOADING,
+	FETCH_REQUEST_SUCCESS,
+	LOADING,
+	REQUEST_STATUS_CHANGE_SUCCESS,
+} from '../types';
 import actionFunc from '../../../utils/actionFunc';
-import apiCall from '../../../utils/api';
 import toast from '../../../lib/toast';
-import axiosErrorHandler from '../../../lib/services/axiosErrorHandler';
+import {
+	getSingleRequest,
+	updateRequestStatus,
+} from '../../../lib/services/requests.service';
 
 const singleRequest = id => async dispatch => {
 	dispatch(actionFunc(LOADING, true));
-	try {
-		const res = await apiCall.get(`/requests/${id}`).catch(axiosErrorHandler);
-		dispatch(actionFunc(FETCH_REQUEST_SUCCESS, res.data));
-		dispatch(actionFunc(LOADING, false));
-	} catch (error) {
-		dispatch(actionFunc(FETCH_REQUEST_FAIL, error.response.data));
-		dispatch(actionFunc(LOADING, false));
-		toast('error', error.response.data.message);
-	}
+	const res = await getSingleRequest(id);
+	dispatch(actionFunc(FETCH_REQUEST_SUCCESS, res.data));
+	dispatch(actionFunc(LOADING, false));
+};
+
+export const changeRequestStatus = (requestId, status) => async dispatch => {
+	dispatch(actionFunc(BUTTON_LOADING, true));
+	const request = await updateRequestStatus(requestId, status);
+	dispatch(actionFunc(REQUEST_STATUS_CHANGE_SUCCESS, request.data.status));
+	toast('success', request.message);
+
+	const updatedRequest = await getSingleRequest(requestId);
+	dispatch(actionFunc(FETCH_REQUEST_SUCCESS, updatedRequest.data));
+	dispatch(actionFunc(BUTTON_LOADING, false));
 };
 
 export default singleRequest;

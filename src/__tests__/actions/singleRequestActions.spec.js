@@ -56,40 +56,4 @@ describe('Single RequetsTest Suite', () => {
         expect(calledActions).toEqual(expectedActions);
       });
   });
-
-  it('it should not dispatch singleRequest', async () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 404,
-        response: {
-          status: 'error',
-          message: 'No request with such id',
-      },
-      });
-    });
-
-    const expectedActions = [
-      {
-        payload: true,
-        type: "LOADING",
-      },
-      {
-      payload: {
-        status: 'error',
-        message: 'No request with such id',
-      },
-      type: FETCH_REQUEST_FAIL
-    },
-    {
-      payload: false,
-      type: "LOADING",
-    }];
-    store = mockStore({});
-    await store.dispatch(singleRequest())
-      .then(async () => {
-        const calledActions = store.getActions();
-        expect(calledActions).toEqual(expectedActions);
-      });
-  });
 });

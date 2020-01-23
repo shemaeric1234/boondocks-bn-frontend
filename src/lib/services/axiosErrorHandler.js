@@ -10,7 +10,7 @@ const axiosErrorHandler = error => {
 		}
 		Toast('error', error.response.data.message);
 	} else if (error.request) {
-		Toast('error', 'Service Unreacheable, check you internet connection');
+		Toast('error', 'Service Unreachable, check you internet connection');
 	} else {
 		Toast('error', 'Something went wrong');
 	}
