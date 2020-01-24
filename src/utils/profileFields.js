@@ -84,3 +84,42 @@ export const profileSelect = {
 		{ id: 3, name: 'Neuter', value: 'Neuter' },
 	],
 };
+
+export const profileTravelFields = [
+	{
+		id: 1,
+		placeholder: 'Enter First Name',
+		name: 'firstName',
+		type: 'text',
+		label: 'First Name',
+		required: true,
+		error: 'firstNameError',
+	},
+	{
+		id: 2,
+		placeholder: 'Enter Last Name',
+		name: 'lastName',
+		type: 'text',
+		label: 'Last Name',
+		required: true,
+		error: 'lastNameError',
+	},
+	{
+		id: 4,
+		placeholder: 'Enter Department',
+		name: 'department',
+		type: 'text',
+		label: 'department',
+		required: true,
+		error: 'departmentError',
+	},
+	{
+		id: 7,
+		placeholder: 'Enter Residence Address',
+		name: 'residenceAddress',
+		type: 'text',
+		label: 'Residence Address',
+		required: true,
+		error: 'residenceAddressError',
+	},
+];
