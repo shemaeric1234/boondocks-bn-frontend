@@ -1,7 +1,7 @@
 import apiCall from '../../utils/api';
 import axiosErrorHandler from './axiosErrorHandler';
 
-const postComment = (userComment, id) => {
+export const postComment = (userComment, id) => {
 	return apiCall
 		.post(`/requests/${id}/comment`, {
 			...userComment,
@@ -9,4 +9,6 @@ const postComment = (userComment, id) => {
 		.catch(axiosErrorHandler);
 };
 
-export default postComment;
+export const deleteComment = id => {
+	return apiCall.patch(`/comments/${id}/delete`).catch(axiosErrorHandler);
+};

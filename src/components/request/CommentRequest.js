@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import LoadingButton from '../templates/Button';
-import commentRequest from '../../store/actions/commentActions';
+import {
+	commentRequest,
+	deleteCommentAction,
+} from '../../store/actions/commentActions';
 import { formatToTime } from '../../lib/time';
+import StatusConfirmModal from '../../views/requests/StatusConfirmModal';
 
 class RequestComment extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			comment: '',
+			deleteStatusVisibility: false,
 		};
 	}
 
@@ -31,8 +36,30 @@ class RequestComment extends Component {
 		});
 	}
 
+	handlecancel() {
+		this.setState({
+			deleteStatusVisibility: false,
+		});
+	}
+
+	handleDeletePopUp(commentId) {
+		this.setState({
+			deleteStatusVisibility: true,
+			commentId,
+		});
+	}
+
+	handleDelete() {
+		const { props } = this;
+		const { commentId } = this.state;
+		props.deleteCommentAction(commentId, props.requestId);
+		this.setState({
+			deleteStatusVisibility: false,
+		});
+	}
+
 	render() {
-		const { comment } = this.state;
+		const { comment, deleteStatusVisibility } = this.state;
 		const { props } = this;
 		const { loading } = props;
 		return (
@@ -46,9 +73,11 @@ class RequestComment extends Component {
 					<div>
 						<span>
 							{props.data.data.comments.map(el => {
+								if (!el.isVisible) {
+									return;
+								}
 								const isCurrentUser =
 									el.userId === JSON.parse(localStorage.bn_user_data).userId;
-
 								return (
 									<div key={el.id}>
 										<div
@@ -68,6 +97,17 @@ class RequestComment extends Component {
 														<small className='text-secondary'>
 															{formatToTime(el.updatedAt)}
 														</small>
+													</div>
+													<div>
+														<button
+															type='button'
+															className='close'
+															aria-label='Close'
+															data-testid='close'
+															onClick={() => this.handleDeletePopUp(el.id)}
+														>
+															<span aria-hidden='true'>&times;</span>
+														</button>
 													</div>
 													<p className='comment'>{el.comment}</p>
 												</div>
@@ -97,6 +137,14 @@ class RequestComment extends Component {
 						</div>
 					</form>
 				</div>
+				<StatusConfirmModal
+					visibility={deleteStatusVisibility}
+					title='Alert'
+					prompt='Are you sure you want to delete this comment'
+					confirmAction={() => this.handleDelete()}
+					cancelAction={event => this.handlecancel(event)}
+					btnLoadingState={loading}
+				/>
 			</div>
 		);
 	}
@@ -105,6 +153,8 @@ class RequestComment extends Component {
 RequestComment.propTypes = {
 	data: propTypes.objectOf(propTypes.any),
 	commentRequest: propTypes.func.isRequired,
+	deleteCommentAction: propTypes.func.isRequired,
+	loading: propTypes.bool.isRequired,
 };
 RequestComment.defaultProps = {
 	data: null,
@@ -119,6 +169,7 @@ export const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
 	commentRequest,
+	deleteCommentAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequestComment);

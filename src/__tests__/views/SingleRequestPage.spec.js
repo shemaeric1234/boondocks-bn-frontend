@@ -9,7 +9,7 @@ import {
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
 import Cookies from 'universal-cookie';
-import postComment from '../../lib/services/commentService';
+import { postComment, deleteComment } from '../../lib/services/commentService';
 import localStorage from '../../__mocks__/LocalStorage';
 import render from '../../__mocks__/render';
 import SingleRequestPage from '../../views/SingleRequestPage';
@@ -83,6 +83,19 @@ const request = {
 				"firstName": "Line",
 				"lastName": "Manager"
 			}
+		   },
+		   {
+			id: 3,
+			requestId: 1,
+			userId: 3,
+			comment: "ppp",
+			isVisible: false,
+			createdAt: "2020-01-20T08:51:31.090Z",
+			updatedAt: "2020-01-20T08:51:31.090Z",
+			author: {
+				"firstName": "Line",
+				"lastName": "Manager"
+			}
 		   }],
 		   user: {
 			   lastName: "User",
@@ -113,6 +126,7 @@ afterEach(() => {
 
 apiCall.get.mockImplementation(() => Promise.resolve(request))
 postComment.mockImplementation(() => Promise.resolve({}))
+deleteComment.mockImplementation(() => Promise.resolve({}))
 const approvedRequest = {
 	data: {
 		data: {
@@ -175,6 +189,19 @@ describe('Single request view', () => {
 		await waitForElement(()=> [getByText('Add comment'), getByPlaceholderText('Enter your comment here')]);
 		fireEvent.change(commemntBox, {target : {value: 'comment'}})
 		fireEvent.click(commentButton)
+	});
+	test('Users should be able to delete their posted comment', async() => {
+		const { getAllByText, getAllByTestId }  = render(<SingleRequestPage match={{params : {id:1}}}/>);
+
+		const [closeButton] = 
+		await waitForElement(()=> [getAllByTestId('close')]);
+		fireEvent.click(closeButton[1])
+		const [confirmButton]=
+		await waitForElement(()=> [getAllByText('Confirm')]);
+		fireEvent.click(confirmButton[2])
+		const [cancelButton]=
+		await waitForElement(()=> [getAllByText('Cancel')]);
+		fireEvent.click(cancelButton[2])
     });
 	test("Manager can ", async () => {
 

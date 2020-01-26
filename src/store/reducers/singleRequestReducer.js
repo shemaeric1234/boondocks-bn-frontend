@@ -1,6 +1,5 @@
 import {
 	FETCH_REQUEST_SUCCESS,
-	FETCH_REQUEST_FAIL,
 	REQUEST_STATUS_CHANGE_SUCCESS,
 } from '../actions/types';
 
