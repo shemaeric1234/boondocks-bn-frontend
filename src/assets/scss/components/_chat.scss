@@ -1,0 +1,135 @@
+// .container-chat{
+// 	width:750px;
+// 	height:800px;
+// 	background:#eff3f7;
+// 	margin:0 auto;
+// 	font-size:0;
+// 	border-radius:5px;
+// 	overflow:hidden;
+// }
+main{
+	width:100%;
+	height: 80vh;
+	display:inline-block;
+	font-size: 1rem;
+	vertical-align: top;
+}
+
+.mt-6 {
+  margin-top: 4rem !important;
+}
+
+.status{
+	width: .5rem;
+	height: .5rem;
+	border-radius: 50%;
+	display: inline-block;
+}
+.green{
+	background-color:#8c8d8c;
+}
+.orange{
+	background-color:#ff725d;
+}
+.blue{
+	background-color:#6fbced;
+	margin-right:0;
+}
+
+
+#chat{
+  position: relative;
+  padding-left:0;
+  padding: 0;
+	margin:0;
+	list-style-type:none;
+	overflow-y:scroll;
+	height: 70vh;
+}
+#chat li{
+	padding: 0.625rem 1.875rem;
+}
+#chat h2,#chat h3{
+	display:inline-block;
+	font-size: 0.8125rem;
+	font-weight:normal;
+}
+#chat small{
+  font-size: .6rem;
+}
+#chat .box{
+	margin-bottom: 0.3125rem;
+}
+#chat .message{
+	padding: 0.25rem 1.25rem;
+	color: #fff;
+	line-height: 1.5625rem;
+	max-width: 90%;
+	display: inline-block;
+	text-align: left;
+	border-radius: 0.3125rem;
+}
+#chat .me{
+	text-align:right;
+}
+#chat .you .message{
+	background-color:#919191;
+}
+#chat .me .message{
+	background-color:#6fbced;
+}
+
+main .send-box{
+  height: 80px;
+  bottom: 0;
+  position: relative;
+  background-color: inherit !important;
+	padding:10px 20px 0px 20px;
+}
+
+main .send-box textarea{
+	resize:none;
+	border: .1rem solid #baddf5c2;
+	display:block;
+  width: 95%;
+  height: 50px !important;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+	border-radius:20px;
+	padding: 10px;
+	font-size:15px;
+	margin-bottom: 0;
+}
+
+main .send-box textarea::placeholder{
+	color:#cfcdcd;
+}
+.send-box button{
+  border: none;
+  border-radius: 50%;
+  background-color: #d3d3d32f;
+  padding: .5rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  position: absolute;
+  top: -.3rem;
+  text-align: center;
+  cursor: pointer;
+  right: 0rem;
+  font-size: 1.5rem !important;
+  // position: absolute;
+	// text-decoration:none;
+	// text-transform:uppercase;
+  // font-weight:bold;
+  // font-size: 2rem;
+	color:#6fbced;
+	vertical-align:top;
+	// margin-left:333px;
+	margin-top: .9rem;
+	// display:inline-block;
+}
+
+.send-box button:hover {
+  background-color: #84c7f04f;
+  color: #2ba5f1;
+}

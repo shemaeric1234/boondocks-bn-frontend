@@ -7,7 +7,7 @@ const useChat = () => {
 	const socketRef = useRef();
 	const token =
 		// eslint-disable-next-line max-len
-		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlcXVlc3RlckB1c2VyLmNvbSIsIm5hbWUiOiJSZXF1ZXN0ZXIiLCJ1c2VySWQiOjIsInZlcmlmaWVkIjp0cnVlLCJyb2xlIjoicmVxdWVzdGVyIiwibGluZU1hbmFnZXJJZCI6MywiaWF0IjoxNTc5OTIxOTMwLCJleHAiOjE1ODAwMDgzMzB9.UqSxivTdTmibrE2wJ0NFGFaJ3ya-XUxGsIlLuFQplvo';
+		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRyYXZlbEBhZG1pbmlzdHJhdG9yLmNvbSIsIm5hbWUiOiJ0cmF2ZWwiLCJ1c2VySWQiOjQsInZlcmlmaWVkIjp0cnVlLCJyb2xlIjoidHJhdmVsX2FkbWluaXN0cmF0b3IiLCJsaW5lTWFuYWdlcklkIjpudWxsLCJpYXQiOjE1ODAwNTkxNzQsImV4cCI6MTU4MDE0NTU3NH0.q6Zs4t5pQSyMpeADjajjYV7vIy-B9t5A1AXAJOl0_gM';
 	useEffect(() => {
 		socketRef.current = socketClient('http://localhost:3000', {
 			query: { token },
@@ -15,9 +15,10 @@ const useChat = () => {
 		socketRef.current.on('getting', ({ messages }) => {
 			const formatMessages = messages.map(message => ({
 				id: message.id,
+				userId: message.userId,
 				message: message.message,
 				timestamp: message.createdAt,
-				username: `${message.user.firstName} ${message.user.lastName}`,
+				username: `${message.user.firstName}`,
 			}));
 			console.log('>>>>>>>>>>>>>>messo', formatMessages);
 			setMessages([...formatMessages]);
