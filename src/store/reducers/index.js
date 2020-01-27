@@ -18,6 +18,7 @@ import createRoomsReducer from './createRoomsReducer';
 import commentReducer from './commentReducer';
 import createTripReducer from './createTripReducer';
 import editRequestReducer from './editRequestReducer';
+import notificationReducer from './notificationReducer';
 
 const reducers = combineReducers({
 	signupState: signupReducer,
@@ -40,6 +41,8 @@ const reducers = combineReducers({
 	commentState: commentReducer,
 	createTripState: createTripReducer,
 	updateTripState: editRequestReducer,
+	notificationState: notificationReducer,
+	markAsReadState: notificationReducer,
 });
 
 export default reducers;

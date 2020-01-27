@@ -6,6 +6,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Notifications from '../Notifications';
 
 export const evenNotificationClass = idx => (idx % 2 === 1 ? ' bg-gray' : '');
 
@@ -40,42 +41,7 @@ const NavLinkItem = ({
 					linkText
 				)}
 			</NavLink>
-			{haspopup && (
-				<ul className='dropdown-menu notification'>
-					<li className='notification-header'>
-						<div className='row'>
-							<div className='text-light col-lg-12 col-sm-12 col-12'>
-								<span>Notifications ({notifications.length})</span>
-								<a href='/' className='float-right text-light'>
-									Mark all as read
-								</a>
-							</div>
-						</div>
-					</li>
-					{notifications.map(({ title, body, dateTime, link }, idx) => (
-						<li
-							data-testid='notification'
-							className={`notification-box${evenNotificationClass(idx)}`}
-							key={idx}
-						>
-							<div className='row'>
-								<div className='col-lg-12 col-sm-12 col-12'>
-									<Link to={link}>
-										<strong className='text-primary'>{title}</strong>
-									</Link>
-									<div>{body}</div>
-									<small className='text-warning'>{dateTime}</small>
-								</div>
-							</div>
-						</li>
-					))}
-					<li className='notification-footer text-center'>
-						<a href='/' className='text-light'>
-							View All
-						</a>
-					</li>
-				</ul>
-			)}
+			{haspopup && <Notifications />}
 		</li>
 	);
 };

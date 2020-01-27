@@ -1,30 +1,27 @@
 import {
-	FETCH_REQUEST_SUCCESS,
-	REQUEST_STATUS_CHANGE_SUCCESS,
+	FETCH_NOTIFICATIONS_SUCCESS,
+	MARK_AS_READ_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
 	data: null,
 	error: null,
 	status: '',
-	request: {},
 };
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case FETCH_REQUEST_SUCCESS:
+		case FETCH_NOTIFICATIONS_SUCCESS:
 			return {
 				...state,
 				data: action.payload,
 				status: 'success',
 			};
-		case REQUEST_STATUS_CHANGE_SUCCESS:
+		case MARK_AS_READ_SUCCESS:
 			return {
 				...state,
-				request: {
-					...state.request,
-					status: action.payload,
-				},
+				data: action.payload,
+				status: 'error',
 			};
 		default:
 			return {
