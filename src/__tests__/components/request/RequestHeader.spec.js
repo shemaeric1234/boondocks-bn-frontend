@@ -43,7 +43,8 @@ describe("set Test suite", () => {
       setPageLimit: jest.fn(),
       setRequests: jest.fn(),
       requestPageLimitState: jest.fn(),
-      getAllRequests: jest.fn().mockResolvedValue(requests)
+      getAllRequests: jest.fn().mockResolvedValue(requests),
+      resetIsSearching: jest.fn(),
     };
     const eventHandlerMap = {};
     ($(".dropdown-item.request-filter").click).mockImplementation((handler) => {
@@ -70,7 +71,7 @@ describe("set Test suite", () => {
     expect(setType).toHaveBeenCalledWith(1);
   });
 
-  it("Should should 'ope'n' be clickable as filter", () => {
+  it("Should should 'open' be clickable as filter", () => {
     const component = setUp();
     component.find("[data-test=\"open\"]").
       simulate("click", { target: { id: 1 } });
@@ -101,6 +102,13 @@ describe("set Test suite", () => {
     expect(mapDispatchToProps.setPageLimit(1)).
       toEqual({ type: "SET_REQUEST_PAGE_LIMIT", payload: { pageLimit: 1 } });
   });
+
+  it("Should should dispatch 'resetIsSearching'", () => {
+    mapDispatchToProps.resetIsSearching();
+    expect(mapDispatchToProps.resetIsSearching()).
+      toEqual({ type: "IS_REQUEST_SEARCHING", payload: false });
+  });
+
 
   it("Should should get as a state 'requestPageLimitState' ", () => {
     expect(mapStateToProps({ requestPageLimitState: null })).

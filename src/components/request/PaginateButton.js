@@ -10,9 +10,15 @@ import PropTypes from 'prop-types';
  * @constructor
  */
 const PaginateButton = ({ onClick, arrow, text }) => {
+	console.log(`{
+		 onClick: ${JSON.stringify(onClick)}, 
+		 arrow: ${arrow},  
+		 text: ${text},  
+	}`);
 	return (
-		<li data-test='paginate-arrow-button' className='page-item'>
+		<li className='page-item'>
 			<button
+				data-test='paginate-button-button'
 				type='button'
 				className='page-link'
 				aria-label={text}

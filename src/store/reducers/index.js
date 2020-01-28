@@ -15,6 +15,9 @@ import createHotelReducer from './createHotelReducer';
 import getAccomodationReducers from './getAccomodationReducers';
 import getSingleHotelReducer from './getSingleHotelReducer';
 import createRoomsReducer from './createRoomsReducer';
+// eslint-disable-next-line import/named
+import requestSearchReducer, { isSearching } from './requestSearchReducer';
+import requestListReducer from './requestListReducer';
 import commentReducer from './commentReducer';
 import createTripReducer from './createTripReducer';
 import editRequestReducer from './editRequestReducer';
@@ -30,13 +33,15 @@ const reducers = combineReducers({
 	authState: isAuthenticatedReducer,
 	errorState: errorReducer,
 	requestPageLimitState: requestPageLimitReducer,
-	requestsState: requestReducer,
-	usersState: usersReducer,
+	requestsState: requestReducer,	usersState: usersReducer,
 	navbarState: navbarReducer,
 	createHotelState: createHotelReducer,
 	createRoomState: createRoomsReducer,
 	hotelState: getAccomodationReducers,
 	singleHotelState: getSingleHotelReducer,
+	requestSearchState: requestSearchReducer,
+	isSearchingState: isSearching,
+	requestListState: requestListReducer,
 	commentState: commentReducer,
 	createTripState: createTripReducer,
 	updateTripState: editRequestReducer,

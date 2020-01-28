@@ -1,6 +1,3 @@
-const actionFunc = (type, payload) => ({
-	type,
-	payload,
-});
+const actionFunc = (type, payload) => ({ type, payload });
 
 export default actionFunc;
