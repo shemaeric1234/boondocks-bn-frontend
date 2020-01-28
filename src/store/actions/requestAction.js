@@ -25,12 +25,13 @@ export const getRequests = status => async dispatch => {
 		dispatch(
 			actionFunc(
 				REQUEST_FETCH_SUCCESS,
-				data.data.map(
-					({ id, status, type, createdAt, updatedAt, user, trips }) => {
+				data.data
+					.reverse()
+					.map(({ id, status, type, updatedAt, user, trips }) => {
 						let requestData = {
 							status,
 							type,
-							createdAt,
+							reason: trips.map(trip => trip.reason)[0],
 							updatedAt,
 						};
 
@@ -43,13 +44,13 @@ export const getRequests = status => async dispatch => {
 									names: `${user.firstName} ${user.lastName}`,
 								},
 								...requestData,
-								reason: trips.map(trip => trip.reason)[0],
 							};
 						}
 
+						console.log('requestData: ', requestData);
+
 						return { id, ...requestData };
-					},
-				),
+					}),
 			),
 		);
 	} catch (error) {

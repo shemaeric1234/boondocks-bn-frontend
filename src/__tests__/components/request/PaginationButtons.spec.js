@@ -26,7 +26,7 @@ describe("'PaginationButtons component'", () => {
   beforeEach(() => {
     store = configureStore([thunk])({
       requestPageLimitState: {
-        pageLimit: 3
+        pageLimit: 5
       }
     });
 
