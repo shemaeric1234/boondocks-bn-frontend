@@ -14,12 +14,13 @@ describe('Create trip Reducer Tests ', () => {
 		};
 		const changedState = createTripReducer(undefined, create);
 		expect(changedState).toEqual({
-      allLocations: null,
-	    locationsWithHotels: null,
 			data: create.payload,
       error: null,
-      status: 'success',
-			tripCreated: true,
+      fetchStatus: null,
+      createStatus: 'success',
+      tripCreated: true,
+      allLocations: null,
+      locationsWithHotels: null,
 		})
 	});
 
@@ -30,12 +31,13 @@ describe('Create trip Reducer Tests ', () => {
 		};
 		const changedState = createTripReducer(undefined, createFail);
 		expect(changedState).toEqual({
-        allLocations: null,
-	      locationsWithHotels: null,
-			  data: null,
 				error: createFail.payload,
-				status: 'error',
-				tripCreated: false,
+        data: null,
+				createStatus: null,
+        tripCreated: false,
+        fetchStatus: null,
+        allLocations: null,
+        locationsWithHotels: null,
 		})
 	});
 
@@ -48,10 +50,11 @@ describe('Create trip Reducer Tests ', () => {
 		expect(changedState).toEqual({
 			  allLocations: location.payload.allLocations,
 				locationsWithHotels: location.payload.locationsWithHotels,
-				error: null,
-				status: 'success',
-        tripCreated: false,
         data: null,
+				error: null,
+				fetchStatus: 'success',
+				createStatus: null,
+				tripCreated: false,
 		})
 	});
 
@@ -62,24 +65,27 @@ describe('Create trip Reducer Tests ', () => {
 		};
 		const changedState = createTripReducer(undefined, locationFail);
 		expect(changedState).toEqual({
-      allLocations: null,
-      locationsWithHotels: null,
+      error: locationFail.payload,
       data: null,
       error: locationFail.payload,
-      status: 'error',
+      fetchStatus: 'error',
+      createStatus: null,
       tripCreated: false,
+      allLocations: null,
+      locationsWithHotels: null,
 		})
 	});
 
 	it('Should return default state', () => {
 		const defaultState = createTripReducer(undefined, {});
 		expect(defaultState).toEqual({
-      allLocations: null,
-      locationsWithHotels: null,
       data: null,
       error: null,
-      status: '',
+      fetchStatus: null,
+      createStatus: null,
       tripCreated: false,
+      allLocations: null,
+      locationsWithHotels: null,
     })
 	});
 });

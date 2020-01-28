@@ -6,7 +6,8 @@ import InputForm from '../templates/InputForm';
 import SelectInput from '../templates/SelectInput';
 import TextArea from '../templates/TextArea';
 import { updateTrip } from '../../store/actions/requests/editTripActions';
-import { fetchCreateTripData } from '../../store/actions/createTripActions';
+// eslint-disable-next-line max-len
+import { fetchCreateTripData } from '../../store/actions/requests/createTripActions';
 import Button from '../templates/Button';
 import { formatdate } from '../../lib/time';
 
