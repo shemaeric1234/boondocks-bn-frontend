@@ -59,4 +59,3 @@ const requestsManager2 = [
 ];
 
 export { requestsManager1, requestsManager2 };
-

@@ -1,21 +1,30 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React from 'react';
+/* eslint-disable
+react/jsx-props-no-spreading,
+react/jsx-one-expression-per-line,
+react/no-array-index-key,
+jsx-a11y/click-events-have-key-events,
+jsx-a11y/no-noninteractive-element-interactions,
+max-len
+ */
+import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import markAllNotificationsAsReadAction from '../../store/actions/notifications/markAllNotificationsAsReadAction';
 
 export const evenNotificationClass = idx => (idx % 2 === 1 ? ' bg-gray' : '');
 
-const NavLinkItem = ({
+export const NavLinkItem = ({
 	linkText,
 	linkRoute,
 	icon,
 	haspopup,
 	notifications,
+	markAllAsRead,
+	allAsReadState,
 }) => {
+	const notificationNumber = 0;
+	useEffect(() => {}, [allAsReadState, notificationNumber]);
 	return (
 		<li className='nav-item mx-0 mx-md-3'>
 			<NavLink
@@ -33,7 +42,15 @@ const NavLinkItem = ({
 			>
 				{icon && icon !== ';)' ? (
 					<>
-						<i data-testid='fa-icon' className={`fa fa-${icon}`} />
+						<div data-testid='fa-icon' className={`fa fa-${icon}`}>
+							<span
+								className={`notification-number${
+									notificationNumber ? '' : ' zero'
+								}`}
+							>
+								{notificationNumber}
+							</span>
+						</div>
 						<span className='pl-2'>{linkText}</span>
 					</>
 				) : (
@@ -46,7 +63,11 @@ const NavLinkItem = ({
 						<div className='row'>
 							<div className='text-light col-lg-12 col-sm-12 col-12'>
 								<span>Notifications ({notifications.length})</span>
-								<a href='/' className='float-right text-light'>
+								<a
+									href='#!'
+									onClick={markAllAsRead}
+									className='float-right text-light'
+								>
 									Mark all as read
 								</a>
 							</div>
@@ -92,6 +113,8 @@ NavLinkItem.propTypes = {
 			dateTime: PropTypes.string.isRequired,
 		}),
 	),
+	markAllAsRead: PropTypes.func.isRequired,
+	allAsReadState: PropTypes.any.isRequired,
 };
 
 NavLinkItem.defaultProps = {
@@ -101,4 +124,13 @@ NavLinkItem.defaultProps = {
 	notifications: [],
 };
 
-export default NavLinkItem;
+const mapStateToProps = ({ markAllNotificationsAsReadState }) => ({
+	allAsReadState: markAllNotificationsAsReadState,
+});
+
+const mapDispatchToProps = {
+	markAllAsRead: markAllNotificationsAsReadAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavLinkItem);
+

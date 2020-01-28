@@ -6,12 +6,13 @@ import {
 } from '../actions/types';
 
 const initialState = {
-	allLocations: null,
-	locationsWithHotels: null,
 	data: null,
 	error: null,
-	status: '',
+	fetchStatus: null,
+	createStatus: null,
 	tripCreated: false,
+	allLocations: null,
+	locationsWithHotels: null,
 };
 
 export default (state = initialState, action) => {
@@ -21,7 +22,8 @@ export default (state = initialState, action) => {
 				...state,
 				data: action.payload,
 				error: null,
-				status: 'success',
+				fetchStatus: null,
+				createStatus: 'success',
 				tripCreated: true,
 			};
 		case CREATE_TRIP_FAILURE:
@@ -29,25 +31,30 @@ export default (state = initialState, action) => {
 				...state,
 				data: null,
 				error: action.payload,
-				status: 'error',
+				createStatus: null,
 				tripCreated: false,
 			};
 		case FETCH_CREATE_TRIP_DATA_SUCCESS:
 			return {
 				...state,
+				data: null,
+				error: null,
+				fetchStatus: 'success',
+				createStatus: null,
+				tripCreated: false,
 				allLocations: action.payload.allLocations,
 				locationsWithHotels: action.payload.locationsWithHotels,
-				error: null,
-				status: 'success',
-				tripCreated: false,
 			};
 		case FETCH_CREATE_TRIP_DATA_FAILURE:
 			return {
 				...state,
 				data: null,
 				error: action.payload,
-				status: 'error',
+				fetchStatus: 'error',
+				createStatus: null,
 				tripCreated: false,
+				allLocations: null,
+				locationsWithHotels: null,
 			};
 		default:
 			return {

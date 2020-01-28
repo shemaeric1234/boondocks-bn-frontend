@@ -107,13 +107,42 @@
     display: block;
     vertical-align: center;
 
-      span, .user-avatar {
-        display: inline-block;
-        line-height: 2.1875rem;
-        text-align: center;
-        vertical-align: center;
-        margin: 0 0.3125rem;
+    span, .user-avatar {
+      display: inline-block;
+      line-height: 2.1875rem;
+      text-align: center;
+      vertical-align: center;
+      margin: 0 0.3125rem;
+    }
+
+    .bell-icon {
+      position: relative;
+      cursor: pointer;
+      color: variables.$color-dark-grey;
+
+      &:hover {
+        color: variables.$color-primary;
       }
+
+      span.notification-number {
+        font-size: .8em;
+        font-family: inherit;
+        border-radius: 50%;
+        height: 23px;
+        width: 23px;
+        line-height: 23px;
+        position: absolute;
+        top: -13px;
+        left: 2px;
+        border: 1px solid #F8F9FA;
+        background-color: variables.$color-orange;
+        color: variables.$color-white;
+        &.zero{
+          background-color: lighten(variables.$color-grey, 20%);
+          color: variables.$color-white;
+        }
+      }
+    }
   }
 
   &-item:hover &-link {

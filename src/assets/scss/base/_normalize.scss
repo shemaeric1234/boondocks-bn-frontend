@@ -1,4 +1,4 @@
-textarea, input, button, label, .btn, .form-control {
+textarea, input[type=text], button, label, .btn, .form-control {
   &, &:hover, &:focus, &:active, &.active {
     outline: 0 !important;
     -webkit-appearance: none !important;

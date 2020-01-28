@@ -51,7 +51,7 @@ export default function Hotel({ data }) {
 				</p>
 				<div className='d-inline-block p-2 w-100'>
 					<i className='fa fa-thumbs-o-up mr-2' aria-hidden='true'>
-					<span className='m-2'>{likesCount}</span>
+						<span className='m-2'>{likesCount}</span>
 					</i>
 					<i className='fa fa-thumbs-o-down' aria-hidden='true'>
 						<span className='m-2'>{unLikesCount}</span>

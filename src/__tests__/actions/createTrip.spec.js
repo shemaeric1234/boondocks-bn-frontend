@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { fetchCreateTripData, createTrip } from '../../store/actions/createTripActions';
+import { fetchCreateTripData, createTrip } from '../../store/actions/requests/createTripActions';
 import apiCall from '../../utils/api';
 
 let store;
